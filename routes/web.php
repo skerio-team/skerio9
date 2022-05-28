@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [PageController::class, 'welcome'])->name('welcome');
+
+Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function (){
+
+
+    Route::get('/dashboard', [AdminController::class, 'dashboard'] )->name('dashboard');
+    Route::resource('homes', HomeController::class);
+
+
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
