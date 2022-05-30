@@ -85,6 +85,30 @@
               <a href="{{ route('admin.categories.index') }}" ><i class="far fa-newspaper"></i><span>Sport Kategoriyasi</span></a>
             </li>
 
+            {{-- Locations --}}
+            <li class="dropdown {{ request()->is('admin/sport_complexes*') ? 'active' : ''  }}">
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="user-check"></i><span> Sport majmuolari </span></a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown {{ request()->is('admin/sport_complexes*') ? 'active' : ''  }}">
+                      <a href="#" class="has-dropdown"> <i data-feather="user-check"></i><span> Joylashuvlar </span></a>
+                        <ul class="dropdown-menu">
+                          <li class="{{ request()->is('admin/roles*') ? 'active' : ''  }}">
+                            <a href="#"><i class="fas fa-universal-access"></i> Davlatlar</a>
+                          </li> 
+                          <li class="{{ request()->is('admin/roles*') ? 'active' : ''  }}"> 
+                            <a href="#"><i class="fas fa-universal-access"></i> Viloyatlar</a>
+                          </li>
+                          <li class="{{ request()->is('admin/roles*') ? 'active' : ''  }}"> 
+                            <a href="#"><i class="fas fa-universal-access"></i> Hududlar</a>
+                          </li>
+                        </ul>
+                  </li>
+                  <li class=" {{ request()->is('admin/users*') ? 'active' : ''  }}">
+                      <a href="" > <i class="fas fa-users-cog"></i><span>Foydalanuvchi&Admin</span></a>
+                  </li>
+                </ul>
+            </li>
+
             {{-- <li class="dropdown {{ request()->is('admin/categories*') ? 'active' : ''  }}">
               <a href="{{ route('admin.categories.index') }}" ><i class="fas fa-bars"></i><span>Kategoriyalar</span></a>
             </li>
@@ -100,10 +124,10 @@
                   data-feather="user-check"></i><span> Auth </span></a>
               <ul class="dropdown-menu">
                 <li class="{{ request()->is('admin/roles*') ? 'active' : ''  }}">
-                    <a href="{{ route('admin.roles.index') }}" > <i class="fas fa-universal-access"></i> Rollar</a>
+                    <a href="" > <i class="fas fa-universal-access"></i> Rollar</a>
                 </li>
                 <li class=" {{ request()->is('admin/users*') ? 'active' : ''  }}">
-                    <a href="{{ route('admin.users.index') }}" > <i class="fas fa-users-cog"></i><span>Foydalanuvchi&Admin</span></a>
+                    <a href="" > <i class="fas fa-users-cog"></i><span>Foydalanuvchi&Admin</span></a>
                 </li>
               </ul>
             </li> --}}
