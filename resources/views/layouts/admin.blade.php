@@ -81,6 +81,9 @@
             <li class="dropdown {{ request()->is('admin/homes*') ? 'active' : ''  }}">
               <a href="{{ route('admin.homes.index') }}" ><i class="far fa-newspaper"></i><span>Home</span></a>
             </li>
+            <li class="dropdown {{ request()->is('admin/categories*') ? 'active' : ''  }}">
+              <a href="{{ route('admin.categories.index') }}" ><i class="far fa-newspaper"></i><span>Sport Kategoriyasi</span></a>
+            </li>
 
             {{-- <li class="dropdown {{ request()->is('admin/categories*') ? 'active' : ''  }}">
               <a href="{{ route('admin.categories.index') }}" ><i class="fas fa-bars"></i><span>Kategoriyalar</span></a>
