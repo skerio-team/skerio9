@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\SportCategoryController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\PageController;
 
 /*
@@ -25,6 +26,7 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function (){
     Route::get('/dashboard', [AdminController::class, 'dashboard'] )->name('dashboard');
     Route::resource('homes', HomeController::class);
     Route::resource('categories', SportCategoryController::class);
+    Route::resource('news', NewsController::class);
 
 
 });

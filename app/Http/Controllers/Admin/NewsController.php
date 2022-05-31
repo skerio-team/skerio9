@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Home;
+use App\Models\News;
+use App\Models\SportCategory;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $items=Home::paginate(10);
-        return view('admin.home.index', compact('items'));
+        $items=News::paginate(10);
+
+
+        return view('admin.news.index', compact('items'));
     }
 
     /**
@@ -26,7 +29,8 @@ class HomeController extends Controller
      */
     public function create()
     {
-        return view('admin.home.create');
+        $categories=SportCategory::all();
+        return view('admin.news.create',compact('categories'));
     }
 
     /**
@@ -37,20 +41,23 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        $data=$request->all();
 
+        $data=$request->all();
+        // $id=new SportCategory;
         if ($request->hasFile('image')) {
             $file=$request->image;
             $image_name=time().$file->getClientOriginalName();
-            $file->move('admin/images/homes/', $image_name);
+            $file->move('admin/images/news/', $image_name);
             $data['image']=$image_name;
         }
 
         //  $data['slug']=\Str::slug($request->uz['title']);
 
-        $home=Home::create($data);
+        $news=News::create($data);
 
-        return redirect()->route('admin.homes.index')->with('success', 'Ma`lumot yaratildi!');
+        // $data['category_id']=$news->category_id;
+
+        return redirect()->route('admin.news.index')->with('success', 'Ma`lumot yaratildi!');
     }
 
     /**
@@ -61,8 +68,8 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        $item=Home::whereId($id)->first();
-        return view('admin.home.show', compact('item'));
+        $item=News::whereId($id)->first();
+        return view('admin.news.show', compact('item'));
     }
 
     /**
@@ -73,8 +80,9 @@ class HomeController extends Controller
      */
     public function edit($id)
     {
-        $item=Home::whereId($id)->first();
-        return view('admin.home.edit',compact('item'));
+        $item=News::whereId($id)->first();
+        $categories=SportCategory::all();
+        return view('admin.news.edit',compact('item', 'categories'));
     }
 
     /**
@@ -86,11 +94,11 @@ class HomeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $item=Home::find($id);
+        $item=News::find($id);
         $data=$request->all();
 
         $item->update($data);
-        return redirect()->route('admin.homes.index')->with('success', 'Ma`lumot tahrirlandi!');
+        return redirect()->route('admin.news.index')->with('success', 'Ma`lumot tahrirlandi!');
     }
 
     /**
@@ -101,7 +109,7 @@ class HomeController extends Controller
      */
     public function destroy($id)
     {
-        Home::destroy($id);
-        return redirect()->route('admin.homes.index')->with('warning', "Ma`lumot o'chirildi!");
+        News::destroy($id);
+        return redirect()->route('admin.news.index')->with('warning', "Ma`lumot o'chirildi!");
     }
 }

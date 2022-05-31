@@ -78,11 +78,17 @@
             <li class="dropdown {{ request()->is('admin/dashboard*') ? 'active' : ''  }}">
               <a href="{{ Route('admin.dashboard') }}" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
             </li>
+
             <li class="dropdown {{ request()->is('admin/homes*') ? 'active' : ''  }}">
               <a href="{{ route('admin.homes.index') }}" ><i class="far fa-newspaper"></i><span>Home</span></a>
             </li>
+
             <li class="dropdown {{ request()->is('admin/categories*') ? 'active' : ''  }}">
               <a href="{{ route('admin.categories.index') }}" ><i class="far fa-newspaper"></i><span>Sport Kategoriyasi</span></a>
+            </li>
+
+            <li class="dropdown {{ request()->is('admin/news*') ? 'active' : ''  }}">
+              <a href="{{ route('admin.news.index') }}" ><i class="far fa-newspaper"></i><span>Yangiliklar</span></a>
             </li>
 
             {{-- <li class="dropdown {{ request()->is('admin/categories*') ? 'active' : ''  }}">
