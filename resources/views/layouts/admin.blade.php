@@ -90,7 +90,7 @@
               <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="user-check"></i><span> Sport majmuolari </span></a>
                 <ul class="dropdown-menu">
                   <li class="{{ request()->is('admin/complexes/locations*') ? 'active' : ''  }}">
-                      <a href="{{ route('admin.complexes.locations') }}"> <i class="fas fa-map-marker-alt"></i><span> Joylashuvlar </span></a>
+                      <a href="{{ route('admin.complexes.locations.') }}"> <i class="fas fa-map-marker-alt"></i><span> Joylashuvlar </span></a>
                   </li>
                   <li class="{{ request()->is('admin/complexes*') ? 'active' : ''  }}">
                       <a href="{{ route('admin.complexes.index') }}"> <i class="fas fa-building"></i><span> Majmualar </span></a>

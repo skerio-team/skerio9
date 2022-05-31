@@ -12,7 +12,24 @@
             <div class="card">
               <div class="card-header d-flex justify-content-between">
                 <h4>Davlatlar</h4>
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addCountry">Qo'shish</button>
+                @if (Session::has('success'))
+                <div class="alert alert-success alert-dismissible show fade">
+                    <div class="alert-body">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <span>&times;</span> </button>
+                        <h5><i class="icon fas fa-check"></i></h5>
+                        {{session('success')}}
+                    </div>
+                </div>
+                @endif
+                @if (Session::has('warning'))
+                    <div class="alert alert-danger alert-dismissible show fade">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <span>&times;</span> </button>
+                        <h5><i class="icon fas fa-ban"></i> </h5>
+                        {{session('warning')}}
+                    </div>
+                @endif
+                <a href="{{ route('admin.complexes.locations.locationCreate') }}" class="btn btn-success">{{ __("Qo'shish") }}</a>
+                {{-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addCountry">Qo'shish</button> --}}
               </div>
               <div class="card-body p-0">
                 <div class="table-responsive">
@@ -271,77 +288,8 @@
         </div>
     </div>
 
-    {{-- Country Modal --}}
-    <div class="modal fade" id="addCountry" tabindex="-1" role="dialog" aria-labelledby="formModal"aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="formModal">Davlat qo'shish</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('admin.complexes.storeCountry') }}" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label for="country_name">Davlat nomi</label>
-                            <input type="text" class="form-control" placeholder="Davlat nomi" name="country_name">
-                        </div>
-                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">Qo'shish</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{-- @include('admin.sport_complexes.locations.create') --}}
 
-    {{-- Region Modal --}}
-    <div class="modal fade" id="addRegion" tabindex="-1" role="dialog" aria-labelledby="formModal"aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="formModal">Viloyat qo'shish</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('admin.complexes.storeRegion') }}" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label for="region_name">Viloyat nomi</label>
-                            <input type="text" class="form-control" placeholder="Viloyat nomi" name="region_name">
-                        </div>
-                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">Qo'shish</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {{-- Area Modal --}}
-    <div class="modal fade" id="addArea" tabindex="-1" role="dialog" aria-labelledby="formModal"aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="formModal">Hudud qo'shish</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('admin.complexes.storeArea') }}" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label for="region_name">Hudud nomi</label>
-                            <input type="text" class="form-control" placeholder="Hudud nomi" name="hudud_name">
-                        </div>
-                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">Qo'shish</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
     @endsection
 
 @section('scripts')

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\AriaController;
+use App\Http\Controllers\Admin\AreaController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\RegionController;
@@ -32,10 +32,18 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function (){
     
     Route::prefix('/complexes')->name('complexes.')->group(function() {
         Route::resource('/', SportComplexController::class);
-        Route::get('/locations', [SportComplexController::class, 'locations'])->name('locations');
-        Route::post('/storeCountry', [CountryController::class, 'storeCountry'])->name('storeCountry');
-        Route::post('/storeRegion', [RegionController::class, 'storeRegion'])->name('storeRegion');
-        Route::post('/storeArea', [AriaController::class, 'storeArea'])->name('storeArea');
+        
+        Route::prefix('/locations')->name('locations.')->group(function() {
+            Route::get('/', [SportComplexController::class, 'locations']);
+            Route::get('/create', [SportComplexController::class, 'locationCreate'])->name('locationCreate');
+            Route::post('/createCountry', [CountryController::class, 'createCountry'])->name('createCountry');
+            Route::post('/createRegion', [RegionController::class, 'createRegion'])->name('createRegion');
+            Route::post('/createArea', [AreaController::class, 'createArea'])->name('createArea');
+        });
+
+        Route::post('/storeCountry', [CountryController::class, 'store'])->name('storeCountry');
+        Route::post('/storeRegion', [RegionController::class, 'store'])->name('storeRegion');
+        Route::post('/storeArea', [AreaController::class, 'store'])->name('storeArea');
     });
 
 });

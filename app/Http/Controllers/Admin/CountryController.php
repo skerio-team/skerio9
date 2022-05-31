@@ -8,17 +8,19 @@ use Illuminate\Http\Request;
 
 class CountryController extends Controller
 {
-    public function storeCountry(Request $request)
+    public function createCountry(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'name'  => ['required', 'min:2', 'string'],
         ]);
 
-        // $data = $request->all();
-        $country = new Country;
-        $country->name = $request->name;
-        $country->save();
+        $country = Country::create([
+            'name'  =>  $data['name']
+        ]);
+        // $country = new Country;
+        // $country->name = $data['name'];
+        // $country->save();
 
-        return redirect()->route('admin.complexes.locations', compact('counties'))->with('success', 'Countries successfully created!');
+        return redirect()->route('admin.complexes.locations')->with('success', 'Countries successfully created!');
     }
 }
