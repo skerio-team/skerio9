@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('areas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('region_id')->constrained('regions')->onDelete('cascade');
+            $table->foreignId('region_id')->constrained('regions')->onDelete('restrict');
             $table->string('name')->unique();
             $table->timestamps();
         });
