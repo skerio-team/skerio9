@@ -20,5 +20,7 @@ class SportCategory extends Model implements TranslatableContract
     protected $fillable=[
         'slug',
     ];
-
+    public function news(){
+        return $this->hasMany(News::class); // Model Name
+    }
 }
