@@ -91,6 +91,19 @@
               <a href="{{ route('admin.news.index') }}" ><i class="far fa-newspaper"></i><span>Yangiliklar</span></a>
             </li>
 
+            {{-- Locations --}}
+            <li class="dropdown {{ request()->is('admin/complexes*') ? 'active' : ''  }}">
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="user-check"></i><span> Sport majmuolari </span></a>
+                <ul class="dropdown-menu">
+                  <li class="{{ request()->is('admin/complexes/locations*') ? 'active' : ''  }}">
+                      <a href="{{ route('admin.complexes.locations.') }}"> <i class="fas fa-map-marker-alt"></i><span> Joylashuvlar </span></a>
+                  </li>
+                  <li class="{{ request()->is('admin/complexes*') ? 'active' : ''  }}">
+                      <a href="#"> <i class="fas fa-building"></i><span> Majmualar </span></a>
+                  </li>
+                </ul>
+            </li>
+
             {{-- <li class="dropdown {{ request()->is('admin/categories*') ? 'active' : ''  }}">
               <a href="{{ route('admin.categories.index') }}" ><i class="fas fa-bars"></i><span>Kategoriyalar</span></a>
             </li>
