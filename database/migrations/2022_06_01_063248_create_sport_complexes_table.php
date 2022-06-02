@@ -19,7 +19,14 @@ return new class extends Migration
             $table->foreignId('area_id')->constrained('areas')->onDelete('restrict');
             $table->string('name')->unique();
             $table->string('image');
+            $table->bigInteger('price');
             $table->string('phone');
+            $table->string('address');
+            $table->string('location');
+            $table->tinyInteger('dress_room');
+            $table->tinyInteger('food');
+            $table->tinyInteger('bath_room');
+            $table->tinyInteger('sit_place');
             $table->string('meta_tag');
             $table->string('meta_title');
             $table->string('meta_description');

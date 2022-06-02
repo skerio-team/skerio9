@@ -41,7 +41,7 @@ class CountryController extends Controller
         $country->country = $request->input('country');
         $country->save();
 
-        return redirect()->route('admin.complexes.locations.')->with('success', $country->country . ' Country successfully created!');
+        return redirect()->route('admin.complexes.locations.')->with('success', $country->country . ' - country successfully created!');
     }
 
     /**
@@ -88,6 +88,6 @@ class CountryController extends Controller
     {
         $country->delete();
 
-        return redirect()->route('admin.complexes.locations.')->with('success', $country->name . ' Country successfully deleted!');
+        return redirect()->route('admin.complexes.locations.')->with('success', $country->name . ' - country successfully deleted!');
     }
 }

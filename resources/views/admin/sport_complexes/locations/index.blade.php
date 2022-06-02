@@ -88,6 +88,20 @@
         <div class="col-12 col-md-4 col-lg-4">
           <div class="card">
             <div class="card-header d-flex justify-content-between">
+              
+              {{-- Dropdown --}}
+              <div class="dropdown d-inline mr-2">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Davlatni tanlang
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+
               <h4>Viloyatlar</h4>
               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addRegion">Qo'shish</button>
             </div>
@@ -141,6 +155,33 @@
         <div class="col-12 col-md-4 col-lg-4">
             <div class="card">
               <div class="card-header d-flex justify-content-between">
+
+                {{-- Dropdown --}}
+                <div class="dropdown d-inline mr-2">
+                  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Davlatni tanlang
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </div>
+
+                {{-- Dropdown --}}
+                <div class="dropdown d-inline mr-2">
+                  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Viloyatni tanlang
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </div>
+
                 <h4>Hududlar</h4>
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addArea">Qo'shish</button>
               </div>
@@ -155,7 +196,7 @@
                     @foreach ($areas as $area)
                     <tr>
                       <td>{{ $area->id }}</td>
-                      <td>{{ $area->name}}</td>
+                      <td>{{ $area->name}} [{{ $area->regions['name'] }}, {{ $area->regions->countries['country'] }}]</td>
                       <td>
                           {{-- <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></a> --}}
                           <form action="{{ route('admin.complexes.locations.areas.destroy', ['area' => $area->id]) }}" method="POST">

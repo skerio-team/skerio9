@@ -16,7 +16,7 @@ class SportComplexController extends Controller
      */
     public function index()
     {
-        return view('admin.sport_complexes.create');
+        return view('admin.sport_complexes.index');
     }
 
     /**
