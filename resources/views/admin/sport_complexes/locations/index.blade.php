@@ -17,7 +17,14 @@
           </div>
       </div>
     @endif
-    {{-- @if ($errors)
+    @if (Session::has('warning'))
+        <div class="alert alert-danger alert-dismissible show fade">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <span>&times;</span> </button>
+            <h5><i class="icon fas fa-ban"></i> </h5>
+            {{session('warning')}}
+        </div>
+    @endif
+    @if (Session::has('errors'))
       <div class="alert alert-danger alert-dismissible show fade">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <span>&times;</span> </button>
         <h5><i class="icon fas fa-ban"></i> </h5>
@@ -27,7 +34,7 @@
         }
         @endforeach
       </div>
-    @endif --}}
+    @endif
 
     <div class="row">
       {{-- Add Country --}}
@@ -47,7 +54,7 @@
                   </tr>
                   @foreach ($countries as $country)
                   <tr>
-                    <td>{{ $country->id }}</td>
+                    <td>{{ (($loop->iteration)) }}</td>
                     <td>{{ $country->country }}</td>
                     <td>
                         {{-- <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></a> --}}
@@ -65,19 +72,7 @@
             <div class="card-footer text-right">
               <nav class="d-inline-block">
                 <ul class="pagination mb-0">
-                  <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
-                  </li>
-                  <li class="page-item active">
-                    <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">2</a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                  </li>
+                  {!! $countryPaginations->links() !!}
                 </ul>
               </nav>
             </div>
@@ -115,7 +110,7 @@
                   </tr>
                   @foreach ($regions as $region)
                   <tr>
-                    <td>{{ $region->id }}</td>
+                    <td>{{ (($loop->iteration)) }}</td>
                     <td>{{ $region->name}} [{{ $region->countries['country'] }}]</td>
                     <td>
                         {{-- <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></a> --}}
@@ -195,7 +190,7 @@
                     </tr>
                     @foreach ($areas as $area)
                     <tr>
-                      <td>{{ $area->id }}</td>
+                      <td>{{ (($loop->iteration)) }}</td>
                       <td>{{ $area->name}} [{{ $area->regions['name'] }}, {{ $area->regions->countries['country'] }}]</td>
                       <td>
                           {{-- <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></a> --}}

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreSportComplexRequest;
 use App\Http\Requests\Admin\UpdateSportComplexRequest;
+use App\Models\Area;
+use App\Models\SportCategory;
 use App\Models\SportComplex;
 
 class SportComplexController extends Controller
@@ -16,7 +18,8 @@ class SportComplexController extends Controller
      */
     public function index()
     {
-        return view('admin.sport_complexes.index');
+        $complexes  =   SportComplex::all();
+        return view('admin.sport_complexes.index', compact('complexes'));
     }
 
     /**
@@ -26,7 +29,10 @@ class SportComplexController extends Controller
      */
     public function create()
     {
-        //
+        $categories =   SportCategory::all();
+        $areas      =   Area::all();
+
+        return view('admin.sport_complexes.create', compact('categories', 'areas'));
     }
 
     /**

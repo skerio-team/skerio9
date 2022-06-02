@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreSportComplexRequest;
+use App\Http\Requests\Admin\UpdateSportComplexRequest;
 use App\Models\Area;
 use App\Models\Country;
 use App\Models\Region;
-use Illuminate\Http\Request;
+use App\Models\SportComplex;
 
 class SportLocationController extends Controller
 {
@@ -17,10 +19,11 @@ class SportLocationController extends Controller
      */
     public function index()
     {
+        $countryPaginations     =   Country::paginate(5);
         $countries  =   Country::orderBy('country', 'asc')->get();
         $regions    =   Region::all();
         $areas      =   Area::all();
-        return view('admin.sport_complexes.locations.index', compact('countries', 'regions', 'areas'));
+        return view('admin.sport_complexes.locations.index', compact('countries', 'regions', 'areas', 'countryPaginations'));
     }
 
     /**
@@ -39,7 +42,7 @@ class SportLocationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSportComplexRequest $request)
     {
         //
     }
@@ -73,7 +76,7 @@ class SportLocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateSportComplexRequest $request, $id)
     {
         //
     }

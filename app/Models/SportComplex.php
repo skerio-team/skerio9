@@ -2,13 +2,17 @@
 
 namespace App\Models;
 
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Arr;
 
-class SportComplex extends Model
+class SportComplex extends Model implements TranslatableContract
 {
     use HasFactory;
+    use Translatable;
 
     protected $table = 'sport_complexes';
     protected $fillable = [
@@ -30,6 +34,9 @@ class SportComplex extends Model
         'status'
     ];
 
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 0;
+
     public function sportCategory(): BelongsTo
     {
         return $this->belongsTo(SportCategory::class, 'sport_category_id');
@@ -39,4 +46,22 @@ class SportComplex extends Model
     {
         return $this->belongsTo(Area::class, 'aria_id');
     }
+
+    public function getStatusList(): array
+    {
+        return [
+            self::STATUS_ACTIVE =>  ['Faol'],
+            self::STATUS_INACTIVE =>  ['Nofaol'],
+        ];
+    }
+
+    public static function getStatusName(int $name)
+    {
+        return Arr::get(self::getStatusList(), $name);
+    }
+
+    // public static function getStatusName(int $name)
+    // {
+    //     return ArrayHelper::getValue(self::getStatusList(), $name);
+    // }
 }

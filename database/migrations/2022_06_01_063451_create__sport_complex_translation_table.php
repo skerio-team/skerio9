@@ -19,8 +19,8 @@ return new class extends Migration
             // Foreign key to the main model
             $table->unsignedBigInteger('sport_complex_id');
             $table->unique(['sport_complex_id', 'locale']);
+            $table->foreignId('sport_complexes_id')->constrained('sport_complexes')->onDelete('cascade');
             $table->longText('description')->nullable();
-            $table->timestamps();
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_sport_complex_translation');
+        Schema::dropIfExists('sport_complex_translation');
     }
 };
