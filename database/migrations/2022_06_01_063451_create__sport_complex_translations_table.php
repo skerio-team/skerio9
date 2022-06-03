@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sport_complexes_translation', function (Blueprint $table) {
+        Schema::create('sport_complex_translations', function (Blueprint $table) {
             $table->id();
             $table->string('locale')->index();
             // Foreign key to the main model
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sport_complex_translation');
+        Schema::dropIfExists('sport_complex_translations');
     }
 };

@@ -46,26 +46,30 @@
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
-                <table class="table table-striped table-md">
-                  <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Action</th>
-                  </tr>
-                  @foreach ($countries as $country)
-                  <tr>
-                    <td>{{ (($loop->iteration)) }}</td>
-                    <td>{{ $country->country }}</td>
-                    <td>
-                        {{-- <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></a> --}}
-                        <form action="{{ route('admin.complexes.locations.countries.destroy', ['country' => $country->id]) }}" method="POST">
-                          @csrf
-                          @method('DELETE')
-                          <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                        </form>
-                    </td>
-                  </tr>
-                  @endforeach
+                <table class="table table-striped table-md" id="table-1">
+                  <thead>
+                    <tr>
+                      <th class="text-center">#</th>
+                      <th>Name</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach ($countries as $country)
+                    <tr class="odd">
+                      <td>{{ (($loop->iteration)) }}</td>
+                      <td>{{ $country->country }}</td>
+                      <td>
+                          {{-- <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></a> --}}
+                          <form action="{{ route('admin.complexes.locations.countries.destroy', ['country' => $country->id]) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                          </form>
+                      </td>
+                    </tr>
+                    @endforeach
+                  </tbody>
                 </table>
               </div>
             </div>

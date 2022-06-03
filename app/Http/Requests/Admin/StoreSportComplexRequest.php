@@ -24,7 +24,18 @@ class StoreSportComplexRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'sport_category_id' =>  ['required'],
+            'area_id'           =>  ['required'],
+            'name'              =>  ['required', 'string', 'min:3'],
+            'image'             =>  ['mimes:png,jpg,gif,jpeg'],
+            'price'             =>  ['required', 'numeric'],
+            'phone'             =>  ['required'],
+            'address'           =>  ['required'],
+            'dress_room'        =>  ['required'],
+            'food'              =>  ['required'],
+            'bath_room'         =>  ['required'],
+            'sit_place'         =>  ['required'],
+            'status'            =>  ['required'],
         ];
     }
 }

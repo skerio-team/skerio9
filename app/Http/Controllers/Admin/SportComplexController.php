@@ -18,7 +18,7 @@ class SportComplexController extends Controller
      */
     public function index()
     {
-        $complexes  =   SportComplex::all();
+        $complexes  =   SportComplex::paginate(10);
         return view('admin.sport_complexes.index', compact('complexes'));
     }
 
@@ -43,7 +43,32 @@ class SportComplexController extends Controller
      */
     public function store(StoreSportComplexRequest $request)
     {
-        //
+        $complexes = new SportComplex;
+        $complexes->sport_category_id   =   $request->sport_category_id;
+        $complexes->area_id             =   $request->area_id;
+        $complexes->name                =   $request->name;
+        if ($request->hasFile('image')) {
+            $file=$request->image;
+            $image_name=time().$file->getClientOriginalName();
+            $file->move('admin/images/complexes/', $image_name);
+            $complexes->image   =   $image_name;
+        }
+        $complexes->price               =   $request->price;
+        $complexes->phone               =   $request->phone;
+        $complexes->address             =   $request->address;
+        $complexes->location            =   $request->location;
+        $complexes->working_status      =   $request->working_status;
+        $complexes->dress_room          =   $request->dress_room;
+        $complexes->food                =   $request->food;
+        $complexes->bath_room           =   $request->bath_room;
+        $complexes->sit_place           =   $request->sit_place;
+        $complexes->meta_tag            =   $request->meta_tag;
+        $complexes->meta_title          =   $request->meta_title;
+        $complexes->meta_description    =   $request->meta_description;
+        $complexes->status              =   $request->status;
+        $complexes->save();
+        
+        return redirect()->route('admin.complexes.index')->with('success', $complexes->name .'- successfully created!');
     }
 
     /**
@@ -54,7 +79,9 @@ class SportComplexController extends Controller
      */
     public function show(SportComplex $sportComplex)
     {
-        //
+        $item=SportComplex::whereId($sportComplex)->first();
+        
+        return view('admin.sport_complexes.show', compact('item'));
     }
 
     /**
@@ -88,6 +115,8 @@ class SportComplexController extends Controller
      */
     public function destroy(SportComplex $sportComplex)
     {
-        //
+        $sportComplex->delete();
+
+        return redirect()->route('admin.complexes.index')->with('success', $sportComplex->name .'- successfully deleted!');
     }
 }

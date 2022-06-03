@@ -24,6 +24,7 @@ class SportComplex extends Model implements TranslatableContract
         'phone',
         'address',
         'location',
+        'working_status',
         'dress_room',
         'food',
         'bath_room',
@@ -33,6 +34,8 @@ class SportComplex extends Model implements TranslatableContract
         'meta_description',
         'status'
     ];
+
+    public $translatedAttributes = ['description'];
 
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
@@ -55,13 +58,8 @@ class SportComplex extends Model implements TranslatableContract
         ];
     }
 
-    public static function getStatusName(int $name)
+    public function getStatusName(int $name)
     {
         return Arr::get(self::getStatusList(), $name);
     }
-
-    // public static function getStatusName(int $name)
-    // {
-    //     return ArrayHelper::getValue(self::getStatusList(), $name);
-    // }
 }

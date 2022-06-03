@@ -42,7 +42,7 @@ class RegionController extends Controller
         $regions->name  =   $request->name;
         $regions->save();
 
-        return redirect()->route('admin.complexes.locations.')->with('success', $regions->name . ' - region successfully created!');
+        return redirect()->route('admin.complexes.locations.')->with('success', $regions->name . ' - successfully created!');
     }
 
     /**
@@ -89,6 +89,6 @@ class RegionController extends Controller
     {
         $region->delete();
         
-        return redirect()->route('admin.complexes.locations.')->with('success', $region->name. ' - region successfully deleted!');
+        return redirect()->route('admin.complexes.locations.')->with('success', $region->name. ' - successfully deleted!');
     }
 }

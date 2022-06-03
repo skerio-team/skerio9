@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('address');
             $table->string('location');
+            $table->tinyInteger('working_status');
             $table->tinyInteger('dress_room');
             $table->tinyInteger('food');
             $table->tinyInteger('bath_room');

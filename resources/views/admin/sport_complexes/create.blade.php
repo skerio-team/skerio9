@@ -24,26 +24,28 @@
               <div class="card">
                   <div class="row mb-2">
 
-                      <div class="card-header col-sm-6">
-                          <h4> Majmua qo'shish</h4>
-                      </div>
+                    <div class="card-header col-sm-6 d-flex justify-content-between">
+                        <a href="{{ route('admin.complexes.index') }}"><button class="btn btn-warning"><i class="fa fa-arrow-left" aria-hidden="true"></i> Ortga</button></a>
+                        
+                        <h3> Majmua qo'shish</h3>
+                    </div>
 
-                      <div class="col-sm-6">
-                          <ul class="nav nav-tabs float-sm-right " >
-                               <li class="nav-item">
-                                  <a class="nav-link " href="#" id="ru-link">Ru</a>
-                              </li>
-                              <li class="nav-item">
-                                  <a class="nav-link bg-aqua-active" href="#" id="uz-link">Uzb</a>
-                              </li>
-                              <li class="nav-item">
-                                  <a class="nav-link" href="#" id="en-link">En</a>
-                              </li>
-                          </ul>
-                      </div>
+                    <div class="col-sm-6">
+                        <ul class="nav nav-tabs float-sm-right " >
+                             <li class="nav-item">
+                                <a class="nav-link " href="#" id="ru-link">Ru</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link bg-aqua-active" href="#" id="uz-link">Uzb</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" id="en-link">En</a>
+                            </li>
+                        </ul>
+                    </div>
 
                   </div>
-                  <form action="{{route('admin.complexes.store')}}" method="post" enctype="multipart/form-data">
+                  <form action="{{ route('admin.complexes.store') }}" method="post" enctype="multipart/form-data">
                       @csrf
                       <div class="card-body " >
 
@@ -95,18 +97,31 @@
         
                                         <div class="form-group ">
                                             <label>Manzil</label>
-                                            <input type="text" class="form-control" placeholder="Majmuaning manzili" name="phone">
+                                            <input type="text" class="form-control" placeholder="Majmuaning manzili" name="address">
+                                        </div>
+
+                                        <div class="form-group ">
+                                            <label >Majmua geolakatsiyasi</label>
+                                            <input type="text" class="form-control " placeholder="Geolakatsiyani kiriting" name="location" >
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group ">
                                             <label>Telefon Raqami</label>
-                                            <input type="text" class="form-control" placeholder="+998123456789" name="phone">
+                                            <input type="text" class="form-control" placeholder="+99812345678" name="phone">
                                         </div>
     
                                         <div class="form-group ">
                                             <label>Majmua Narxi (1 soat uchun)</label>
                                             <input type="number" class="form-control" placeholder="Majmua narxini kiriting" name="price" >
+                                        </div>
+
+                                        <div class="form-group ">
+                                            <label for="">Majmua ishlash holati</label>
+                                            <select name="working_status" class="form-control select2 select2-hidden-accessible" id="">
+                                                <option value="1">Ochiq majmua</option>
+                                                <option value="0">Yopiq majmua</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -177,6 +192,11 @@
 
                             <div class="col-md-6">
                                 <div class="form-group ">
+                                    <label>Meta kalitso'z (tag)</label>
+                                    <input type="text" class="form-control" placeholder="Meta Kalitso'zni kiriting" name="meta_tag" >
+                                </div>
+
+                                <div class="form-group ">
                                     <label>Meta sarlovha(title)</label>
                                     <input type="text" class="form-control" placeholder="Meta Sarlovhani kiriting" name="meta_title" >
                                 </div>
@@ -184,11 +204,6 @@
                                 <div class="form-group ">
                                     <label>Meta tavsif(description)</label>
                                     <input type="text" class="form-control" placeholder="Meta Tavsifni kiriting" name="meta_description" >
-                                </div>
-        
-                                <div class="form-group ">
-                                    <label>Meta kalitso'z (keywords)</label>
-                                    <input type="text" class="form-control" placeholder="Meta Kalitso'zni kiriting" name="meta_keywords" >
                                 </div>
 
                                 <div class="form-group ">
@@ -203,7 +218,7 @@
   
                         <div class="form-group ">
                             <div class="">
-                                <button class="btn btn-primary">Tasdiqlash</button>
+                                <button type="submit" class="btn btn-primary">Tasdiqlash</button>
                             </div>
                         </div>
                       </div>

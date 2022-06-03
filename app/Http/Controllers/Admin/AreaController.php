@@ -42,7 +42,7 @@ class AreaController extends Controller
         $areas->name   =    $request->name;
         $areas->save();
 
-        return redirect()->route('admin.complexes.locations.')->with('success', $areas->name .' - area successfully created!');
+        return redirect()->route('admin.complexes.locations.')->with('success', $areas->name .' - successfully created!');
     }
 
     /**
@@ -89,6 +89,6 @@ class AreaController extends Controller
     {
         $area->delete();
 
-        return redirect()->route('admin.complexes.locations.')->with('success', $area->name .' - area successfully created!');
+        return redirect()->route('admin.complexes.locations.')->with('success', $area->name .' - successfully created!');
     }
 }
