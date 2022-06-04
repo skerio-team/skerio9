@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('sport_complex_translations', function (Blueprint $table) {
             $table->id();
-            $table->string('locale')->index();
+            $table->string('locale');
             // Foreign key to the main model
-            $table->unsignedBigInteger('sport_complex_id');
+            // $table->unsignedBigInteger('sport_complex_id');
+            // $table->foreign('news_id')->references('id')->on('news')->onDelete('cascade');
+            $table->foreignId('sport_complex_id')->constrained('sport_complexes')->onDelete('cascade');
             $table->unique(['sport_complex_id', 'locale']);
-            $table->foreignId('sport_complexes_id')->constrained('sport_complexes')->onDelete('cascade');
             $table->longText('description')->nullable();
         });
     }

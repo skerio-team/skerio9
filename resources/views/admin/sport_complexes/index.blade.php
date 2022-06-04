@@ -13,7 +13,7 @@
 
                 <div class="card-header d-flex justify-content-between">
                     <h5 align="center">Majmualar jadvali</h5>
-                    <a class="btn btn-success " href="{{ route('admin.complexes.create')}}">Qo'shish</a>
+                    <a class="btn btn-success " href="{{ route('admin.complexes.table.create')}}">Qo'shish</a>
                 </div>
 
                 <div class="card-body">
@@ -47,17 +47,20 @@
                         </div>
                     @endif
                     <div class="table-responsive">
-                        <table class="table table-striped" id="table-2">
+                        <table class="table table-striped" id="table-1">
                             <thead>
                                 <tr>
                                     <th class="text-center"> # </th>
                                     <th>Nomi</th>
-                                    {{-- <th>Tavsif(UZ)</th> --}}
+                                    <th>Tavsif(UZ)</th>
                                     <th>Narxi</th>
                                     <th>Telefon Raqami</th>
                                     <th>Manzil</th>
                                     <th>Dush</th>
+                                    {{-- <th>Rasmi</th> --}}
                                     <th>Status</th>
+                                    <th>Created at</th>
+                                    <th>Updated at</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -66,18 +69,18 @@
                                 <tr class="odd">
                                     <td>{{$complex->id}}</td>
                                     <td >{{ $complex->name }}</td>
-                                    {{-- <td class=""><img src="/admin/images/complexes/{{$complex->image}}" width="100px" alt="" srcset=""></td> --}}
-                                    {{-- <td >{{ $complex->translate('uz')->description }}</td> --}}
+                                    <td >{{ $complex->translate('uz')->description }}</td>
                                     <td >{{ number_format($complex->price) }}</td>
                                     <td >{{ $complex->phone }}</td>
                                     <td >{{ $complex->address }}</td>
                                     <td >
-                                        @if ($complex->status==1)
+                                        @if ($complex->bath_room==1)
                                             <span class="badge badge-success">Mavjud</span>
                                         @else
                                             <span class="badge badge-danger">Mavjud emas</span>
                                         @endif
                                     </td>
+                                    {{-- <td class=""><img src="/admin/images/complexes/{{$complex->image}}" width="100px" alt="" srcset=""></td> --}}
                                     <td >
                                         @if ($complex->status==1)
                                             <span class="badge badge-success">Faol</span>
@@ -85,15 +88,17 @@
                                             <span class="badge badge-danger">Faol emas</span>
                                         @endif
                                     </td>
+                                    <td >{{ $complex->created_at }}</td>
+                                    <td >{{ $complex->updated_at }}</td>
 
                                     <td class="d-flex justify-content-center ">
-                                        <a class="btn btn-primary  " href="{{ route('admin.complexes.show', $complex->id) }}">
+                                        <a class="btn btn-primary  " href="{{ route('admin.complexes.table.show', $complex->id) }}">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                        <a class="btn btn-info " href="{{ route('admin.complexes.edit', $complex->id) }}">
+                                        <a class="btn btn-info " href="{{ route('admin.complexes.table.edit', $complex->id) }}">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <form action="{{ route('admin.complexes.destroy', $complex->id) }}" method="post">
+                                        <form action="{{ route('admin.complexes.table.destroy', $complex->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">

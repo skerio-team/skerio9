@@ -28,15 +28,15 @@
 
                                     <div class=" d-flex justify-content-center">
 
-                                        <a href="{{ route('admin.complexes.index') }}"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Ortga</button></a> &nbsp;
-                                        <a href="{{ route('admin.complexes.edit', $item->id) }}"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square" aria-hidden="true"></i> Tahrirlash</button></a> &nbsp;
+                                        <a href="{{ route('admin.complexes.table.index') }}"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> {{ __("Ortga") }}</button></a> &nbsp;
+                                        <a href="{{ route('admin.complexes.table.edit', $item->id) }}"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square" aria-hidden="true"></i> {{ __("Tahrirlash") }}</button></a> &nbsp;
 
-                                        <form action="{{route('admin.complexes.destroy', $item->id)}}" method="post">
+                                        <form action="{{route('admin.complexes.table.destroy', $item->id)}}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button  style="display: inline" type="submit" class="btn btn-danger btn-sm  ">
                                                 <i class="fas fa-trash-alt"  aria-hidden="true"></i>
-                                                O'chirish
+                                                {{ __("O'chirish") }}
                                             </button>
                                         </form>
 
@@ -57,6 +57,21 @@
                                 </div>
                             </div>
                             <div class="card-body">
+                                <div class=" d-flex justify-content-center">
+                                    <div class="box-header"><h5> Birikkan Kategoriyalar </h5></div><br>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane active uz-form">
+                                        <h6>  {!! $item->sportCategory->translate('uz')->name !!}  </h6>
+                                    </div>
+                                    <div class="tab-pane active en-form d-none">
+                                        <h6>  {!! $item->sportCategory->translate('en')->name !!}  </h6>
+                                    </div>
+                                    <div class="tab-pane active ru-form d-none">
+                                        <h6>  {!! $item->sportCategory->translate('ru')->name !!}  </h6>
+                                    </div>
+                                </div>
+
                                 <hr>
 
                                 <div class=" d-flex justify-content-center">
@@ -103,14 +118,16 @@
                                 </div>
                                 <div class="tab-content">
                                     <div class="tab-pane active">
-                                        @if ($item->sport_categories)
+                                        <h6>  {{ $item->sportCategory['name'] }}  </h6>                                        
+                                    </div>
+                                </div> <hr>
 
-                                            @foreach ($item->sport_categories as $cat )
-                                                <h6>  {{$cat->translate('uz')->name}}  </h6>
-                                            @endforeach
-                                        @else
-                                            Hech qaysi kategoriyaga bog'lanmagan!
-                                        @endif
+                                <div class=" d-flex justify-content-center">
+                                    <div class="box-header"><h5> Majmua joylashuvi </h5></div><br>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane active">
+                                        <h6> <a href="{{ $item->location }}"> {{ $item->location }} </a> </h6>
                                     </div>
                                 </div> <hr>
 

@@ -43,32 +43,33 @@ class SportComplexController extends Controller
      */
     public function store(StoreSportComplexRequest $request)
     {
-        $complexes = new SportComplex;
-        $complexes->sport_category_id   =   $request->sport_category_id;
-        $complexes->area_id             =   $request->area_id;
-        $complexes->name                =   $request->name;
+        $data = $request->all();
+        // $complexes = new SportComplex;
+        // $complexes->sport_category_id   =   $request->sport_category_id;
+        // $complexes->area_id             =   $request->area_id;
+        // $complexes->name                =   $request->name;
         if ($request->hasFile('image')) {
             $file=$request->image;
             $image_name=time().$file->getClientOriginalName();
             $file->move('admin/images/complexes/', $image_name);
-            $complexes->image   =   $image_name;
+            $data['image']   =   $image_name;
         }
-        $complexes->price               =   $request->price;
-        $complexes->phone               =   $request->phone;
-        $complexes->address             =   $request->address;
-        $complexes->location            =   $request->location;
-        $complexes->working_status      =   $request->working_status;
-        $complexes->dress_room          =   $request->dress_room;
-        $complexes->food                =   $request->food;
-        $complexes->bath_room           =   $request->bath_room;
-        $complexes->sit_place           =   $request->sit_place;
-        $complexes->meta_tag            =   $request->meta_tag;
-        $complexes->meta_title          =   $request->meta_title;
-        $complexes->meta_description    =   $request->meta_description;
-        $complexes->status              =   $request->status;
-        $complexes->save();
+        // $complexes->price               =   $request->price;
+        // $complexes->phone               =   $request->phone;
+        // $complexes->address             =   $request->address;
+        // $complexes->location            =   $request->location;
+        // $complexes->working_status      =   $request->working_status;
+        // $complexes->dress_room          =   $request->dress_room;
+        // $complexes->food                =   $request->food;
+        // $complexes->bath_room           =   $request->bath_room;
+        // $complexes->sit_place           =   $request->sit_place;
+        // $complexes->meta_tag            =   $request->meta_tag;
+        // $complexes->meta_title          =   $request->meta_title;
+        // $complexes->meta_description    =   $request->meta_description;
+        // $complexes->status              =   $request->status;
+        $complexes = SportComplex::create($data);
         
-        return redirect()->route('admin.complexes.index')->with('success', $complexes->name .'- successfully created!');
+        return redirect()->route('admin.complexes.table.index')->with('success', $complexes->name .'- successfully created!');
     }
 
     /**
@@ -77,9 +78,9 @@ class SportComplexController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(SportComplex $sportComplex)
+    public function show($id)
     {
-        $item=SportComplex::whereId($sportComplex)->first();
+        $item=SportComplex::whereId($id)->first();
         
         return view('admin.sport_complexes.show', compact('item'));
     }
@@ -90,9 +91,13 @@ class SportComplexController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(SportComplex $sportComplex)
+    public function edit($id)
     {
-        //
+        $complexes = SportComplex::whereId($id)->first();
+        $categories = SportCategory::all();
+        $areas = Area::all();
+
+        return view('admin.sport_complexes.edit', compact('complexes', 'categories', 'areas'));
     }
 
     /**
@@ -102,9 +107,13 @@ class SportComplexController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSportComplexRequest $request, SportComplex $sportComplex)
+    public function update(UpdateSportComplexRequest $request, $id)
     {
-        //
+        $item = SportComplex::find($id);
+        $data = $request->all();
+        $item->update($data);
+
+        return redirect()->route('admin.complexes.table.index')->with('success', $item->name .'- successfully updated!');
     }
 
     /**
@@ -117,6 +126,6 @@ class SportComplexController extends Controller
     {
         $sportComplex->delete();
 
-        return redirect()->route('admin.complexes.index')->with('success', $sportComplex->name .'- successfully deleted!');
+        return redirect()->route('admin.complexes.table.index')->with('success', $sportComplex->name .'- successfully deleted!');
     }
 }

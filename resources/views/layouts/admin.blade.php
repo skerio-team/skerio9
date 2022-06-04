@@ -98,8 +98,8 @@
                   <li class="{{ request()->is('admin/complexes/locations*') ? 'active' : ''  }}">
                       <a href="{{ route('admin.complexes.locations.') }}"> <i class="fas fa-map-marker-alt"></i><span> Joylashuvlar </span></a>
                   </li>
-                  <li class="{{ request()->is('admin/complexes*') ? 'active' : ''  }}">
-                      <a href="{{ route('admin.complexes.index') }}"> <i class="fas fa-building"></i><span> Majmualar </span></a>
+                  <li class="{{ request()->is('admin/complexes/table*') ? 'active' : ''  }}">
+                      <a href="{{ route('admin.complexes.table.index') }}"> <i class="fas fa-building"></i><span> Majmualar </span></a>
                   </li>
                 </ul>
             </li>

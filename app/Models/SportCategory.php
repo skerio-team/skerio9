@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class SportCategory extends Model implements TranslatableContract
 {
@@ -22,5 +23,10 @@ class SportCategory extends Model implements TranslatableContract
     ];
     public function news(){
         return $this->hasMany(News::class); // Model Name
+    }
+
+    public function sportComplexes(): HasMany
+    {
+        return $this->HasMany(SportComplex::class);
     }
 }

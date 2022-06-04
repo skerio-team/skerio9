@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('sport_category_id')->constrained('sport_categories')->onDelete('restrict');
             $table->foreignId('area_id')->constrained('areas')->onDelete('restrict');
             $table->string('name')->unique();
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->bigInteger('price');
             $table->string('phone');
             $table->string('address');
@@ -28,9 +28,9 @@ return new class extends Migration
             $table->tinyInteger('food');
             $table->tinyInteger('bath_room');
             $table->tinyInteger('sit_place');
-            $table->string('meta_tag');
-            $table->string('meta_title');
-            $table->string('meta_description');
+            $table->string('meta_tag')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->string('meta_description')->nullable();
             $table->tinyInteger('status');
             $table->timestamps();
         });

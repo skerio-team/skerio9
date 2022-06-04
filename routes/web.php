@@ -34,7 +34,7 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function (){
     Route::resource('news', NewsController::class);
 
     Route::prefix('/complexes')->name('complexes.')->group(function () {
-        Route::resource('/', SportComplexController::class);
+        Route::resource('/table', SportComplexController::class);
 
         Route::prefix('/locations')->name('locations.')->group(function () {
             Route::get('/', [SportLocationController::class, 'index']);

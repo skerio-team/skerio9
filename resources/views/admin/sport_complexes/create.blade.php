@@ -25,7 +25,7 @@
                   <div class="row mb-2">
 
                     <div class="card-header col-sm-6 d-flex justify-content-between">
-                        <a href="{{ route('admin.complexes.index') }}"><button class="btn btn-warning"><i class="fa fa-arrow-left" aria-hidden="true"></i> Ortga</button></a>
+                        <a href="{{ route('admin.complexes.table.index') }}"><button class="btn btn-warning"><i class="fa fa-arrow-left" aria-hidden="true"></i> Ortga</button></a>
                         
                         <h3> Majmua qo'shish</h3>
                     </div>
@@ -45,7 +45,7 @@
                     </div>
 
                   </div>
-                  <form action="{{ route('admin.complexes.store') }}" method="post" enctype="multipart/form-data">
+                  <form action="{{ route('admin.complexes.table.store') }}" method="post" enctype="multipart/form-data">
                       @csrf
                       <div class="card-body " >
 
