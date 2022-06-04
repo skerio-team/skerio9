@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\News;
-use App\Models\SportCategory;
 use Illuminate\Http\Request;
+use App\Models\SportCategory;
+use App\Models\Team;
 
-class NewsController extends Controller
+
+class TeamController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +17,9 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $items=News::paginate(10);
-        return view('admin.news.index', compact('items'));
+        $items=Team::paginate(10);
+
+        return view('admin.teams.index', compact('items'));
     }
 
     /**
@@ -27,8 +29,11 @@ class NewsController extends Controller
      */
     public function create()
     {
-        $categories=SportCategory::all();
-        return view('admin.news.create',compact('categories'));
+
+        $sport_categories=SportCategory::all();
+
+
+        return view('admin.teams.create', compact('sport_categories'));
     }
 
     /**
@@ -39,16 +44,18 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-
         $data=$request->all();
+
         if ($request->hasFile('image')) {
             $file=$request->image;
             $image_name=time().$file->getClientOriginalName();
-            $file->move('admin/images/news/', $image_name);
+            $file->move('admin/images/teams/', $image_name);
             $data['image']=$image_name;
         }
-        $news=News::create($data);
-        return redirect()->route('admin.news.index')->with('success', 'Ma`lumot yaratildi!');
+
+        $team=Team::create($data);
+
+        return redirect()->route('admin.team.index')->with('success', 'Ma`lumot yaratildi!');
     }
 
     /**
@@ -59,8 +66,7 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        $item=News::whereId($id)->first();
-        return view('admin.news.show', compact('item'));
+        //
     }
 
     /**
@@ -71,9 +77,11 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $item=News::whereId($id)->first();
-        $categories=SportCategory::all();
-        return view('admin.news.edit',compact('item', 'categories'));
+        $item=Team::whereId($id)->first();
+        $sport_categories=SportCategory::all();
+
+
+        return view('admin.teams.edit', compact('item', 'sport_categories'));
     }
 
     /**
@@ -85,16 +93,19 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $item=News::find($id);
+        $item=Team::find($id);
         $data=$request->all();
         if ($request->hasFile('image')) {
             $file=$request->image;
             $image_name=time().$file->getClientOriginalName();
-            $file->move('admin/images/news/', $image_name);
+            $file->move('admin/images/teams/', $image_name);
             $data['image']=$image_name;
         }
+
         $item->update($data);
-        return redirect()->route('admin.news.index')->with('success', 'Ma`lumot tahrirlandi!');
+
+        return redirect()->route('admin.team.index')->with('success', 'Ma`lumot tahrirlandi!');
+
     }
 
     /**
@@ -105,7 +116,9 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        News::destroy($id);
-        return redirect()->route('admin.news.index')->with('warning', "Ma`lumot o'chirildi!");
+        Team::destroy($id);
+
+        return redirect()->route('admin.team.index')->with('warning', "Ma`lumot o'chirildi!");
+
     }
 }

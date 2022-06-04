@@ -25,9 +25,9 @@
             <div class="card">
                 <div class="row mb-2">
                     <div class="card-header col-sm-6">
-                        <h4> Bosh sahifaga ma`lumot yaratish</h4>
+                        <h4> Jamoa qo'shish </h4>
                     </div>
-                    <div class="col-sm-6">
+                    {{-- <div class="col-sm-6">
                         <ul class="nav nav-tabs float-sm-right " >
                              <li class="nav-item">
                                 <a class="nav-link " href="#" id="ru-link">Ru</a>
@@ -39,66 +39,67 @@
                                 <a class="nav-link" href="#" id="en-link">En</a>
                             </li>
                         </ul>
-                    </div>
+                    </div> --}}
                 </div>
-                <form action="{{route('admin.homes.store')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('admin.team.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body " >
 
-                        <div id="uz-form" >
-                            <div class="form-group ">
-                                <label >Sarlovha(UZ)</label>
-                                <input type="text" class="form-control " placeholder="Sarlovhani kiriting" name="uz[title]" >
-                            </div>
 
-                            <div class="form-group ">
-                                <label>Tavsif(UZ)</label>
-                                <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="uz[description]" >
-                            </div>
 
+                        <div class="form-group ">
+                            <label>Jamoa Nomi</label>
+                            <input type="text" class="form-control" placeholder="Nomni kiriting" name="name" >
                         </div>
-
-                        <div id="ru-form" class="d-none">
-                            <div class="form-group ">
-                                <label>Sarlovha(RU)</label>
-                                <input type="text" class="form-control" placeholder="Sarlovhani kiriting" name="ru[title]" >
-                            </div>
-
-                            <div class="form-group ">
-                                <label>Tavsif(RU)</label>
-                                <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="ru[description]" >
-                            </div>
-
-                        </div>
-
-                        <div id="en-form" class="d-none">
-                            <div class="form-group ">
-                                <label>Sarlovha(EN)</label>
-                                <input type="text" class="form-control" placeholder="Sarlovhani kiriting" name="en[title]" >
-                            </div>
-
-                            <div class="form-group ">
-                                <label>Tavsif(EN)</label>
-                                <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="en[description]" >
-                            </div>
-
+                        
+                        <div class="form-group ">
+                            <label>Sport Kategoriyasiga biriktirish</label>
+                            <select name="sport_category_id" class="form-control"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                <option value="0"> </option>
+                                @foreach ($sport_categories as $category )
+                                    <option value="{{$category->id}}">{{$category->translate('uz')->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group ">
                             <label class="">Rasm</label>
-                            <div id="image-preview" class="image-preview">
-                                <label for="image-upload" id="image-label">Rasm</label>
-                                <input type="file" name="image" id="image-upload" />
-                            </div>
+                                <div id="image-preview" class="image-preview">
+                                    <label for="image-upload" id="image-label">Rasm</label>
+                                        <input type="file" name="image" id="image-upload" />
+                                </div>
                         </div>
 
+
+
+                        <div class="form-group">
+                            <label>Tashkil Topgan Yil</label>
+                            <input type="number" class="form-control" placeholder="Yilni kiriting" name="year" >
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label>Manzili</label>
+                            <input type="text" class="form-control" placeholder="Manzilni kiriting" name="address" >
+                        </div>
+
+                        <div class="form-group">
+                            <label>Jamoa Rasmiy Sayti</label>
+                            <input type="text" class="form-control" placeholder="Manzilni kiriting" name="official_site" >
+                        </div>
+
+
+
+
+
                         <div class="form-group ">
-                            <label>Meta sarlovha(title)</label>
+                            <label>Meta Nomi(title)</label>
                             <input type="text" class="form-control" placeholder="Meta Sarlovhani kiriting" name="meta_title" >
                         </div>
 
                         <div class="form-group ">
-                            <label>Meta tavsif(description)</label>
+                            <label>Meta Nomi(description)</label>
                             <input type="text" class="form-control" placeholder="Meta Tavsifni kiriting" name="meta_description" >
                         </div>
 
@@ -151,39 +152,5 @@
          $('textarea').addClass('summernote')
 
 
-    </script>
-    <script>
-        var $uzForm = $('#uz-form');
-        var $uzLink = $('#uz-link');
-        var $ruForm = $('#ru-form');
-        var $ruLink = $('#ru-link');
-        var $enLink = $('#en-link');
-        var $enForm = $('#en-form');
-
-        $uzLink.click(function() {
-            $uzLink.addClass('bg-aqua-active');
-            $uzForm.removeClass('d-none');
-            $ruLink.removeClass('bg-aqua-active');
-            $ruForm.addClass('d-none');
-            $enLink.removeClass('bg-aqua-active');
-            $enForm.addClass('d-none');
-        });
-
-        $ruLink.click(function() {
-            $ruLink.addClass('bg-aqua-active');
-            $ruForm.removeClass('d-none');
-            $uzLink.removeClass('bg-aqua-active');
-            $uzForm.addClass('d-none');
-            $enLink.removeClass('bg-aqua-active');
-            $enForm.addClass('d-none');
-        });
-        $enLink.click(function() {
-            $enLink.addClass('bg-aqua-active');
-            $enForm.removeClass('d-none');
-            $uzLink.removeClass('bg-aqua-active');
-            $uzForm.addClass('d-none');
-            $ruLink.removeClass('bg-aqua-active');
-            $ruForm.addClass('d-none');
-        });
     </script>
 @endsection
