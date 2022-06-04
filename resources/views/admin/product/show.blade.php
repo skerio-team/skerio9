@@ -190,6 +190,19 @@
                         </div> <hr>
 
                         <div class=" d-flex justify-content-center">
+                            <div class="box-header"><h5> Birikkan Jamoalari </h5></div><br>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane active">
+                                @if ($item->teams)
+                                    <h6>{{ $item->teams['name'] }}</h6>
+                                @else
+                                    <h6>Hech qaysi Jamoaga bog`lanmagan!</h6>
+                                @endif
+                            </div>
+                        </div> <hr>
+
+                        <div class=" d-flex justify-content-center">
                             <div class="box-header"><h5> Meta sarlovha </h5></div><br>
                         </div>
                         <div class="tab-content">
