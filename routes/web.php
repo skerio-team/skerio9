@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\Admin\TeamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,7 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function (){
     Route::resource('products', ProductController::class);
     Route::resource('productCategories', ProductCategoryController::class);
     Route::resource('sizes', SizeController::class);
+    Route::resource('team', TeamController::class);
 
 
 });

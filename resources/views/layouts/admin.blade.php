@@ -107,6 +107,10 @@
               <a href="{{ route('admin.products.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulotlar</span></a>
             </li>
 
+            <li class="dropdown {{ request()->is('admin/products*') ? 'active' : ''  }}">
+              <a href="{{ route('admin.team.index') }}" ><i class="far fa-newspaper"></i><span>Jamoalar</span></a>
+            </li>
+
             {{-- <li class="dropdown {{ request()->is('admin/categories*') ? 'active' : ''  }}">
               <a href="{{ route('admin.categories.index') }}" ><i class="fas fa-bars"></i><span>Kategoriyalar</span></a>
             </li>
