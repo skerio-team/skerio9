@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\SportCategoryController;
+use App\Http\Controllers\Api\newsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,8 @@ Route::post('login', [UserController::class, 'login']);
 Route::resource('home', HomeController::class)->middleware('auth:api');
 
 Route::resource('sportcategory', SportCategoryController::class)->middleware('auth:api');
+
+Route::resource('news', newsController::class)->middleware('auth:api');
 
 
 
