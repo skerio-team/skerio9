@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\News;
-use App\Models\SportCategory;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
-class NewsController extends Controller
+class ProductCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $items=News::paginate(10);
-        return view('admin.news.index', compact('items'));
+        $items=ProductCategory::paginate(10);
+        return view('admin.product_category.index', compact('items'));
     }
 
     /**
@@ -27,8 +26,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        $categories=SportCategory::all();
-        return view('admin.news.create',compact('categories'));
+        return view('admin.product_category.create');
     }
 
     /**
@@ -41,14 +39,9 @@ class NewsController extends Controller
     {
 
         $data=$request->all();
-        if ($request->hasFile('image')) {
-            $file=$request->image;
-            $image_name=time().$file->getClientOriginalName();
-            $file->move('admin/images/news/', $image_name);
-            $data['image']=$image_name;
-        }
-        $news=News::create($data);
-        return redirect()->route('admin.news.index')->with('success', 'Ma`lumot yaratildi!');
+        $data['slug']=\Str::slug($request->uz['name']);
+        ProductCategory::create($data);
+        return redirect()->route('admin.productCategories.index')->with('success', 'Mahsulot Kategoriyasi yaratildi!');
     }
 
     /**
@@ -59,8 +52,8 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        $item=News::whereId($id)->first();
-        return view('admin.news.show', compact('item'));
+        $item=ProductCategory::whereId($id)->first();
+        return redirect()->route('admin.productCategories.index');
     }
 
     /**
@@ -71,9 +64,8 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $item=News::whereId($id)->first();
-        $categories=SportCategory::all();
-        return view('admin.news.edit',compact('item', 'categories'));
+        $item=ProductCategory::whereId($id)->first();
+        return view('admin.product_category.edit',compact('item'));
     }
 
     /**
@@ -85,16 +77,11 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $item=News::find($id);
+        $ProductCategory=ProductCategory::find($id);
         $data=$request->all();
-        if ($request->hasFile('image')) {
-            $file=$request->image;
-            $image_name=time().$file->getClientOriginalName();
-            $file->move('admin/images/news/', $image_name);
-            $data['image']=$image_name;
-        }
-        $item->update($data);
-        return redirect()->route('admin.news.index')->with('success', 'Ma`lumot tahrirlandi!');
+        $data['slug']=\Str::slug($request->uz['name']);
+        $ProductCategory->update($data);
+        return redirect()->route('admin.productCategories.index')->with('success', 'Mahsulot Kategoriyasi tahrirlandi!');
     }
 
     /**
@@ -105,7 +92,7 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        News::destroy($id);
-        return redirect()->route('admin.news.index')->with('warning', "Ma`lumot o'chirildi!");
+        ProductCategory::destroy($id);
+        return redirect()->route('admin.productCategories.index')->with('warning', "Mahsulot Kategoriyasi o'chirildi!");
     }
 }

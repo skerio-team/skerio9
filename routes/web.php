@@ -5,6 +5,10 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\SportCategoryController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductCategoryController;
+use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\PageController;
 
 /*
@@ -27,6 +31,10 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function (){
     Route::resource('homes', HomeController::class);
     Route::resource('categories', SportCategoryController::class);
     Route::resource('news', NewsController::class);
+    Route::resource('brands', BrandController::class);
+    Route::resource('products', ProductController::class);
+    Route::resource('productCategories', ProductCategoryController::class);
+    Route::resource('sizes', SizeController::class);
 
 
 });

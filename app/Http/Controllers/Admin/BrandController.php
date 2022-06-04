@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\News;
-use App\Models\SportCategory;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 
-class NewsController extends Controller
+class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $items=News::paginate(10);
-        return view('admin.news.index', compact('items'));
+        $items=Brand::paginate(10);
+        return view('admin.brand.index', compact('items'));
     }
 
     /**
@@ -27,8 +26,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        $categories=SportCategory::all();
-        return view('admin.news.create',compact('categories'));
+        return view('admin.brand.create');
     }
 
     /**
@@ -39,16 +37,18 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-
         $data=$request->all();
+
         if ($request->hasFile('image')) {
             $file=$request->image;
             $image_name=time().$file->getClientOriginalName();
-            $file->move('admin/images/news/', $image_name);
+            $file->move('admin/images/brands/', $image_name);
             $data['image']=$image_name;
         }
-        $news=News::create($data);
-        return redirect()->route('admin.news.index')->with('success', 'Ma`lumot yaratildi!');
+
+        $brand=Brand::create($data);
+
+        return redirect()->route('admin.brands.index')->with('success', 'Ma`lumot yaratildi!');
     }
 
     /**
@@ -59,8 +59,8 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        $item=News::whereId($id)->first();
-        return view('admin.news.show', compact('item'));
+        // $item=Brand::whereId($id)->first();
+        // return view('admin.brand.show', compact('item'));
     }
 
     /**
@@ -71,9 +71,8 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $item=News::whereId($id)->first();
-        $categories=SportCategory::all();
-        return view('admin.news.edit',compact('item', 'categories'));
+        $item=Brand::whereId($id)->first();
+        return view('admin.brand.edit',compact('item'));
     }
 
     /**
@@ -85,16 +84,17 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $item=News::find($id);
+        $item=Brand::find($id);
         $data=$request->all();
         if ($request->hasFile('image')) {
             $file=$request->image;
             $image_name=time().$file->getClientOriginalName();
-            $file->move('admin/images/news/', $image_name);
+            $file->move('admin/images/brands/', $image_name);
             $data['image']=$image_name;
         }
+
         $item->update($data);
-        return redirect()->route('admin.news.index')->with('success', 'Ma`lumot tahrirlandi!');
+        return redirect()->route('admin.brands.index')->with('success', 'Ma`lumot tahrirlandi!');
     }
 
     /**
@@ -105,7 +105,7 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        News::destroy($id);
-        return redirect()->route('admin.news.index')->with('warning', "Ma`lumot o'chirildi!");
+        Brand::destroy($id);
+        return redirect()->route('admin.brands.index')->with('warning', "Ma`lumot o'chirildi!");
     }
 }
