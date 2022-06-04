@@ -141,6 +141,16 @@
                                 @endforeach
                             </select>
                         </div>
+                        
+                        <div class="form-group ">
+                            <label>Jamoaga biriktirish</label>
+                            <select name="team_id" class="form-control"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                <option value="0"> - </option>
+                                @foreach ($teams as $team )
+                                    <option value="{{$team->id}}" {{ $team->id == $item->team_id ? 'selected' : '' }}>{{$team->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                         <div class="form-group ">
                             <label for="">Status</label>

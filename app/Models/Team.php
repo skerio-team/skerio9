@@ -27,5 +27,10 @@ class Team extends Model
         return $this->belongsTo(SportCategory::class, 'sport_category_id');
     }
 
+    public function products()
+    {
+        return $this->hasMany(Team::class);
+    }
+
 
 }

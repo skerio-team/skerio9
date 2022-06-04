@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\SportCategory;
 use App\Models\ProductCategory;
 use App\Models\Size;
+use App\Models\Team;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -33,10 +34,11 @@ class ProductController extends Controller
         $items=Product::all();
         $brands=Brand::all();
         $sizes=Size::all();
+        $teams=Team::all();
         $sport_categories=SportCategory::all();
         $product_categories=ProductCategory::all();
-        // dd($product_categories);
-        return view('admin.product.create', compact('items', 'sport_categories', 'product_categories', 'brands', 'sizes'));
+
+        return view('admin.product.create', compact('items', 'sport_categories', 'product_categories', 'brands', 'sizes', 'teams'));
     }
 
     /**
@@ -93,9 +95,11 @@ class ProductController extends Controller
         $items=Product::all();
         $brands=Brand::all();
         $sizes=Size::all();
+        $teams=Team::all();
+
         $sport_categories=SportCategory::all();
         $product_categories=ProductCategory::all();
-        return view('admin.product.edit',compact('item', 'items','sport_categories', 'product_categories', 'brands', 'sizes'));
+        return view('admin.product.edit',compact('item', 'items','sport_categories', 'product_categories', 'brands', 'sizes', 'teams'));
     }
 
     /**
