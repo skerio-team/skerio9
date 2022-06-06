@@ -46,8 +46,6 @@ class HomeController extends Controller
             $data['image']=$image_name;
         }
 
-        //  $data['slug']=\Str::slug($request->uz['title']);
-
         $home=Home::create($data);
 
         return redirect()->route('admin.homes.index')->with('success', 'Ma`lumot yaratildi!');
@@ -88,6 +86,12 @@ class HomeController extends Controller
     {
         $item=Home::find($id);
         $data=$request->all();
+        if ($request->hasFile('image')) {
+            $file=$request->image;
+            $image_name=time().$file->getClientOriginalName();
+            $file->move('admin/images/homes/', $image_name);
+            $data['image']=$image_name;
+        }
 
         $item->update($data);
         return redirect()->route('admin.homes.index')->with('success', 'Ma`lumot tahrirlandi!');
