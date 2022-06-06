@@ -43,6 +43,6 @@ class SportComplex extends Model implements TranslatableContract
 
     public function areas(): BelongsTo
     {
-        return $this->belongsTo(Area::class, 'aria_id');
+        return $this->belongsTo(Area::class, 'area_id');
     }
 }

@@ -27,7 +27,7 @@ class UpdateSportComplexRequest extends FormRequest
             'sport_category_id' =>  ['required'],
             'area_id'           =>  ['required'],
             'name'              =>  ['required', 'string', 'min:3'],
-            'image'             =>  ['mimes:png,jpg,gif,jpeg'],
+            'image.*'           =>  ['image|mimes:png,jpg,gif,jpeg'],
             'price'             =>  ['required', 'numeric'],
             'phone'             =>  ['required'],
             'address'           =>  ['required'],

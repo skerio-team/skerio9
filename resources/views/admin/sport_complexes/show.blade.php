@@ -56,108 +56,253 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <div class=" d-flex justify-content-center">
-                                    <div class="box-header"><h5> Birikkan Kategoriyalar </h5></div><br>
-                                </div>
-                                <div class="tab-content">
-                                    <div class="tab-pane active uz-form">
-                                        <h6>  {!! $item->sportCategory->translate('uz')->name !!}  </h6>
-                                    </div>
-                                    <div class="tab-pane active en-form d-none">
-                                        <h6>  {!! $item->sportCategory->translate('en')->name !!}  </h6>
-                                    </div>
-                                    <div class="tab-pane active ru-form d-none">
-                                        <h6>  {!! $item->sportCategory->translate('ru')->name !!}  </h6>
-                                    </div>
-                                </div>
+                            <div class="card-body">                             
+                                <div class="row d-flex justify-content-between">
+                                    <div class="col-md-5">
 
-                                <hr>
+                                        <div class=" d-flex justify-content-between">
+                                            <div class="box-header"><h5> Nomi </h5></div>
+        
+                                            <div class="tab-content">
+                                                <div class="tab-pane active">
+                                                    <h6> {!! $item->name !!} </h6>
+                                                </div>
+                                            </div>
+                                        </div> <hr>
 
-                                <div class=" d-flex justify-content-center">
-                                    <div class="box-header"><h5> Tavsif</h5></div><br>
+                                        <div class=" d-flex justify-content-between">
+                                            <div class="box-header"><h5> Tavsif</h5></div>
+                                            
+                                            <div class="tab-content">
+                                                <div class="tab-pane active uz-form">
+                                                    <h6 class="text-justify"> {!! $item->translate('uz')->description !!} </h6>
+                                                </div>
+                                                <div class="tab-pane active en-form d-none">
+                                                    <h6 class="text-justify"> {!! $item->translate('en')->description !!} </h6>
+                                                </div>
+                                                <div class="tab-pane active ru-form d-none">
+                                                    <h6 class="text-justify"> {!! $item->translate('ru')->description !!} </h6>
+                                                </div>
+                                            </div>
+                                        </div> <hr>
+
+                                        <div  class=" d-flex justify-content-between">
+                                            <div class="box-header"><h5> Ish holati </h5></div>
+    
+                                            <div class="tab-content">
+                                                <div class="tab-pane active">
+                                                    <h6>
+                                                        @if($item->working_status == 1)
+                                                            <h6> Ochiq holatdagi majmua </h6>
+                                                        @else
+                                                            <h6> Yopiq holatdagi majmua </h6>
+                                                        @endif
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </div> <hr>
+
+                                        <div class=" d-flex justify-content-between">
+                                            <div class="box-header"><h5> Narxi </h5></div>
+
+                                            <div class="tab-content">
+                                                <div class="tab-pane active">
+                                                    <h6> {!! number_format($item->price) !!} </h6>
+                                                </div>
+                                            </div>
+                                        </div> <hr>
+
+                                        <div class=" d-flex justify-content-between">
+                                            <div class="box-header"><h5> Kiyinish xonasi </h5></div>
+
+                                            <div class="tab-content">
+                                                <div class="tab-pane active">
+                                                    <h6>
+                                                        @if($item->dress_room == 1)
+                                                            <h6 class="badge badge-success">Mavjud</h6>
+                                                        @else
+                                                            <h6 class="badge badge-danger">Mavjud emas</h6>
+                                                        @endif
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </div> <hr>
+
+                                        <div class=" d-flex justify-content-between">
+                                            <div class="box-header"><h5> Ovqatlanish joyi </h5></div>
+                                            
+                                            <div class="tab-content">
+                                                <div class="tab-pane active">
+                                                    <h6>
+                                                        @if($item->food == 1)
+                                                            <h6 class="badge badge-success">Mavjud</h6>
+                                                        @else
+                                                            <h6 class="badge badge-danger">Mavjud emas</h6>
+                                                        @endif
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </div> <hr>
+                                        
+                                        <div class=" d-flex justify-content-between">
+                                            <div class="box-header"><h5> Yuvunish xonasi </h5></div>
+
+                                            <div class="tab-content">
+                                                <div class="tab-pane active">
+                                                    <h6>
+                                                        @if($item->bath_room == 1)
+                                                            <h6 class="badge badge-success">Mavjud</h6>
+                                                        @else
+                                                            <h6 class="badge badge-danger">Mavjud emas</h6>
+                                                        @endif
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </div> <hr>
+                                        
+                                        <div class=" d-flex justify-content-between">
+                                            <div class="box-header"><h5> Tribuna </h5></div>
+
+                                            <div class="tab-content">
+                                                <div class="tab-pane active">
+                                                    <h6>
+                                                        @if($item->sit_place == 1)
+                                                            <h6 class="badge badge-success">Mavjud</h6>
+                                                        @else
+                                                            <h6 class="badge badge-danger">Mavjud emas</h6>
+                                                        @endif
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </div> <hr>
+                                        
+                                        <div class=" d-flex justify-content-between">
+                                            <div class="box-header"><h5> Status </h5></div>
+
+                                            <div class="tab-content">
+                                                <div class="tab-pane active">
+                                                    <h6>
+                                                        @if($item->status == 1)
+                                                            <h6 class="badge badge-success">Faol</h6>
+                                                        @else
+                                                            <h6 class="badge badge-danger">Faol emas</h6>
+                                                        @endif
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </div> <hr>
+                                        
+                                        <div class=" d-flex justify-content-between">
+                                            <div class="box-header"><h5> Manzili </h5></div>
+
+                                            <div class="tab-content">
+                                                <div class="tab-pane active">
+                                                    <h6> {!! $item->address !!} </h6>
+                                                </div>
+                                            </div>
+                                        </div> <hr>
+                                        
+                                        <div class=" d-flex justify-content-between">
+                                            <div class="box-header"><h5> Majmua joylashuvi </h5></div>
+
+                                            <div class="tab-content">
+                                                <div class="tab-pane active">
+                                                    <h6> Manzil uchun <a href="{{ $item->location }}"> bu yerni bosing</a> </h6>
+                                                </div>
+                                            </div>
+                                        </div> <hr>
+                                        
+                                        <div class=" d-flex justify-content-between">
+                                            <div class="box-header"><h5> Telefon raqami </h5></div>
+
+                                            <div class="tab-content">
+                                                <div class="tab-pane active">
+                                                    <h6> {!! $item->phone !!} </h6>
+                                                </div>
+                                            </div>
+                                        </div> <hr>
+
+                                        <div class=" d-flex justify-content-between">
+                                            <div class="box-header"><h5> Birikkan Kategoriyalar </h5></div>
+
+                                            <div class="tab-content">
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active uz-form">
+                                                        <h6>  {!! $item->sportCategory->translate('uz')->name !!}  </h6>
+                                                    </div>
+                                                    <div class="tab-pane active en-form d-none">
+                                                        <h6>  {!! $item->sportCategory->translate('en')->name !!}  </h6>
+                                                    </div>
+                                                    <div class="tab-pane active ru-form d-none">
+                                                        <h6>  {!! $item->sportCategory->translate('ru')->name !!}  </h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> <hr>
+                                        
+                                        <div class=" d-flex justify-content-between">
+                                            <div class="box-header"><h5> Birikkan shahar </h5></div>
+
+                                            <div class="tab-content">
+                                                <div class="tab-pane active">
+                                                    <h6> {{ $item->areas->name }} &nbsp; [{{ $item->areas->regions->name }}, {{ $item->areas->regions->countries['country'] }}] </h6>
+                                                </div>
+                                            </div>
+                                        </div> <hr>
+                                        
+                                        <div class=" d-flex justify-content-between">
+                                            <div class="box-header"><h5> Meta sarlovha </h5></div>
+
+                                            <div class="tab-content">
+                                                <div class="tab-pane active">
+                                                    <h6>  {{$item->meta_title}}  </h6>
+                                                </div>
+                                            </div>
+                                        </div> <hr>
+                                        
+                                        <div class=" d-flex justify-content-between">
+                                            <div class="box-header"><h5> Meta tavsif </h5></div>
+                                            
+                                            <div class="tab-content">
+                                                <div class="tab-pane active">
+                                                    <h6>  {{$item->meta_description}}  </h6>
+                                                </div>
+                                            </div>
+                                        </div> <hr>
+
+                                        <div class=" d-flex justify-content-between">
+                                            <div class="box-header"><h5> Meta kalitso'z (tag) </h5></div>
+                                            
+                                            <div class="tab-content">
+                                                <div class="tab-pane active">
+                                                    <h6>  {{$item->meta_tag}}  </h6>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-5">
+
+                                        <div class=" d-flex justify-content-center">
+                                            <div class="box-header"><h2> Rasmi </h2></div>
+                                        </div>
+
+                                        <div class="tab-content">
+                                            <div class="tab-pane active">
+                                                @php
+                                                    $images=explode("|", $item->image);
+                                                @endphp
+
+                                                @foreach ($images as $img)
+                                                    <img src="/admin/images/complexes/{{ $img }}" width="100%" height="100%"> <hr>
+                                                @endforeach
+                                                
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
-                                <div class="tab-content">
-                                    <div class="tab-pane active uz-form">
-                                        <h6> {!! $item->translate('uz')->description !!} </h6>
-                                    </div>
-                                    <div class="tab-pane active en-form d-none">
-                                        <h6> {!! $item->translate('en')->description !!} </h6>
-                                    </div>
-                                    <div class="tab-pane active ru-form d-none">
-                                        <h6> {!! $item->translate('ru')->description !!} </h6>
-                                    </div>
-                                </div> <hr>
-
-                                <div class=" d-flex justify-content-center">
-                                    <div class="box-header"><h5> Rasm</h5></div><br>
-                                </div>
-                                <div class="tab-content">
-                                    <div class="tab-pane active">
-                                        <img src="/admin/images/complexes/{{$item->image}}" width="15%" height="10%">
-                                    </div>
-                                </div> <hr>
-
-                                <div class=" d-flex justify-content-center">
-                                    <div class="box-header"><h5> Status </h5></div><br>
-                                </div>
-                                <div class="tab-content">
-                                    <div class="tab-pane active">
-                                        <h6>
-                                            @if($item->status==1)
-                                                <span class="badge badge-success">Faol</span>
-                                            @else
-                                                <span class="badge badge-danger">Faol emas</span>
-                                            @endif
-                                        </h6>
-                                    </div>
-                                </div> <hr>
-
-                                <div class=" d-flex justify-content-center">
-                                    <div class="box-header"><h5> Birikkan Kategoriyalar </h5></div><br>
-                                </div>
-                                <div class="tab-content">
-                                    <div class="tab-pane active">
-                                        <h6>  {{ $item->sportCategory['name'] }}  </h6>                                        
-                                    </div>
-                                </div> <hr>
-
-                                <div class=" d-flex justify-content-center">
-                                    <div class="box-header"><h5> Majmua joylashuvi </h5></div><br>
-                                </div>
-                                <div class="tab-content">
-                                    <div class="tab-pane active">
-                                        <h6> <a href="{{ $item->location }}"> {{ $item->location }} </a> </h6>
-                                    </div>
-                                </div> <hr>
-
-                                <div class=" d-flex justify-content-center">
-                                    <div class="box-header"><h5> Meta sarlovha </h5></div><br>
-                                </div>
-                                <div class="tab-content">
-                                    <div class="tab-pane active">
-                                        <h6>  {{$item->meta_title}}  </h6>
-                                    </div>
-                                </div> <hr>
-
-                                <div class=" d-flex justify-content-center">
-                                    <div class="box-header"><h5> Meta tavsif </h5></div><br>
-                                </div>
-                                <div class="tab-content">
-                                    <div class="tab-pane active">
-                                        <h6>  {{$item->meta_description}}  </h6>
-                                    </div>
-                                </div> <hr>
-
-                                <div class=" d-flex justify-content-center">
-                                    <div class="box-header"><h5> Meta kalitso'z (tag) </h5></div><br>
-                                </div>
-                                <div class="tab-content">
-                                    <div class="tab-pane active">
-                                        <h6>  {{$item->meta_tag}}  </h6>
-                                    </div>
-                                </div> <hr>
-
                             </div>
                         </div>
                     </div>

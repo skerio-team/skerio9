@@ -44,29 +44,17 @@ class SportComplexController extends Controller
     public function store(StoreSportComplexRequest $request)
     {
         $data = $request->all();
-        // $complexes = new SportComplex;
-        // $complexes->sport_category_id   =   $request->sport_category_id;
-        // $complexes->area_id             =   $request->area_id;
-        // $complexes->name                =   $request->name;
-        if ($request->hasFile('image')) {
-            $file=$request->image;
-            $image_name=time().$file->getClientOriginalName();
-            $file->move('admin/images/complexes/', $image_name);
-            $data['image']   =   $image_name;
+        $images = array();
+        if ($files = $request->file('image'))
+        {
+            foreach ($files as $file) {
+                $name = time().$file->getClientOriginalName();
+                $file->move('admin/images/complexes/', $name);
+                $images[]   =   $name;
+            }
         }
-        // $complexes->price               =   $request->price;
-        // $complexes->phone               =   $request->phone;
-        // $complexes->address             =   $request->address;
-        // $complexes->location            =   $request->location;
-        // $complexes->working_status      =   $request->working_status;
-        // $complexes->dress_room          =   $request->dress_room;
-        // $complexes->food                =   $request->food;
-        // $complexes->bath_room           =   $request->bath_room;
-        // $complexes->sit_place           =   $request->sit_place;
-        // $complexes->meta_tag            =   $request->meta_tag;
-        // $complexes->meta_title          =   $request->meta_title;
-        // $complexes->meta_description    =   $request->meta_description;
-        // $complexes->status              =   $request->status;
+        $data['image'] = implode("|",$images);
+        
         $complexes = SportComplex::create($data);
         
         return redirect()->route('admin.complexes.table.index')->with('success', $complexes->name .'- successfully created!');
@@ -122,10 +110,10 @@ class SportComplexController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SportComplex $sportComplex)
+    public function destroy($id)
     {
-        $sportComplex->delete();
+        SportComplex::destroy($id);
 
-        return redirect()->route('admin.complexes.table.index')->with('success', $sportComplex->name .'- successfully deleted!');
+        return redirect()->route('admin.complexes.table.index')->with('success', 'Complex successfully deleted!');
     }
 }

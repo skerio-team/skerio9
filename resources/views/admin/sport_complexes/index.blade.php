@@ -67,12 +67,12 @@
                             <tbody>
                                 @foreach ($complexes as $complex)
                                 <tr class="odd">
-                                    <td>{{$complex->id}}</td>
-                                    <td >{{ $complex->name }}</td>
-                                    <td >{{ $complex->translate('uz')->description }}</td>
-                                    <td >{{ number_format($complex->price) }}</td>
-                                    <td >{{ $complex->phone }}</td>
-                                    <td >{{ $complex->address }}</td>
+                                    <td> {{$loop->iteration}} </td>
+                                    <td> {{ $complex->name }} </td>
+                                    <td class="d-inline-block text-truncate" style="max-width: 200px;"> {{ $complex->translate('uz')->description }} </td>
+                                    <td> {{ number_format($complex->price) }} </td>
+                                    <td> {{ $complex->phone }} </td>
+                                    <td> {{ $complex->address }} </td>
                                     <td >
                                         @if ($complex->bath_room==1)
                                             <span class="badge badge-success">Mavjud</span>

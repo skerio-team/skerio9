@@ -82,7 +82,7 @@
         
                                     <div id="image-preview" class="image-preview">
                                         <label for="image-upload" id="image-label">Rasm</label>
-                                        <input type="file" name="image" id="image-upload" />
+                                        <input type="file" name="image[]" id="image-upload" multiple />
                                     </div>
                                 </div>
                             </div>
