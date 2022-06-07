@@ -2,6 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\HomeController;
+use App\Http\Controllers\Api\SportCategoryController;
+use App\Http\Controllers\Api\newsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +18,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::post('register', [UserController::class, 'register']);
+
+Route::post('login', [UserController::class, 'login']);
+
+
+
+Route::resource('home', HomeController::class)->middleware('auth:api');
+
+Route::resource('sportcategory', SportCategoryController::class)->middleware('auth:api');
+
+Route::resource('news', newsController::class)->middleware('auth:api');
+
+
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
