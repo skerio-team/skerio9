@@ -75,9 +75,7 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group ">
                                     <label >Majmua Nomi</label>
@@ -94,6 +92,7 @@
                                     <input type="text" class="form-control " placeholder="Geolakatsiyani kiriting" name="location" value="{{ $complexes->location }}">
                                 </div>
                             </div>
+
                             <div class="col-md-6">
                                 <div class="form-group ">
                                     <label>Telefon Raqami</label>
@@ -113,33 +112,7 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group ">
-                                    <label class="">Rasm</label>
-        
-                                    <div id="image-preview" class="image-preview">
-                                        <label for="image-upload" id="image-label">Rasm</label>
-                                        <input type="file" name="image" id="image-upload" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class=" d-flex justify-content-center">
-                                    <div class="box-header"><h5> Rasm</h5></div><br>
-                                </div>
-                                <div class="tab-content">
-                                    <div class="tab-pane active">
-                                        <img src="/admin/images/complexes/{{$complexes->image}}" width="100%" height="100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group ">
                                     <label for="">Ovqatlanish joyi</label>
@@ -175,9 +148,7 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
                             <div class="col-md-6">
                                 <div id="uz-form" >
                                     <div class="form-group ">
@@ -224,6 +195,34 @@
                                         <option value="1" {{ $complexes->status==1 ? 'selected' : ' ' }}>Faol</option>
                                         <option value="0" {{ $complexes->status==0 ? 'selected' : ' ' }}>Faol emas</option>
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group ">
+                                    <label class="">Rasm</label>
+        
+                                    <div id="image-preview" class="image-preview">
+                                        <label for="image-upload" id="image-label">Rasm</label>
+                                        <input type="file" name="image[]" id="image-upload" multiple />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class=" d-flex justify-content-center">
+                                    <div class="box-header"><h5> Rasm</h5></div><br>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane active">
+                                        @php
+                                            $images=explode("|", $complexes->image);
+                                        @endphp
+
+                                        @foreach ($images as $img)
+                                            <img src="{{ asset("/admin/images/complexes/".$img) }}" width="100%" height="100%"> <hr>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </div>

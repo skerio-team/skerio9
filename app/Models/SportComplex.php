@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Http\Requests\Admin\StoreSportComplexRequest;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\File;
+use Illuminate\Validation\Rules\Exists;
 
 class SportComplex extends Model implements TranslatableContract
 {
@@ -36,6 +39,8 @@ class SportComplex extends Model implements TranslatableContract
 
     public $translatedAttributes = ['description'];
 
+    const IMAGE_PATH = 'admin/images/complexes/';
+
     public function sportCategory(): BelongsTo
     {
         return $this->belongsTo(SportCategory::class, 'sport_category_id');
@@ -44,5 +49,22 @@ class SportComplex extends Model implements TranslatableContract
     public function areas(): BelongsTo
     {
         return $this->belongsTo(Area::class, 'area_id');
+    }
+
+    public function isImageExists(): bool
+    {
+        return file_exists(self::IMAGE_PATH . $this->image);
+    }
+
+    public function deleteImage(): bool
+    {
+        $images = explode("|", $this->image);
+
+        foreach ($images as $img)
+        {
+            unlink(self::IMAGE_PATH . $img);
+        }
+
+        return true;
     }
 }
