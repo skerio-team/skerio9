@@ -15,6 +15,14 @@ class TeamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    {
+         $this->middleware('permission:team-list|team-create|team-edit|team-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:team-create', ['only' => ['create','store']]);
+         $this->middleware('permission:team-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:team-delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $items=Team::paginate(10);

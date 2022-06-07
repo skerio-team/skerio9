@@ -13,6 +13,15 @@ class SportCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    function __construct()
+    {
+         $this->middleware('permission:sport_category-list|sport_category-create|sport_category-edit|sport_category-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:sport_category-create', ['only' => ['create','store']]);
+         $this->middleware('permission:sport_category-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:sport_category-delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $items=SportCategory::paginate(10);

@@ -11,6 +11,9 @@ use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Admin\TeamController;
+use App\Http\Controllers\Admin\RoleController;
+
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +40,8 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function (){
     Route::resource('productCategories', ProductCategoryController::class);
     Route::resource('sizes', SizeController::class);
     Route::resource('team', TeamController::class);
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
 
 
 });

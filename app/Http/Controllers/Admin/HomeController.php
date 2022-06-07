@@ -13,6 +13,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    function __construct()
+    {
+         $this->middleware('permission:home-list|home-create|home-edit|home-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:home-create', ['only' => ['create','store']]);
+         $this->middleware('permission:home-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:home-delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $items=Home::paginate(10);

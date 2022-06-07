@@ -106,7 +106,7 @@
                             <label>Meta kalitso'z (keywords)</label>
                             <input type="text" class="form-control" placeholder="Meta Kalitso'zni kiriting" name="meta_keywords" >
                         </div>
-
+                        
                         <div class="form-group ">
                             <div class="">
                                 <button class="btn btn-primary">Tasdiqlash</button>

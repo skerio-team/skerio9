@@ -8,18 +8,20 @@
 @endsection
 
 @section('content')
-
+{{-- @php
+    dd($user->roles)
+@endphp --}}
 <div class="row">
     <div class="col-12">
       <div class="card">
-        @can('home-create')
+        @can('user-create')
             <div class="card-header ">
-                <a class="btn btn-primary " href="{{ route('admin.homes.create')}}">Yaratish</a>
+                <a class="btn btn-primary " href="{{ route('admin.users.create')}}">Yaratish</a>
             </div>
         @endcan
 
         <div class="card-body">
-            <h5 align="center">Bosh menyu ma'lumotlar jadvali</h5>
+            <h5 align="center">Foydalanuvchilar & Adminlar ro'yxati</h5>
             @if (Session::has('success'))
                 <div class="alert alert-success alert-dismissible show fade">
                     <div class="alert-body">
@@ -43,39 +45,52 @@
               <thead>
                 <tr>
                     <th class="text-center"> # </th>
-                    <th>Sarlovha(UZ)</th>
-                    <th>Tavsif(UZ)</th>
-                    <th>Rasmi</th>
+                    <th> Ismi </th>
+                    <th>Email</th>
+                    <th> Vazifa/Huquq </th>
                     <th>Amallar</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($items as $item)
+                @foreach ($data as $key => $user)
                 <tr class="odd">
                     <td>{{$loop->iteration}}</td>
-                    <td >{{ $item->translate('uz')->title }}</td>
-                    <td >{{ $item->translate('uz')->description }}</td>
-
-                    <td class=""><img src="/admin/images/homes/{{$item->image}}" width="100px" alt="" srcset=""></td>
+                    <td >{{ $user->name }}</td>
+                    <td >{{ $user->email }}</td>
+                    <td>
+                        @if(!empty($user->getRoleNames()))
+                          @foreach($user->getRoleNames() as $v)
+                             <label class="badge badge-success">{{ $v }}</label>
+                          @endforeach
+                        @else
+                            <span>Oddiy Foydalanuvchi</span>
+                        @endif
+                      </td>
 
                     <td class="d-flex justify-content-center ">
-                        <a class="btn btn-primary  " href="{{route('admin.homes.show', $item->id)}}">
+                        <a class="btn btn-primary  " href="{{route('admin.users.show', $user->id)}}">
                             <i class="fas fa-eye"></i>
                         </a>
-                        @can('home-edit')
-                            <a class="btn btn-info " href="{{route('admin.homes.edit', $item->id)}}">
+                        @can('user-edit')
+                            <a class="btn btn-info " href="{{route('admin.users.edit', $user->id)}}">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
                         @endcan
+                        @can('user-delete')
+                           {{-- @hasrole('GeneralAdmin')
 
-                        @can('home-delete')
-                            <form action="{{route('admin.homes.destroy', $item->id)}}" method="item">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
+                           @endhasrole --}}
+                           @foreach ($user->roles as $role)
+                                @if ($role->id !== 1)
+                                    <form action="{{route('admin.users.destroy', $user->id)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                @endif
+                           @endforeach
                         @endcan
                     </td>
                 </tr>

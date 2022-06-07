@@ -12,14 +12,14 @@
 <div class="row">
     <div class="col-12">
       <div class="card">
-        @can('home-create')
-            <div class="card-header ">
-                <a class="btn btn-primary " href="{{ route('admin.homes.create')}}">Yaratish</a>
-            </div>
-        @endcan
+            @can('role-create')
+                <div class="card-header ">
+                    <a class="btn btn-primary " href="{{ route('admin.roles.create')}}">Yaratish</a>
+                </div>
+            @endcan
 
         <div class="card-body">
-            <h5 align="center">Bosh menyu ma'lumotlar jadvali</h5>
+            <h5 align="center">  </h5>
             @if (Session::has('success'))
                 <div class="alert alert-success alert-dismissible show fade">
                     <div class="alert-body">
@@ -42,34 +42,27 @@
             <table class="table table-striped" id="table-1">
               <thead>
                 <tr>
-                    <th class="text-center"> # </th>
-                    <th>Sarlovha(UZ)</th>
-                    <th>Tavsif(UZ)</th>
-                    <th>Rasmi</th>
-                    <th>Amallar</th>
+                    <th style="width: 100px"> # </th>
+                    <th style=""> Nomi </th>
+                    <th class="" style="width: 150px">Amallar</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($items as $item)
+                @foreach ($roles as $role)
                 <tr class="odd">
                     <td>{{$loop->iteration}}</td>
-                    <td >{{ $item->translate('uz')->title }}</td>
-                    <td >{{ $item->translate('uz')->description }}</td>
-
-                    <td class=""><img src="/admin/images/homes/{{$item->image}}" width="100px" alt="" srcset=""></td>
-
-                    <td class="d-flex justify-content-center ">
-                        <a class="btn btn-primary  " href="{{route('admin.homes.show', $item->id)}}">
+                    <td >{{ $role->name }}</td>
+                    <td class="d-flex justify-content-center " style="width:67px">
+                        <a class="btn btn-primary  " href="{{route('admin.roles.show', $role->id)}}">
                             <i class="fas fa-eye"></i>
                         </a>
-                        @can('home-edit')
-                            <a class="btn btn-info " href="{{route('admin.homes.edit', $item->id)}}">
+                        @can('role-edit')
+                            <a class="btn btn-info " href="{{route('admin.roles.edit', $role->id)}}">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
                         @endcan
-
-                        @can('home-delete')
-                            <form action="{{route('admin.homes.destroy', $item->id)}}" method="item">
+                        @can('role-delete')
+                            <form action="{{route('admin.roles.destroy', $role->id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">

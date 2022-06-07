@@ -127,9 +127,11 @@
 
                             </div>
                                 <!-- /.card-body -->
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Tasdiqlash</button>
-                            </div>
+                            @can('home-edit')
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Tasdiqlash</button>
+                                </div>
+                            @endcan
                         </form>
                     </div>
                 </div>

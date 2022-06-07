@@ -5,7 +5,6 @@
         <link rel="stylesheet" href="/assets/bundles/codemirror/lib/codemirror.css">
         <link rel="stylesheet" href="/assets/bundles/codemirror/theme/duotone-dark.css">
     <style>
-
         .bg-aqua-active{
 
             background-color: #6777ef;
@@ -13,8 +12,6 @@
             color: #fff !important;
 
         }
-
-
     </style>
 @endsection
 
@@ -28,19 +25,20 @@
                         <div class="card-header col-sm-6">
 
                             <div class=" d-flex justify-content-center">
-
                                 <a href="{{ route('admin.news.index') }}"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Ortga</button></a> &nbsp;
-                                <a href="{{ route('admin.news.edit', $item->id) }}"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square" aria-hidden="true"></i> Tahrirlash</button></a> &nbsp;
-
-                                <form action="{{route('admin.news.destroy', $item->id)}}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button  style="display: inline" type="submit" class="btn btn-danger btn-sm  ">
-                                        <i class="fas fa-trash"  aria-hidden="true"></i>
-                                        O'chirish
-                                    </button>
-                                </form>
-
+                                @can('news-edit')
+                                    <a href="{{ route('admin.news.edit', $item->id) }}"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square" aria-hidden="true"></i> Tahrirlash</button></a> &nbsp;
+                                @endcan
+                                @can('news-delete')
+                                    <form action="{{route('admin.news.destroy', $item->id)}}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button  style="display: inline" type="submit" class="btn btn-danger btn-sm  ">
+                                            <i class="fas fa-trash"  aria-hidden="true"></i>
+                                            O'chirish
+                                        </button>
+                                    </form>
+                                @endcan
                             </div>
                         </div>
                         <div class="col-sm-6">
