@@ -50,7 +50,7 @@
               class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="/assets/img/user.png"
                 class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
             <div class="dropdown-menu dropdown-menu-right pullDown">
-              <div class="dropdown-title">Hello Sarah Smith</div>
+              <div class="dropdown-title"> {{ Auth::user()->name }} </div>
               <a href="profile.html" class="dropdown-item has-icon"> <i class="far
 										fa-user"></i> Profile
               </a> <a href="timeline.html" class="dropdown-item has-icon"> <i class="fas fa-bolt"></i>
@@ -131,21 +131,25 @@
               <a href="{{ route('admin.tags.index') }}" ><i class="fas fa-vector-square"></i><span>Taglar</span></a>
             </li> --}}
 
+            @can('user')
 
+            @endcan
 
-            {{-- <li class="menu-header">  </li> --}}
-            {{-- <li class="dropdown">
-              <a href="#" class="menu-toggle nav-link has-dropdown"><i
-                  data-feather="user-check"></i><span> Auth </span></a>
-              <ul class="dropdown-menu">
-                <li class="{{ request()->is('admin/roles*') ? 'active' : ''  }}">
-                    <a href="{{ route('admin.roles.index') }}" > <i class="fas fa-universal-access"></i> Rollar</a>
+            @if (Auth::user()->hasAllPermissions(['role-list', 'user-list']))
+                <li class="menu-header"> Xavfsizlik </li>
+                <li class="dropdown">
+                <a href="#" class="menu-toggle nav-link has-dropdown"><i
+                    data-feather="user-check"></i><span> Administratsiya </span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ request()->is('admin/roles*') ? 'active' : ''  }}">
+                        <a href="{{ route('admin.roles.index') }}" > <i class="fas fa-universal-access"></i> Rollar</a>
+                    </li>
+                    <li class=" {{ request()->is('admin/users*') ? 'active' : ''  }}">
+                        <a href="{{ route('admin.users.index') }}" > <i class="fas fa-users-cog"></i><span>Foydalanuvchi&Admin</span></a>
+                    </li>
+                </ul>
                 </li>
-                <li class=" {{ request()->is('admin/users*') ? 'active' : ''  }}">
-                    <a href="{{ route('admin.users.index') }}" > <i class="fas fa-users-cog"></i><span>Foydalanuvchi&Admin</span></a>
-                </li>
-              </ul>
-            </li> --}}
+            @endif
 
           </ul>
         </aside>

@@ -12,10 +12,11 @@
 <div class="row">
     <div class="col-12">
       <div class="card">
-
-            <div class="card-header ">
-                <a class="btn btn-primary " href="{{ route('admin.products.create')}}">Yaratish</a>
-            </div>
+            @can('product-create')
+                <div class="card-header ">
+                    <a class="btn btn-primary " href="{{ route('admin.products.create')}}">Yaratish</a>
+                </div>
+            @endcan
 
         <div class="card-body">
             <h5 align="center">Mahsulotlar jadvali</h5>
@@ -63,16 +64,20 @@
                         <a class="btn btn-primary  " href="{{route('admin.products.show', $item->id)}}">
                             <i class="fas fa-eye"></i>
                         </a>
-                        <a class="btn btn-info " href="{{route('admin.products.edit', $item->id)}}">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
-                        <form action="{{route('admin.products.destroy', $item->id)}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </form>
+                        @can('product-edit')
+                            <a class="btn btn-info " href="{{route('admin.products.edit', $item->id)}}">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                        @endcan
+                        @can('product-delete')
+                            <form action="{{route('admin.products.destroy', $item->id)}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        @endcan
                     </td>
                 </tr>
                @endforeach

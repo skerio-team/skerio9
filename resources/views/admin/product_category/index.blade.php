@@ -12,10 +12,11 @@
 <div class="row">
     <div class="col-12">
       <div class="card">
-
-            <div class="card-header ">
-                <a class="btn btn-primary " href="{{ route('admin.productCategories.create')}}">Yaratish</a>
-            </div>
+            @can('product_category-create')
+                <div class="card-header ">
+                    <a class="btn btn-primary " href="{{ route('admin.productCategories.create')}}">Yaratish</a>
+                </div>
+            @endcan
 
         <div class="card-body">
             <h5 align="center">Mahsulot Kategoriyalari jadvali</h5>
@@ -45,7 +46,6 @@
                 <th>Nom(Ru)</th>
                 <th>Nom(En)</th>
                 <th>Slug</th>
-
                 <th>Amallar</th>
               </tr>
 
@@ -57,19 +57,20 @@
                  <td>{{$item->translate('en')->name}}</td>
                  <td>{{$item->slug}}</td>
                  <td class=" d-flex justify-content-center">
-
-                    <a class="btn btn-info " href="{{route('admin.productCategories.edit', $item->id)}}">
-                        <i class="fas fa-pencil-alt"></i>
-                    </a>
-
-                    <form action="{{route('admin.productCategories.destroy', $item->id)}}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger deleteCat ">
-                            <i class="fas fa-trash"></i>
-                        </button>
-
-                    </form>
+                    @can('product_category-edit')
+                        <a class="btn btn-info " href="{{route('admin.productCategories.edit', $item->id)}}">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+                    @endcan
+                    @can('product_category-delete')
+                        <form action="{{route('admin.productCategories.destroy', $item->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger deleteCat ">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    @endcan
                 </td>
               </tr>
               @endforeach

@@ -12,10 +12,11 @@
 <div class="row">
     <div class="col-12">
       <div class="card">
-
+        @can('team-create')
             <div class="card-header ">
                 <a class="btn btn-primary " href="{{ route('admin.team.create')}}">Yaratish</a>
             </div>
+        @endcan
 
         <div class="card-body">
             <h5 align="center">Jamoalar Ro'yxati</h5>
@@ -60,19 +61,20 @@
                  <td>{{$item->official_site}}</td>
                  <td class=""><img src="/admin/images/teams/{{$item->image}}" width="100px" alt="" srcset=""></td>
                  <td class=" d-flex justify-content-center">
-
-                    <a class="btn btn-info " href="{{route('admin.team.edit', $item->id)}}">
-                        <i class="fas fa-pencil-alt"></i>
-                    </a>
-
-                    <form action="{{route('admin.team.destroy', $item->id)}}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger deleteCat ">
-                            <i class="fas fa-trash"></i>
-                        </button>
-
-                    </form>
+                    @can('team-edit')
+                        <a class="btn btn-info " href="{{route('admin.team.edit', $item->id)}}">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+                    @endcan
+                    @can('team-delete')
+                        <form action="{{route('admin.team.destroy', $item->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger deleteCat ">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    @endcan
                 </td>
               </tr>
               @endforeach

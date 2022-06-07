@@ -13,9 +13,11 @@
     <div class="col-12">
       <div class="card">
 
+        @can('brand-create')
             <div class="card-header ">
                 <a class="btn btn-primary " href="{{ route('admin.brands.create')}}">Yaratish</a>
             </div>
+        @endcan
 
         <div class="card-body">
             <h5 align="center">Brend jadvali</h5>
@@ -53,18 +55,20 @@
                  <td class=""><img src="/admin/images/brands/{{$item->image}}" width="100px" alt="" srcset=""></td>
                  <td class=" d-flex justify-content-center">
 
-                    <a class="btn btn-info " href="{{route('admin.brands.edit', $item->id)}}">
-                        <i class="fas fa-pencil-alt"></i>
-                    </a>
-
-                    <form action="{{route('admin.brands.destroy', $item->id)}}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger deleteCat ">
-                            <i class="fas fa-trash"></i>
-                        </button>
-
-                    </form>
+                    @can('brand-edit')
+                        <a class="btn btn-info " href="{{route('admin.brands.edit', $item->id)}}">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+                    @endcan
+                    @can('brand-delete')
+                        <form action="{{route('admin.brands.destroy', $item->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger deleteCat ">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    @endcan
                 </td>
               </tr>
               @endforeach

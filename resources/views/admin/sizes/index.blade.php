@@ -12,10 +12,11 @@
 <div class="row">
     <div class="col-12">
       <div class="card">
-
+        @can('size-create')
             <div class="card-header ">
                 <a class="btn btn-primary " href="{{ route('admin.sizes.create')}}">Yaratish</a>
             </div>
+        @endcan
 
         <div class="card-body">
             <h5 align="center">O'lcham Kategoriyalarining jadvali</h5>
@@ -52,19 +53,20 @@
                  <td>{{$item->number}}</td>
                  <td>{{$item->letter}}</td>
                  <td class=" d-flex justify-content-center">
-
-                    <a class="btn btn-info " href="{{route('admin.sizes.edit', $item->id)}}">
-                        <i class="fas fa-pencil-alt"></i>
-                    </a>
-
-                    <form action="{{route('admin.sizes.destroy', $item->id)}}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger deleteCat ">
-                            <i class="fas fa-trash"></i>
-                        </button>
-
-                    </form>
+                    @can('size-edit')
+                        <a class="btn btn-info " href="{{route('admin.sizes.edit', $item->id)}}">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+                    @endcan
+                    @can('size-delete')
+                        <form action="{{route('admin.sizes.destroy', $item->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger deleteCat ">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    @endcan
                 </td>
               </tr>
               @endforeach

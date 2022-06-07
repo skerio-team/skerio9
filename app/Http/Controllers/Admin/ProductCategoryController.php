@@ -13,6 +13,15 @@ class ProductCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     function __construct()
+    {
+         $this->middleware('permission:product_category-list|product_category-create|product_category-edit|product_category-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:product_category-create', ['only' => ['create','store']]);
+         $this->middleware('permission:product_category-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:product_category-delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $items=ProductCategory::paginate(10);
