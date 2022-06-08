@@ -38,10 +38,10 @@
 
     <div class="row">
         {{-- Add Country --}}
-        <div class="col-12 col-md-4 col-lg-4">
+        <div class="col-12 col-md-4 col-lg-4 col-sm-3">
           <div class="card">
             <div class="card-header d-flex justify-content-between">
-              <h4>Davlatlar</h4>              
+              <h4>Davlatlar</h4>
               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addCountry">{{ __("Qo'shish") }}</button>
             </div>
             <div class="card-body p-0">
@@ -92,10 +92,10 @@
         </div>
 
           {{-- Add Region --}}
-        <div class="col-12 col-md-4 col-lg-4">
+        <div class="col-12 col-md-4 col-lg-4 col-sm-3">
           <div class="card">
             <div class="card-header d-flex justify-content-between">
-              
+
               {{-- Dropdown --}}
               <div class="dropdown d-inline mr-2">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -145,7 +145,7 @@
         </div>
 
           {{-- Add Area --}}
-        <div class="col-12 col-md-4 col-lg-4">
+        <div class="col-12 col-md-4 col-lg-4 col-sm-3">
             <div class="card">
               <div class="card-header d-flex justify-content-between">
 

@@ -69,8 +69,7 @@ class ProductController extends Controller
         if($data['discount'] > "0"){
             $d=$data['discount'];
             $p=$data['price'];
-            $p=$p-($p*$d/100);
-            $p=$data['price'];
+            $data['price']=$p-($p*$d/100);
         }
 
         $product = Product::create($data);
@@ -128,6 +127,14 @@ class ProductController extends Controller
             $file->move('admin/images/products/', $image_name);
             $data['image']=$image_name;
         }
+        if($data['discount'] > "0"){
+            $d=$data['discount'];
+            $p=$data['price'];
+            $data['price']=$p-($p*$d/100);
+        }
+
+
+
         $item->sizes()->sync($request->size_id);
         $item->update($data);
         return redirect()->route('admin.products.index')->with('success', 'Ma`lumot tahrirlandi!');
