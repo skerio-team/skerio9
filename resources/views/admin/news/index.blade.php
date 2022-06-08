@@ -54,7 +54,7 @@
                 <tr class="odd">
                     <td>{{$loop->iteration}}</td>
                     <td >{{ $item->translate('uz')->title }}</td>
-                    <td >{{ $item->translate('uz')->description }}</td>
+                    <td >{!! $item->translate('uz')->description !!}</td>
                     <td >{{ $item->popularity }}</td>
 
                     <td class=""><img src="/admin/images/news/{{$item->image}}" width="100px" alt="" srcset=""></td>
@@ -91,3 +91,6 @@
     <script src="/assets/bundles/jquery-ui/jquery-ui.min.js"></script>
     <script src="/assets/js/page/datatables.js"></script>
 @endsection
+
+
+

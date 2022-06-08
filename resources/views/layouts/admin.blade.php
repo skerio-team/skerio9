@@ -69,7 +69,7 @@
       <div class="main-sidebar sidebar-style-2">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="index.html"> <img alt="image" src="/assets/img/logo.png" class="header-logo" /> <span
+            <a href="{{route('admin.dashboard')}}"> <img alt="image" src="/assets/img/logo.png" class="header-logo" /> <span
                 class="logo-name">Skerio</span>
             </a>
           </div>
@@ -107,7 +107,7 @@
               <a href="{{ route('admin.products.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulotlar</span></a>
             </li>
 
-            <li class="dropdown {{ request()->is('admin/products*') ? 'active' : ''  }}">
+            <li class="dropdown {{ request()->is('admin/team*') ? 'active' : ''  }}">
               <a href="{{ route('admin.team.index') }}" ><i class="far fa-newspaper"></i><span>Jamoalar</span></a>
             </li>
 
