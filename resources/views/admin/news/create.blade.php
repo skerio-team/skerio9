@@ -51,6 +51,7 @@
                                 <input type="text" class="form-control " placeholder="Sarlovhani kiriting" name="uz[title]" >
                             </div>
 
+                           
                             <div class="form-group ">
                                 <label>Tavsif(UZ)</label>
                                 <textarea name="uz[description]" id="" cols="30" rows="10">  </textarea>
@@ -62,7 +63,6 @@
                                 <label>Sarlovha(RU)</label>
                                 <input type="text" class="form-control" placeholder="Sarlovhani kiriting" name="ru[title]" >
                             </div>
-
                             <div class="form-group ">
                                 <label>Tavsif(RU)</label>
                                 <textarea name="ru[description]" id="" cols="30" rows="10">  </textarea>
@@ -76,6 +76,7 @@
                                 <input type="text" class="form-control" placeholder="Sarlovhani kiriting" name="en[title]" >
                             </div>
 
+                            
                             <div class="form-group ">
                                 <label>Tavsif(EN)</label>
                                 <textarea name="en[description]" id="" cols="30" rows="10">  </textarea>

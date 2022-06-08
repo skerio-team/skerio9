@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\News;
-use App\Http\Resources\NewsResource;
+use App\Models\Size;
+use App\Http\Resources\SizeResource;
 
 
-class NewsController extends Controller
+class SizeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,12 +17,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //$post=News::find(1);
-        //return htmlspecialchars($post->uz[description]);
-        //dd($post->translate('uz')->description);
-        return NewsResource::collection(News::all());
-
-
+        return SizeResource::collection(Size::all());
     }
 
     /**
