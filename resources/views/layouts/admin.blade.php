@@ -111,7 +111,7 @@
               <a href="{{ route('admin.team.index') }}" ><i class="far fa-newspaper"></i><span>Jamoalar</span></a>
             </li>
             
-            {{-- Locations --}}
+            {{-- Sport Complexes --}}
             <li class="dropdown {{ request()->is('admin/complexes*') ? 'active' : ''  }}">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="user-check"></i><span> Sport majmuolari </span></a>
                 <ul class="dropdown-menu">
@@ -150,6 +150,10 @@
                 </ul>
                 </li>
             @endif
+
+            <li class="dropdown {{ request()->is('admin/team*') ? 'active' : ''  }}">
+              <a href="{{ route('admin.team.index') }}" ><i class="far fa-newspaper"></i><span>Chiptalar</span></a>
+            </li>
 
           </ul>
         </aside>

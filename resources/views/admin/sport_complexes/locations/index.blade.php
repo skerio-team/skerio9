@@ -4,6 +4,7 @@
     <!-- DataTables -->
     <link rel="stylesheet" href="/assets/bundles/datatables/datatables.min.css">
     <link rel="stylesheet" href="/assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 @endsection
 
     @section('content')
@@ -38,7 +39,7 @@
 
     <div class="row">
         {{-- Add Country --}}
-        <div class="col-12 col-md-4 col-lg-4">
+        <div class="col-12 col-sm-3 col-md-4 col-lg-4">
           <div class="card">
             <div class="card-header d-flex justify-content-between">
               <h4>Davlatlar</h4>              
@@ -57,9 +58,9 @@
                   <tbody>
                     @foreach ($countries as $country)
                     <tr class="odd">
-                      <td>{{ (($loop->iteration)) }}</td>
+                      <td>{{ ((($countries->currentPage()-1) * $countries->perPage() + ($loop->index+1))) }}</td>
                       <td>{{ $country->country }}</td>
-                      <td>
+                      <td class="d-flex justify-content-center" style="width: 30%">
                           <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></a>
                           <form action="{{ route('admin.complexes.locations.countries.destroy', ['country' => $country->id]) }}" method="POST">
                             @csrf
@@ -76,15 +77,7 @@
             <div class="card-footer text-right">
               <nav class="d-inline-block">
                 <ul class="pagination mb-0">
-                 
                   {!! $countries->links() !!}
-                  {{-- {!! $collection2->links() !!} --}}
-                  @php
-                      // \Paginator::setPageName($collection1);
-                      // \Paginator::setPageName($collection2);
-                      // $collection2->links();
-                  @endphp
-                  {{-- {!! $collection1->links() !!} --}}
                 </ul>
               </nav>
             </div>
@@ -92,21 +85,20 @@
         </div>
 
           {{-- Add Region --}}
-        <div class="col-12 col-md-4 col-lg-4">
+        <div class="col-12 col-sm-3 col-md-4 col-lg-4">
           <div class="card">
             <div class="card-header d-flex justify-content-between">
               
               {{-- Dropdown --}}
-              <div class="dropdown d-inline mr-2">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Davlatni tanlang
-                </button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
+              <div style="width: 40%">
+                <select class="form-control bg-primary text-light" id="country-dropdown">
+                  <option value="">Davlatni tanlang</option>
+                  @foreach ($countries as $country)
+                      <option value="{{ $country->id }}">
+                          {{ $country->country }}
+                      </option>
+                  @endforeach
+                </select>
               </div>
 
               <h4>Viloyatlar</h4>
@@ -122,9 +114,9 @@
                   </tr>
                   @foreach ($regions as $region)
                   <tr>
-                    <td>{{ (($loop->iteration)) }}</td>
+                    <td>{{ ((($regions->currentPage()-1) * $regions->perPage() + ($loop->index+1))) }}</td>
                     <td>{{ $region->name}} [{{ $region->countries['country'] }}]</td>
-                    <td>
+                    <td class="d-flex justify-content-center" style="width: 30%">
                         <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></a>
                         <form action="{{ route('admin.complexes.locations.regions.destroy', ['region' => $region->id]) }}" method="POST">
                           @csrf
@@ -138,42 +130,54 @@
               </div>
             </div>
             <div class="card-footer text-right">
-              
-              {{ $regions->links() }}
+              <nav class="d-inline-block">
+                <ul class="pagination mb-0">
+                  {!! $regions->links() !!}
+                </ul>
+              </nav>
             </div>
           </div>
         </div>
 
           {{-- Add Area --}}
-        <div class="col-12 col-md-4 col-lg-4">
+        <div class="col-12 col-sm-3 col-md-4 col-lg-4">
             <div class="card">
               <div class="card-header d-flex justify-content-between">
 
                 {{-- Dropdown --}}
-                <div class="dropdown d-inline mr-2">
-                  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Davlatni tanlang
-                  </button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
+                <div style="width: 30%">
+                  <select class="form-control bg-primary text-light" id="country-dropdown">
+                    <option value="">Davlatni tanlang</option>
+                    @foreach ($countries as $country)
+                        <option value="{{ $country->id }}">
+                            {{ $country->country }}
+                        </option>
+                    @endforeach
+                  </select>
                 </div>
 
                 {{-- Dropdown --}}
-                <div class="dropdown d-inline mr-2">
-                  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Viloyatni tanlang
-                  </button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
+                <div style="width: 30%">
+                  <select class="form-control bg-primary text-light" id="country-dropdown">
+                    <option value="">Viloyatni tanlang</option>
+                    @foreach ($regions as $region)
+                        <option value="{{ $region->id }}">
+                            {{ $region->name }}
+                        </option>
+                    @endforeach
+                  </select>
                 </div>
+
+                {{-- <div class="form-group">
+                  <label for="state">State</label>
+                  <select class="form-control" id="state-dropdown">
+                  </select>
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <select class="form-control" id="city-dropdown">
+                    </select>
+                </div> --}}
 
                 <h4>Hududlar</h4>
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addArea">Qo'shish</button>
@@ -188,9 +192,9 @@
                     </tr>
                     @foreach ($areas as $area)
                     <tr>
-                      <td>{{ (($loop->iteration)) }}</td>
+                      <td>{{ ((($areas->currentPage()-1) * $areas->perPage() + ($loop->index+1))) }}</td>
                       <td>{{ $area->name}} [{{ $area->regions['name'] }}, {{ $area->regions->countries['country'] }}]</td>
-                      <td>
+                      <td class="d-flex justify-content-center" style="width: 30%">
                           <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></a>
                           <form action="{{ route('admin.complexes.locations.areas.destroy', ['area' => $area->id]) }}" method="POST">
                             @csrf
@@ -206,18 +210,7 @@
               <div class="card-footer text-right">
                 <nav class="d-inline-block">
                   <ul class="pagination mb-0">
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="#">1 <span
-                          class="sr-only">(current)</span></a></li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                      <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                    </li>
+                    {!! $areas->links() !!}
                   </ul>
                 </nav>
               </div>
@@ -226,6 +219,53 @@
     </div>
 
     @include('admin.sport_complexes.locations.create')
+
+    <script>
+      $(document).ready(function() {
+          $('#country-dropdown').on('change', function() {
+              var country_id = this.value;
+              $("#state-dropdown").html('');
+              $.ajax({
+                  url: "{{ url('get-states-by-country') }}",
+                  type: "POST",
+                  data: {
+                      country_id: country_id,
+                      _token: '{{ csrf_token() }}'
+                  },
+                  dataType: 'json',
+                  success: function(result) {
+                      $('#state-dropdown').html('<option value="">Select State</option>');
+                      $.each(result.states, function(key, value) {
+                          $("#state-dropdown").append('<option value="' + value.id +
+                              '">' + value.name + '</option>');
+                      });
+                      $('#city-dropdown').html(
+                      '<option value="">Select State First</option>');
+                  }
+              });
+          });
+          $('#state-dropdown').on('change', function() {
+              var state_id = this.value;
+              $("#city-dropdown").html('');
+              $.ajax({
+                  url: "{{ url('get-cities-by-state') }}",
+                  type: "POST",
+                  data: {
+                      state_id: state_id,
+                      _token: '{{ csrf_token() }}'
+                  },
+                  dataType: 'json',
+                  success: function(result) {
+                      $('#city-dropdown').html('<option value="">Select City</option>');
+                      $.each(result.cities, function(key, value) {
+                          $("#city-dropdown").append('<option value="' + value.id +
+                              '">' + value.name + '</option>');
+                      });
+                  }
+              });
+          });
+      });
+    </script>
 
     @endsection
 
