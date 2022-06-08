@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Home;
+use App\Models\HomeTranslation;
+use App\Http\Resources\HomeResource;
 
 class HomeController extends Controller
 {
@@ -15,7 +17,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return Home::all();
+        // return Home::all();
+       return HomeResource::collection(Home::all());
+        // return HomeResource::collection(HomeTranslation::all());
     }
 
     /**

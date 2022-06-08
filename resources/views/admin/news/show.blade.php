@@ -78,7 +78,7 @@
                         </div>
                         <div class="tab-content">
                             <div class="tab-pane active uz-form">
-                                <h6> {!! $item->translate('uz')->description !!} </h6>
+                                <h6> {{ htmlspecialchars( $item->translate('uz')->description) }} </h6>
                             </div>
                             <div class="tab-pane active en-form d-none">
                                 <h6> {!! $item->translate('en')->description !!} </h6>

@@ -42,7 +42,7 @@
         <div class="col-12 col-sm-3 col-md-4 col-lg-4">
           <div class="card">
             <div class="card-header d-flex justify-content-between">
-              <h4>Davlatlar</h4>              
+              <h4>Davlatlar</h4>
               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addCountry">{{ __("Qo'shish") }}</button>
             </div>
             <div class="card-body p-0">
@@ -88,7 +88,7 @@
         <div class="col-12 col-sm-3 col-md-4 col-lg-4">
           <div class="card">
             <div class="card-header d-flex justify-content-between">
-              
+
               {{-- Dropdown --}}
               <div style="width: 40%">
                 <select class="form-control bg-primary text-light" id="country-dropdown">
