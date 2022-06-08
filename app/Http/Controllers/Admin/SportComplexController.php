@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\UpdateSportComplexRequest;
 use App\Models\Area;
 use App\Models\SportCategory;
 use App\Models\SportComplex;
+use Illuminate\Support\Facades\File;
 
 class SportComplexController extends Controller
 {
@@ -45,8 +46,13 @@ class SportComplexController extends Controller
     {
         $data = $request->all();
         $images = array();
+        $destination = public_path('admin/images/complexes/');
         if ($files = $request->file('image'))
         {
+            if (!file_exists($destination))
+            {
+                mkdir($destination, 0777, true);
+            }
             foreach ($files as $file) {
                 $name = time().$file->getClientOriginalName();
                 $file->move('admin/images/complexes/', $name);
@@ -99,6 +105,30 @@ class SportComplexController extends Controller
     {
         $item = SportComplex::find($id);
         $data = $request->all();
+
+        if ($request->file('image') !== null)
+        {
+            $images = array();
+            $destination = public_path('admin/images/complexes/');
+
+            $images_db = explode("|", $item->image);
+            foreach ($images_db as $img)
+            {
+                if (file_exists($destination . $img))
+                {
+                    unlink($destination . $img);
+                }
+            }
+            $files = $request->file('image');
+
+            foreach ($files as $file) {
+                $name = time().'_'.$file->getClientOriginalName();
+                $file->move('admin/images/complexes/', $name);
+                $images[]   =   $name;
+            }
+            $data['image'] = implode("|",$images);
+        }
+        
         $item->update($data);
 
         return redirect()->route('admin.complexes.table.index')->with('success', $item->name .'- successfully updated!');
@@ -112,7 +142,9 @@ class SportComplexController extends Controller
      */
     public function destroy($id)
     {
-        SportComplex::destroy($id);
+        $model = SportComplex::find($id);
+        $model->delete();
+        $model->deleteImage();
 
         return redirect()->route('admin.complexes.table.index')->with('success', 'Complex successfully deleted!');
     }

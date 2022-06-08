@@ -60,7 +60,7 @@
                       <td>{{ (($loop->iteration)) }}</td>
                       <td>{{ $country->country }}</td>
                       <td>
-                          {{-- <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></a> --}}
+                          <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></a>
                           <form action="{{ route('admin.complexes.locations.countries.destroy', ['country' => $country->id]) }}" method="POST">
                             @csrf
                             @method('DELETE')
@@ -76,7 +76,15 @@
             <div class="card-footer text-right">
               <nav class="d-inline-block">
                 <ul class="pagination mb-0">
-                  {!! $countryPaginations->links() !!}
+                 
+                  {!! $countries->links() !!}
+                  {{-- {!! $collection2->links() !!} --}}
+                  @php
+                      // \Paginator::setPageName($collection1);
+                      // \Paginator::setPageName($collection2);
+                      // $collection2->links();
+                  @endphp
+                  {{-- {!! $collection1->links() !!} --}}
                 </ul>
               </nav>
             </div>
@@ -117,7 +125,7 @@
                     <td>{{ (($loop->iteration)) }}</td>
                     <td>{{ $region->name}} [{{ $region->countries['country'] }}]</td>
                     <td>
-                        {{-- <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></a> --}}
+                        <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></a>
                         <form action="{{ route('admin.complexes.locations.regions.destroy', ['region' => $region->id]) }}" method="POST">
                           @csrf
                           @method('DELETE')
@@ -130,22 +138,8 @@
               </div>
             </div>
             <div class="card-footer text-right">
-              <nav class="d-inline-block">
-                <ul class="pagination mb-0">
-                  <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
-                  </li>
-                  <li class="page-item active"><a class="page-link" href="#">1 <span
-                        class="sr-only">(current)</span></a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">2</a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                  </li>
-                </ul>
-              </nav>
+              
+              {{ $regions->links() }}
             </div>
           </div>
         </div>
@@ -197,7 +191,7 @@
                       <td>{{ (($loop->iteration)) }}</td>
                       <td>{{ $area->name}} [{{ $area->regions['name'] }}, {{ $area->regions->countries['country'] }}]</td>
                       <td>
-                          {{-- <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></a> --}}
+                          <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></a>
                           <form action="{{ route('admin.complexes.locations.areas.destroy', ['area' => $area->id]) }}" method="POST">
                             @csrf
                             @method('DELETE')

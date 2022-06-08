@@ -19,11 +19,20 @@ class SportLocationController extends Controller
      */
     public function index()
     {
-        $countryPaginations     =   Country::paginate(5);
-        $countries  =   Country::orderBy('country', 'asc')->get();
-        $regions    =   Region::all();
+        # use default 'page' for this
+        
+        $countries = Country::paginate(5, ['*'], 'countries');
+
+        # use custom 'other_page' for this
+        // $collection2 = Region::paginate(5);
+        $countries->setPageName('countries');
+        
+
+        //$countries  =   Country::orderBy('country', 'asc')->get();
+        $regions    =   Region::paginate(5, ['*'], 'regions');
+        $regions->setPageName('regions');
         $areas      =   Area::all();
-        return view('admin.sport_complexes.locations.index', compact('countries', 'regions', 'areas', 'countryPaginations'));
+        return view('admin.sport_complexes.locations.index', compact('countries', 'regions', 'areas'));
     }
 
     /**
