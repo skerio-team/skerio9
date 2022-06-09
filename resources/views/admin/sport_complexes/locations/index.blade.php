@@ -47,7 +47,7 @@
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
-                <table class="table table-striped table-md" id="table-1">
+                <table class="table table-striped table-md">
                   <thead>
                     <tr>
                       <th class="text-center">#</th>
