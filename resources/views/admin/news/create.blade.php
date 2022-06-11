@@ -56,6 +56,7 @@
                                 @enderror
                             </div>
 
+                           
                             <div class="form-group ">
                                 <label>Tavsif(UZ)</label>
                                 <textarea name="uz[description]" id="" cols="30" rows="10"> {{ old('uz.description') }} </textarea>
@@ -77,7 +78,6 @@
                                     </div>
                                 @enderror
                             </div>
-
                             <div class="form-group ">
                                 <label>Tavsif(RU)</label>
                                 <textarea name="ru[description]" id="" cols="30" rows="10"> {{ old('ru.description') }} </textarea>
@@ -101,6 +101,7 @@
                                 @enderror
                             </div>
 
+                            
                             <div class="form-group ">
                                 <label>Tavsif(EN)</label>
                                 <textarea name="en[description]" id="" cols="30" rows="10"> {{ old('en.description') }} </textarea>

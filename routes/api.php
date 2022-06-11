@@ -6,6 +6,13 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\SportCategoryController;
 use App\Http\Controllers\Api\newsController;
+use App\Http\Controllers\Api\BrandController;
+use App\Http\Controllers\Api\ProductCategoryController;
+use App\Http\Controllers\Api\SizeController;
+use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\TeamController;
+use App\Http\Controllers\Api\CountController;
+use App\Http\Controllers\Api\ComplexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,11 +31,25 @@ Route::post('login', [UserController::class, 'login']);
 
 
 
-Route::resource('home', HomeController::class)->middleware('auth:api');
+Route::resource('home', HomeController::class);
 
 Route::resource('sportcategory', SportCategoryController::class)->middleware('auth:api');
 
 Route::resource('news', newsController::class)->middleware('auth:api');
+
+Route::resource('brand', BrandController::class)->middleware('auth:api');
+
+Route::resource('productcategory', ProductCategoryController::class)->middleware('auth:api');
+
+Route::resource('size', SizeController::class)->middleware('auth:api');
+
+Route::resource('product', ProductController::class)->middleware('auth:api');
+
+Route::resource('team', TeamController::class)->middleware('auth:api');
+
+Route::resource('count', CountController::class)->middleware('auth:api');
+
+Route::resource('complex', ComplexController::class)->middleware('auth:api');
 
 
 

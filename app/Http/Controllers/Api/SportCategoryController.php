@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SportCategory;
+use App\Http\Resources\SportCategoryResource;
 
 class SportCategoryController extends Controller
 {
@@ -15,7 +16,8 @@ class SportCategoryController extends Controller
      */
     public function index()
     {
-        return SportCategory::all();
+        return SportCategoryResource::collection(SportCategory::all());
+
     }
 
     /**
