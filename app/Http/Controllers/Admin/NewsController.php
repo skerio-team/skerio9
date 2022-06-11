@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\News;
 use App\Models\SportCategory;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\StoreNewsRequest;
+use App\Http\Requests\Admin\UpdateNewsRequest;
 
 class NewsController extends Controller
 {
@@ -46,7 +48,7 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreNewsRequest $request)
     {
 
         $data=$request->all();
@@ -92,7 +94,7 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateNewsRequest $request, $id)
     {
         $item=News::find($id);
         $data=$request->all();

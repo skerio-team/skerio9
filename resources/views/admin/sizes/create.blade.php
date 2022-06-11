@@ -11,7 +11,7 @@
         <div class="card card-primary">
 
           <div class="card-header">
-            <h3 class="card-title">O'lcham kategoriyasini yaratish</h3>
+            <h3 class="card-title">O'lcham yaratish</h3>
           </div>
           <!-- /.card-header -->
 

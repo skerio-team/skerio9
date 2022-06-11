@@ -49,7 +49,7 @@ class SizeController extends Controller
     {
         $data=$request->all();
         Size::create($data);
-        return redirect()->route('admin.sizes.index')->with('success', 'O`lcham Kategoriyasi yaratildi!');
+        return redirect()->route('admin.sizes.index')->with('success', 'O`lcham yaratildi!');
     }
 
     /**
@@ -88,7 +88,7 @@ class SizeController extends Controller
         $Size=Size::find($id);
         $data=$request->all();
         $Size->update($data);
-        return redirect()->route('admin.sizes.index')->with('success', 'O`lcham Kategoriyasi tahrirlandi!');
+        return redirect()->route('admin.sizes.index')->with('success', 'O`lcham tahrirlandi!');
     }
 
     /**
@@ -100,6 +100,6 @@ class SizeController extends Controller
     public function destroy($id)
     {
         Size::destroy($id);
-        return redirect()->route('admin.sizes.index')->with('warning', "O`lcham Kategoriyasi o'chirildi!");
+        return redirect()->route('admin.sizes.index')->with('warning', "O`lcham o'chirildi!");
     }
 }
