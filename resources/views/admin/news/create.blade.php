@@ -48,24 +48,44 @@
                         <div id="uz-form" >
                             <div class="form-group ">
                                 <label >Sarlovha(UZ)</label>
-                                <input type="text" class="form-control " placeholder="Sarlovhani kiriting" name="uz[title]" >
+                                <input type="text" class="form-control " placeholder="Sarlovhani kiriting" name="uz[title]" value="{{ old('uz.title') }}">
+                                @error('uz.title')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="form-group ">
                                 <label>Tavsif(UZ)</label>
-                                <textarea name="uz[description]" id="" cols="30" rows="10">  </textarea>
+                                <textarea name="uz[description]" id="" cols="30" rows="10"> {{ old('uz.description') }} </textarea>
+                                @error('uz.description')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
 
                         <div id="ru-form" class="d-none">
                             <div class="form-group ">
                                 <label>Sarlovha(RU)</label>
-                                <input type="text" class="form-control" placeholder="Sarlovhani kiriting" name="ru[title]" >
+                                <input type="text" class="form-control" placeholder="Sarlovhani kiriting" name="ru[title]" value="{{ old('ru.title') }}">
+                                @error('ru.title')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="form-group ">
                                 <label>Tavsif(RU)</label>
-                                <textarea name="ru[description]" id="" cols="30" rows="10">  </textarea>
+                                <textarea name="ru[description]" id="" cols="30" rows="10"> {{ old('ru.description') }} </textarea>
+                                @error('ru.description')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                         </div>
@@ -73,64 +93,83 @@
                         <div id="en-form" class="d-none">
                             <div class="form-group ">
                                 <label>Sarlovha(EN)</label>
-                                <input type="text" class="form-control" placeholder="Sarlovhani kiriting" name="en[title]" >
+                                <input type="text" class="form-control" placeholder="Sarlovhani kiriting" name="en[title]" value="{{ old('en.title') }}">
+                                @error('en.title')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="form-group ">
                                 <label>Tavsif(EN)</label>
-                                <textarea name="en[description]" id="" cols="30" rows="10">  </textarea>
+                                <textarea name="en[description]" id="" cols="30" rows="10"> {{ old('en.description') }} </textarea>
+                                @error('en.description')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                         </div>
 
                         <div class="form-group ">
                             <label class="">Rasm</label>
-
                             <div id="image-preview" class="image-preview">
                                 <label for="image-upload" id="image-label">Rasm</label>
                                 <input type="file" name="image" id="image-upload" />
                             </div>
+                            @error('image')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div class="form-group ">
                             <label>Kategoriyaga biriktirish</label>
                             <select name="sport_category_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                <option value="0"> </option>
                                 @foreach ($categories as $category )
-                                    <option value="{{$category->id}}">{{$category->translate('uz')->name}}</option>
+                                    <option value="{{$category->id}}" {{ old('sport_category_id' ) == $category->id ? 'selected' : '' }}>{{$category->translate('uz')->name}}</option>
                                 @endforeach
+                                <option value="0"> </option>
                             </select>
+                            @error('sport_category_id')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div class="form-group ">
                             <label for="">Status</label>
                             <select name="status" class="form-control  select2 select2-hidden-accessible" id="">
-                                <option value="1">Faol</option>
-                                <option value="0">Faol emas</option>
+                                <option value="0" {{ old('status') == '0' ? 'selected' : '' }} >Faol emas</option>
+                                <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Faol</option>
                             </select>
                         </div>
 
                         <div class="form-group ">
-                            <label for=""> maxsus </label>
+                            <label for=""> Maxsus </label>
                             <select name="special" class="form-control  select2 select2-hidden-accessible" id="">
-                                <option value="1">ha</option>
-                                <option value="0">yo'q</option>
+                                <option value="0"  {{ old('special') == '0' ? 'selected' : '' }}>yo'q</option>
+                                <option value="1"  {{ old('special') == '1' ? 'selected' : '' }}>ha</option>
                             </select>
                         </div>
 
                         <div class="form-group ">
                             <label>Meta sarlovha(title)</label>
-                            <input type="text" class="form-control" placeholder="Meta Sarlovhani kiriting" name="meta_title" >
+                            <input type="text" class="form-control" placeholder="Meta Sarlovhani kiriting" name="meta_title" value="{{ old('meta_title') }}">
                         </div>
 
                         <div class="form-group ">
                             <label>Meta tavsif(description)</label>
-                            <input type="text" class="form-control" placeholder="Meta Tavsifni kiriting" name="meta_description" >
+                            <input type="text" class="form-control" placeholder="Meta Tavsifni kiriting" name="meta_description" value="{{ old('meta_description') }}">
                         </div>
 
                         <div class="form-group ">
                             <label>Meta kalitso'z (keywords)</label>
-                            <input type="text" class="form-control" placeholder="Meta Kalitso'zni kiriting" name="meta_keywords" >
+                            <input type="text" class="form-control" placeholder="Meta Kalitso'zni kiriting" name="meta_keywords" value="{{ old('meta_keywords') }}">
                         </div>
 
                         <div class="form-group ">

@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Home;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\Admin\StoreHomeRequest;
+use App\Http\Requests\Admin\UpdateHomeRequest;
 class HomeController extends Controller
 {
     /**
@@ -44,7 +45,7 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreHomeRequest $request)
     {
         $data=$request->all();
 
@@ -91,7 +92,7 @@ class HomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateHomeRequest $request, $id)
     {
         $item=Home::find($id);
         $data=$request->all();

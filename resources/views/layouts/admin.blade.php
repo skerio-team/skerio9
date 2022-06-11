@@ -16,8 +16,7 @@
   <link rel="stylesheet" href="/assets/css/custom.css">
   <link rel="stylesheet" href="/assets/css/components.css">
   <link rel='shortcut icon' type='image/x-icon' href='/assets/img/favicon.ico' />
-
-
+    {{-- <style> .error{border :2px solid red}    </style> --}}
 </head>
 
 <body>
@@ -103,6 +102,20 @@
               <a href="{{ route('admin.sizes.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulot O'lchamlari</span></a>
             </li>
 
+            {{-- sizes --}}
+            {{-- <li class="dropdown {{ request()->is('admin/sizes*') ? 'active' : ''  }}">
+                <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="user-check"></i><span> Mahsulot O'lchamlari </span></a>
+                  <ul class="dropdown-menu">
+                    <li class="{{ request()->is('admin/complexes/locations*') ? 'active' : ''  }}">
+                        <a href="{{ route('admin.complexes.locations.') }}"> <i class="fas fa-map-marker-alt"></i><span> Harflar bilan </span></a>
+                    </li>
+                    <li class="{{ request()->is('admin/complexes/table*') ? 'active' : ''  }}">
+                        <a href="{{ route('admin.complexes.table.index') }}"> <i class="fas fa-building"></i><span> Majmualar </span></a>
+                    </li>
+                  </ul>
+            </li> --}}
+
+
             <li class="dropdown {{ request()->is('admin/products*') ? 'active' : ''  }}">
               <a href="{{ route('admin.products.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulotlar</span></a>
             </li>
@@ -110,7 +123,7 @@
             <li class="dropdown {{ request()->is('admin/team*') ? 'active' : ''  }}">
               <a href="{{ route('admin.team.index') }}" ><i class="far fa-newspaper"></i><span>Jamoalar</span></a>
             </li>
-            
+
             {{-- Locations --}}
             <li class="dropdown {{ request()->is('admin/complexes*') ? 'active' : ''  }}">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="user-check"></i><span> Sport majmuolari </span></a>

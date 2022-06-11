@@ -19,7 +19,7 @@
         @endcan
 
         <div class="card-body">
-            <h5 align="center">O'lcham Kategoriyalarining jadvali</h5>
+            <h5 align="center">O'lchamlar jadvali</h5>
             @if (Session::has('success'))
                 <div class="alert alert-success alert-dismissible show fade">
                     <div class="alert-body">
@@ -44,7 +44,7 @@
                 <th>#</th>
                 <th>Raqam</th>
                 <th>Harf</th>
-                <th>Amallar</th>
+                <th style="width: 67px">Amallar</th>
               </tr>
 
               @foreach ($items as $item)
@@ -52,7 +52,7 @@
                  <td>{{$loop->iteration}}</td>
                  <td>{{$item->number}}</td>
                  <td>{{$item->letter}}</td>
-                 <td class=" d-flex justify-content-center">
+                 <td class=" d-flex justify-content-center" style="width: 100px">
                     @can('size-edit')
                         <a class="btn btn-info " href="{{route('admin.sizes.edit', $item->id)}}">
                             <i class="fas fa-pencil-alt"></i>

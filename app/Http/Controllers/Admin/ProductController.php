@@ -102,12 +102,14 @@ class ProductController extends Controller
         $item=Product::whereId($id)->first();
         $items=Product::all();
         $brands=Brand::all();
-        $sizes=Size::all();
+        $letters=Size::whereNotNull('letter')->get();
+        $numbers=Size::whereNotNull('number')->get();
+
         $teams=Team::all();
 
         $sport_categories=SportCategory::all();
         $product_categories=ProductCategory::all();
-        return view('admin.product.edit',compact('item', 'items','sport_categories', 'product_categories', 'brands', 'sizes', 'teams'));
+        return view('admin.product.edit',compact('item', 'items','sport_categories', 'product_categories', 'brands', 'numbers', 'letters', 'teams'));
     }
 
     /**
