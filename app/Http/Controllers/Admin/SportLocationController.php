@@ -20,27 +20,13 @@ class SportLocationController extends Controller
      */
     public function index()
     {       
-        $countries = Country::orderBy('country', 'asc')->paginate(5, ['*'], 'countries');
+        $countries = Country::orderBy('country', 'asc')->paginate(10, ['*'], 'countries');
         $countries->setPageName('countries');
-        $regions    =   Region::paginate(5, ['*'], 'regions');
+        $regions    =   Region::paginate(10, ['*'], 'regions');
         $regions->setPageName('regions');
-        $areas      =   Area::paginate(5, ['*'], 'areas');
+        $areas      =   Area::paginate(10, ['*'], 'areas');
         $areas->setPageName('areas');
         return view('admin.sport_complexes.locations.index', compact('countries', 'regions', 'areas'));
-    }
-
-    public function getState(Request $request)
-    {
-        $data['regions'] = Region::where("country_id",$request->country_id)
-                    ->get(["name","id"]);
-        return response()->json($data);
-    }
-
-    public function getCity(Request $request)
-    {
-        $data['areas'] = Area::where("region_id",$request->region_id)
-                    ->get(["name","id"]);
-        return response()->json($data);
     }
 
     /**
