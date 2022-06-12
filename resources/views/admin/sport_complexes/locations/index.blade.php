@@ -96,7 +96,7 @@
 
               {{-- Dropdown --}}
               <div style="width: 40%">
-                <select class="form-control bg-primary text-light" id="country-dropdown">
+                <select class="form-control bg-primary text-light">
                   <option value="">Davlatni tanlang</option>
                   @foreach ($countries as $country)
                       <option value="{{ $country->id }}">
@@ -157,7 +157,7 @@
 
                 {{-- Dropdown --}}
                 <div style="width: 30%">
-                  <select class="form-control bg-primary text-light" id="country-dropdown">
+                  <select class="form-control bg-primary text-light">
                     <option value="">Davlatni tanlang</option>
                     @foreach ($countries as $country)
                         <option value="{{ $country->id }}">
@@ -169,7 +169,7 @@
 
                 {{-- Dropdown --}}
                 <div style="width: 30%">
-                  <select class="form-control bg-primary text-light" id="country-dropdown">
+                  <select class="form-control bg-primary text-light">
                     <option value="">Viloyatni tanlang</option>
                     @foreach ($regions as $region)
                         <option value="{{ $region->id }}">
@@ -223,8 +223,6 @@
             </div>
         </div>
     </div>
-
-    {{-- @include('admin.sport_complexes.locations.create') --}}
 
     @endsection
 

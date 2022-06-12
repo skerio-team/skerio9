@@ -151,8 +151,17 @@
                 </li>
             @endif
 
-            <li class="dropdown {{ request()->is('admin/team*') ? 'active' : ''  }}">
-              <a href="{{ route('admin.team.index') }}" ><i class="far fa-newspaper"></i><span>Chiptalar</span></a>
+            {{-- Tickets --}}
+            <li class="dropdown {{ request()->is('admin/tickets*') ? 'active' : ''  }}">
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="user-check"></i><span> Chiptalar </span></a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown {{ request()->is('admin/tickets/stadiums/table*') ? 'active' : ''  }}">
+                    <a href="{{ route('admin.tickets.stadiums.table.index') }}" ><i class="far fa-newspaper"></i><span> Stadionlar </span></a>
+                  </li>
+                  <li class="{{ request()->is('admin/complexes/table*') ? 'active' : ''  }}">
+                      <a href="{{ route('admin.complexes.table.index') }}"> <i class="fas fa-building"></i><span> Majmualar </span></a>
+                  </li>
+                </ul>
             </li>
 
           </ul>

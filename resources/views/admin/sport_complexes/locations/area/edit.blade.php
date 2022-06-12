@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="formModal">Hudud qo'shish</h5>
+                <h5 class="modal-title" id="formModal"> {{ __("Hudud nomini tahrirlash") }} </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -13,7 +13,7 @@
                 @method('PUT')
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Viloyatni tanlang</label>
+                        <label> {{ __("Viloyatni tanlang") }} </label>
                         <select name="region_id" class="form-control">
                                 <option value="{{ $area->region_id }}"> {{ $area->regions->name }} [{{ $area->regions->countries['country'] }}] </option>
                             @foreach ($regions as $region)
@@ -22,10 +22,10 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="name">Hudud nomi</label>
-                        <input type="text" class="form-control" placeholder="Hudud nomi" name="name" id="name" value="{{ $area->name }}">
+                        <label for="name"> {{ __("Hudud nomi") }} </label>
+                        <input type="text" class="form-control" name="name" id="name" value="{{ $area->name }}">
                     </div>
-                    <button type="submit" class="btn btn-primary m-t-15 waves-effect">Qo'shish</button>
+                    <button type="submit" class="btn btn-primary m-t-15 waves-effect"> {{ __("Saqlash") }} </button>
                 </div>
             </form>
         </div>
