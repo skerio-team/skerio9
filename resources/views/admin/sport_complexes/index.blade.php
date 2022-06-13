@@ -39,7 +39,7 @@
                         <div class="alert alert-danger alert-dismissible show fade">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <span>&times;</span> </button>
                             <h5><i class="icon fas fa-ban"></i> </h5>
-                            @foreach ($errors->get('country') as $message)
+                            @foreach ($errors->all() as $message)
                             {
                                 {{ $message }}
                             }

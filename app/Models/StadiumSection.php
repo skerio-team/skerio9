@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class StadiumSection extends Model
 {
@@ -22,6 +23,11 @@ class StadiumSection extends Model
     public function stadiums(): BelongsTo
     {
         return $this->belongsTo(Stadium::class, 'stadium_id');
+    }
+
+    public function tickets(): HasMany
+    {
+        return $this->hasMany(Ticket::class);
     }
 
     const IMAGE_PATH = 'admin/images/tickets/stadium_sections/';
