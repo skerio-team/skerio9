@@ -47,12 +47,12 @@ class StadiumSectionController extends Controller
                 mkdir($destination, 0777, true);
             }
             foreach ($files as $file) {
-                $name = time().$file->getClientOriginalName();
+                $name = time().'_'.$file->getClientOriginalName();
                 $file->move($destination, $name);
                 $images[]   =   $name;
             }
         }
-        $data['image'] = implode("|",$images);
+        $data['image'] = implode("|", $images);
         
         $stadium_sections = StadiumSection::create($data);
         
@@ -113,7 +113,7 @@ class StadiumSectionController extends Controller
                 $file->move($destination, $name);
                 $images[]   =   $name;
             }
-            $data['image'] = implode("|",$images);
+            $data['image'] = implode("|", $images);
         }
         
         $item->update($data);
@@ -130,7 +130,15 @@ class StadiumSectionController extends Controller
     public function destroy($id)
     {
         $item = StadiumSection::find($id);
-        $item->delete();
+        
+        if ($item->image == null)
+        {
+            $item->delete();
+        }
+        else {
+            $item->deleteImage();
+            $item->delete();
+        }
 
         return redirect()->route('admin.tickets.stadiums.table.index')->with('success', $item->name . ' - successfully deleted!');
     }

@@ -23,4 +23,18 @@ class StadiumSection extends Model
     {
         return $this->belongsTo(Stadium::class, 'stadium_id');
     }
+
+    const IMAGE_PATH = 'admin/images/tickets/stadium_sections/';
+
+    public function deleteImage(): bool
+    {
+        $images = explode("|", $this->image);
+
+        foreach ($images as $img)
+        {
+            unlink(self::IMAGE_PATH . $img);
+        }
+
+        return true;
+    }
 }

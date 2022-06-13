@@ -24,11 +24,11 @@ class StoreStadiumSectionRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'stadium_id'=>  ['required'],
-            // 'name'      =>  ['required'],
-            // 'price'     =>  ['required'],
-            // 'capacity'  =>  ['sometimes|nullable'],
-            // 'image.*'   =>  ['sometimes|nullable|image|mimes:png,jpg,gif,jpeg'],
+            'stadium_id'=>  ['required'],
+            'name'      =>  ['required'],
+            'price'     =>  ['required'],
+            'capacity'  =>  ['nullable'],
+            'image.*'   =>  ['nullable|image|mimes:png,jpg,gif,jpeg'],
         ];
     }
 }

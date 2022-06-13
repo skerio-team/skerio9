@@ -55,13 +55,13 @@
                     </div>
 
                     <div class="row">
-                        @if (!empty($stadium->image))
+                        @if (!empty($section->image))
                             @php
-                                $images=explode("|", $stadium->image);
+                                $images=explode("|", $section->image);
                             @endphp
 
                             @foreach ($images as $img)
-                                <img src="/admin/images/stadium_sections/{{ $img }}" width="50%"> <hr>
+                                <img src="/admin/images/tickets/stadium_sections/{{ $img }}" width="50%"> <hr>
                             @endforeach
                         @else 
                             <h4 class="text-danger"> Rasm mavjud emas! </h4>
