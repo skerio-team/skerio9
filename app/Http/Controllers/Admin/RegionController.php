@@ -74,9 +74,13 @@ class RegionController extends Controller
      * @param  \App\Models\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRegionRequest $request, Region $region)
+    public function update(UpdateRegionRequest $request, $id)
     {
-        //
+        $regions = Region::find($id);
+        $data = $request->all();
+        $regions->update($data);
+
+        return redirect()->route('admin.complexes.locations.')->with('success', $regions->name . ' - successfully updated!');
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAreaRequest extends FormRequest
+class StoreStadiumSectionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,11 @@ class UpdateAreaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'stadium_id'=>  ['required'],
+            'name'      =>  ['required'],
+            'price'     =>  ['required'],
+            'capacity'  =>  ['nullable'],
+            'image.*'   =>  ['nullable|image|mimes:png,jpg,gif,jpeg'],
         ];
     }
 }

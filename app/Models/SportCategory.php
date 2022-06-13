@@ -21,6 +21,7 @@ class SportCategory extends Model implements TranslatableContract
     protected $fillable=[
         'slug',
     ];
+
     public function news(){
         return $this->hasMany(News::class); // Model Name
     }
@@ -28,5 +29,10 @@ class SportCategory extends Model implements TranslatableContract
     public function sportComplexes(): HasMany
     {
         return $this->HasMany(SportComplex::class);
+    }
+
+    public function tickets(): HasMany
+    {
+        return $this->hasMany(Ticket::class);
     }
 }

@@ -12,8 +12,8 @@
             <div class="card">
 
                 <div class="card-header d-flex justify-content-between">
-                    <h5 align="center">Majmualar jadvali</h5>
-                    <a class="btn btn-success " href="{{ route('admin.complexes.table.create')}}">Qo'shish</a>
+                    <h5 align="center">Chiptalar jadvali</h5>
+                    <a class="btn btn-success " href="{{ route('admin.tickets.table.create')}}">Qo'shish</a>
                 </div>
 
                 <div class="card-body">
@@ -52,53 +52,50 @@
                                 <tr>
                                     <th class="text-center"> # </th>
                                     <th>Nomi</th>
-                                    <th>Tavsif(UZ)</th>
+                                    <th>Sana</th>
                                     <th>Narxi</th>
-                                    <th>Telefon Raqami</th>
-                                    <th>Manzil</th>
-                                    <th>Dush</th>
-                                    {{-- <th>Rasmi</th> --}}
+                                    <th>Tavsif(UZ)</th>
+                                    <th>Rasmi</th>
                                     <th>Status</th>
-                                    <th>Created at</th>
-                                    <th>Updated at</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($complexes as $complex)
+                                @foreach ($tickets as $ticket)
                                 <tr class="odd">
-                                    <td> {{$loop->iteration}} </td>
-                                    <td> {{ $complex->name }} </td>
-                                    <td class="d-inline-block text-truncate" style="max-width: 200px;"> {{ $complex->translate('uz')->description }} </td>
-                                    <td> {{ number_format($complex->price) }} </td>
-                                    <td> {{ $complex->phone }} </td>
-                                    <td> {{ $complex->address }} </td>
-                                    <td >
-                                        @if ($complex->bath_room==1)
-                                            <span class="badge badge-success">Mavjud</span>
-                                        @else
-                                            <span class="badge badge-danger">Mavjud emas</span>
+                                    <td> {{ $loop->iteration }} </td>
+                                    <td> {{ $ticket->name }} </td>
+                                    <td> {{ $ticket->date }} </td>
+                                    <td> {{ number_format($ticket->price) }} </td>
+                                    <td class="d-inline-block text-truncate" style="max-width: 200px;"> {{ $ticket->translate('uz')->description }} </td>
+                                    <td style="width: 30%">
+                                        @if (!empty($ticket->image))
+                                            @php
+                                                $images=explode("|", $ticket->image);
+                                            @endphp
+
+                                            @foreach ($images as $img)
+                                                <img src="/admin/images/tickets/{{ $img }}" width="100%"> <hr>
+                                            @endforeach
+                                        @else 
+                                            <h5 class="text-danger"> Rasm mavjud emas! </h5>
                                         @endif
                                     </td>
-                                    {{-- <td class=""><img src="/admin/images/complexes/{{$complex->image}}" width="100px" alt="" srcset=""></td> --}}
-                                    <td >
-                                        @if ($complex->status==1)
+                                    <td>
+                                        @if ($ticket->status == 1)
                                             <span class="badge badge-success">Faol</span>
                                         @else
                                             <span class="badge badge-danger">Faol emas</span>
                                         @endif
                                     </td>
-                                    <td >{{ $complex->created_at }}</td>
-                                    <td >{{ $complex->updated_at }}</td>
-
                                     <td class="d-flex justify-content-center ">
-                                        <a class="btn btn-primary  " href="{{ route('admin.complexes.table.show', $complex->id) }}">
+                                        <a class="btn btn-primary" href="{{ route('admin.tickets.table.show', $ticket->id) }}">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                        <a class="btn btn-info " href="{{ route('admin.complexes.table.edit', $complex->id) }}">
+                                        <a class="btn btn-info" href="{{ route('admin.tickets.table.edit', $ticket->id) }}">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <form action="{{ route('admin.complexes.table.destroy', $complex->id) }}" method="post">
+                                        <form action="{{ route('admin.tickets.table.destroy', $ticket->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">
@@ -107,7 +104,7 @@
                                         </form>
                                     </td>
                                 </tr>
-                            @endforeach
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
