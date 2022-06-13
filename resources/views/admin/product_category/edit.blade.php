@@ -21,20 +21,33 @@
             @method('PUT')
             <div class="card-body">
               <div class="form-group">
-                <label>Nomi(UZ)</label>
-                <input type="text" class="form-control" placeholder="Nomini kiriting" name="uz[name]"  value="{{ $item->translate('uz')->name }}" >
+                  <label>Nomi(UZ)</label>
+                  <input type="text" class="form-control" placeholder="Nomini kiriting" name="uz[name]"  value="{{ old('uz.name', $item->translate('uz')->name) }}" >
+                  @error('uz.name')
+                      <div class="alert alert-danger">
+                          {{ $message }}
+                      </div>
+                  @enderror
               </div>
-            </div>
-            <div class="card-body">
+
               <div class="form-group">
-                <label>Nomi(RU)</label>
-                <input type="text" class="form-control" placeholder="Nomini kiriting" name="ru[name]"  value="{{ $item->translate('ru')->name }}" >
+                  <label>Nomi(RU)</label>
+                  <input type="text" class="form-control" placeholder="Nomini kiriting" name="ru[name]"  value="{{ old('ru.name', $item->translate('ru')->name) }}" >
+                  @error('ru.name')
+                      <div class="alert alert-danger">
+                          {{ $message }}
+                      </div>
+                  @enderror
               </div>
-            </div>
-            <div class="card-body">
+
               <div class="form-group">
-                <label>Nomi(EN)</label>
-                <input type="text" class="form-control" placeholder="Nomini kiriting" name="en[name]"  value="{{ $item->translate('en')->name }}" >
+                  <label>Nomi(EN)</label>
+                  <input type="text" class="form-control" placeholder="Nomini kiriting" name="en[name]"  value="{{ old('en.name', $item->translate('en')->name) }}" >
+                  @error('en.name')
+                      <div class="alert alert-danger">
+                          {{ $message }}
+                      </div>
+                  @enderror
               </div>
             </div>
 

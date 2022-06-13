@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin;
 use Illuminate\Foundation\Http\FormRequest;
 use Astrotomic\Translatable\Validation\RuleFactory;
 
-class StoreSportCategoryRequest extends FormRequest
+class StoreProductCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
