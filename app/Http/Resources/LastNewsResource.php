@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class NewsResource extends JsonResource
+class LastNewsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -29,6 +29,6 @@ class NewsResource extends JsonResource
             'description_uz'=>strip_tags($this->translate('uz')->description),
             'description_ru'=>strip_tags($this->translate('ru')->description),
             'description_en'=>strip_tags($this->translate('en')->description),
-        ];
+        ];;
     }
 }

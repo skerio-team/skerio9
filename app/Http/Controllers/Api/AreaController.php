@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\News;
-use App\Http\Resources\NewsResource;
+use App\Models\Area;
+use App\Http\Resources\AreaResource;
 
-
-class NewsController extends Controller
+class AreaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +16,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        
-        return NewsResource::collection(News::all());
-        
+        return AreaResource::collection(Area::all());
     }
 
     /**
