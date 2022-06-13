@@ -5,10 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\News;
-use App\Http\Resources\NewsResource;
+use App\Http\Resources\LastNewsResource;
 
-
-class NewsController extends Controller
+class LastNewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +16,9 @@ class NewsController extends Controller
      */
     public function index()
     {
+        $latest=News::latest('created_at')->limit(1)->get();
         
-        return NewsResource::collection(News::all());
-        
+        return LastNewsResource::collection($latest);
     }
 
     /**
