@@ -9,6 +9,7 @@ use App\Models\Area;
 use App\Models\Country;
 use App\Models\Region;
 use App\Models\SportComplex;
+use Illuminate\Support\Facades\Request;
 
 class SportLocationController extends Controller
 {
@@ -18,12 +19,14 @@ class SportLocationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $countryPaginations     =   Country::paginate(5);
-        $countries  =   Country::orderBy('country', 'asc')->get();
-        $regions    =   Region::all();
-        $areas      =   Area::all();
-        return view('admin.sport_complexes.locations.index', compact('countries', 'regions', 'areas', 'countryPaginations'));
+    {       
+        $countries = Country::orderBy('country', 'asc')->paginate(10, ['*'], 'countries');
+        $countries->setPageName('countries');
+        $regions    =   Region::paginate(10, ['*'], 'regions');
+        $regions->setPageName('regions');
+        $areas      =   Area::paginate(10, ['*'], 'areas');
+        $areas->setPageName('areas');
+        return view('admin.sport_complexes.locations.index', compact('countries', 'regions', 'areas'));
     }
 
     /**

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\StoreBrandRequest;
+use App\Http\Requests\Admin\UpdateBrandRequest;
 
 class BrandController extends Controller
 {
@@ -44,7 +46,7 @@ class BrandController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBrandRequest $request)
     {
         $data=$request->all();
 
@@ -91,7 +93,7 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateBrandRequest $request, $id)
     {
         $item=Brand::find($id);
         $data=$request->all();

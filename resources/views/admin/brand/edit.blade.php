@@ -23,7 +23,12 @@
 
                 <div class="form-group">
                     <label>Nomi</label>
-                    <input type="text" class="form-control" placeholder="Nomini kiriting" name="name"  value="{{ $item->name }}">
+                    <input type="text" class="form-control" placeholder="Nomini kiriting" name="name"  value="{{ old('name', $item->name) }}">
+                     @error('name')
+                      <div class="alert alert-danger">
+                          {{ $message }}
+                      </div>
+                     @enderror
                 </div>
 
                 <div class="form-group ">
@@ -32,6 +37,11 @@
                         <label for="image-upload" id="image-label">Rasm</label>
                         <input type="file" name="image" id="image-upload" />
                     </div>
+                      @error('image')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                      @enderror
                 </div>
             </div>
 

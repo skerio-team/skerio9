@@ -16,8 +16,7 @@
   <link rel="stylesheet" href="/assets/css/custom.css">
   <link rel="stylesheet" href="/assets/css/components.css">
   <link rel='shortcut icon' type='image/x-icon' href='/assets/img/favicon.ico' />
-
-
+    {{-- <style> .error{border :2px solid red}    </style> --}}
 </head>
 
 <body>
@@ -69,7 +68,7 @@
       <div class="main-sidebar sidebar-style-2">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="index.html"> <img alt="image" src="/assets/img/logo.png" class="header-logo" /> <span
+            <a href="{{route('admin.dashboard')}}"> <img alt="image" src="/assets/img/logo.png" class="header-logo" /> <span
                 class="logo-name">Skerio</span>
             </a>
           </div>
@@ -103,6 +102,20 @@
               <a href="{{ route('admin.sizes.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulot O'lchamlari</span></a>
             </li>
 
+            {{-- sizes --}}
+            {{-- <li class="dropdown {{ request()->is('admin/sizes*') ? 'active' : ''  }}">
+                <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="user-check"></i><span> Mahsulot O'lchamlari </span></a>
+                  <ul class="dropdown-menu">
+                    <li class="{{ request()->is('admin/complexes/locations*') ? 'active' : ''  }}">
+                        <a href="{{ route('admin.complexes.locations.') }}"> <i class="fas fa-map-marker-alt"></i><span> Harflar bilan </span></a>
+                    </li>
+                    <li class="{{ request()->is('admin/complexes/table*') ? 'active' : ''  }}">
+                        <a href="{{ route('admin.complexes.table.index') }}"> <i class="fas fa-building"></i><span> Majmualar </span></a>
+                    </li>
+                  </ul>
+            </li> --}}
+
+
             <li class="dropdown {{ request()->is('admin/products*') ? 'active' : ''  }}">
               <a href="{{ route('admin.products.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulotlar</span></a>
             </li>
@@ -110,8 +123,10 @@
             <li class="dropdown {{ request()->is('admin/team*') ? 'active' : ''  }}">
               <a href="{{ route('admin.team.index') }}" ><i class="far fa-newspaper"></i><span>Jamoalar</span></a>
             </li>
+
             
-            {{-- Locations --}}
+            {{-- Sport Complexes --}}
+
             <li class="dropdown {{ request()->is('admin/complexes*') ? 'active' : ''  }}">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="user-check"></i><span> Sport majmuolari </span></a>
                 <ul class="dropdown-menu">
@@ -150,6 +165,19 @@
                 </ul>
                 </li>
             @endif
+
+            {{-- Tickets --}}
+            <li class="dropdown {{ request()->is('admin/tickets*') ? 'active' : ''  }}">
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="user-check"></i><span> Chiptalar bo'limi </span></a>
+                <ul class="dropdown-menu">
+                  <li class="{{ request()->is('admin/tickets/table*') ? 'active' : ''  }}">
+                    <a href="{{ route('admin.tickets.table.index') }}"> <i class="fas fa-building"></i><span> Chiptalar </span></a>
+                  </li>
+                  <li class="dropdown {{ request()->is('admin/tickets/stadiums*') ? 'active' : ''  }}">
+                    <a href="{{ route('admin.tickets.stadiums.table.index') }}" ><i class="far fa-newspaper"></i><span> Stadionlar </span></a>
+                  </li>
+                </ul>
+            </li>
 
           </ul>
         </aside>

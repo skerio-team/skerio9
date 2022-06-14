@@ -61,7 +61,7 @@ class CountryController extends Controller
      * @param  \App\Models\Country  $country
      * @return \Illuminate\Http\Response
      */
-    public function edit(Country $country)
+    public function edit($id)
     {
         //
     }
@@ -73,9 +73,13 @@ class CountryController extends Controller
      * @param  \App\Models\Country  $country
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCountryRequest $request, Country $country)
+    public function update(UpdateCountryRequest $request, $id)
     {
-        //
+        $country = Country::find($id);
+        $data = $request->all();
+        $country->update($data);
+
+        return redirect()->route('admin.complexes.locations.')->with('success', $country->country . ' - successfully updated!');
     }
 
     /**

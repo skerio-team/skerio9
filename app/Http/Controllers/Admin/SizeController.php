@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreSizeRequest;
+use App\Http\Requests\Admin\UpdateSizeRequest;
 use Illuminate\Http\Request;
 use App\Models\Size;
 
@@ -45,11 +47,11 @@ class SizeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSizeRequest $request)
     {
         $data=$request->all();
         Size::create($data);
-        return redirect()->route('admin.sizes.index')->with('success', 'O`lcham Kategoriyasi yaratildi!');
+        return redirect()->route('admin.sizes.index')->with('success', 'O`lcham yaratildi!');
     }
 
     /**
@@ -83,12 +85,12 @@ class SizeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateSizeRequest $request, $id)
     {
         $Size=Size::find($id);
         $data=$request->all();
         $Size->update($data);
-        return redirect()->route('admin.sizes.index')->with('success', 'O`lcham Kategoriyasi tahrirlandi!');
+        return redirect()->route('admin.sizes.index')->with('success', 'O`lcham tahrirlandi!');
     }
 
     /**
@@ -100,6 +102,6 @@ class SizeController extends Controller
     public function destroy($id)
     {
         Size::destroy($id);
-        return redirect()->route('admin.sizes.index')->with('warning', "O`lcham Kategoriyasi o'chirildi!");
+        return redirect()->route('admin.sizes.index')->with('warning', "O`lcham o'chirildi!");
     }
 }

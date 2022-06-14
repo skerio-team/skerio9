@@ -17,6 +17,9 @@ use App\Http\Controllers\Admin\RegionController;
 use App\Http\Controllers\Admin\SportComplexController;
 use App\Http\Controllers\Admin\SportLocationController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\StadiumController;
+use App\Http\Controllers\Admin\StadiumSectionController;
+use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Admin\UserController;
 
 /*
@@ -56,6 +59,16 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function (){
             Route::resource('regions', RegionController::class);
             Route::resource('areas', AreaController::class);
         });
+    });
+
+    Route::prefix('/tickets')->name('tickets.')->group(function () {
+        Route::resource('/table', TicketController::class);
+        
+        Route::prefix('/stadiums')->name('stadiums.')->group(function () {
+            Route::resource('/table', StadiumController::class);
+            Route::resource('/sections', StadiumSectionController::class);
+        });
+
     });
 
 

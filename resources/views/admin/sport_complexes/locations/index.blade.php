@@ -4,6 +4,7 @@
     <!-- DataTables -->
     <link rel="stylesheet" href="/assets/bundles/datatables/datatables.min.css">
     <link rel="stylesheet" href="/assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 @endsection
 
     @section('content')
@@ -38,15 +39,15 @@
 
     <div class="row">
         {{-- Add Country --}}
-        <div class="col-12 col-md-4 col-lg-4">
+        <div class="col-12 col-sm-3 col-md-4 col-lg-4">
           <div class="card">
             <div class="card-header d-flex justify-content-between">
-              <h4>Davlatlar</h4>              
+              <h4>Davlatlar</h4>
               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addCountry">{{ __("Qo'shish") }}</button>
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
-                <table class="table table-striped table-md" id="table-1">
+                <table class="table table-striped table-md">
                   <thead>
                     <tr>
                       <th class="text-center">#</th>
@@ -57,10 +58,10 @@
                   <tbody>
                     @foreach ($countries as $country)
                     <tr class="odd">
-                      <td>{{ (($loop->iteration)) }}</td>
+                      <td>{{ ((($countries->currentPage()-1) * $countries->perPage() + ($loop->index+1))) }}</td>
                       <td>{{ $country->country }}</td>
-                      <td>
-                          {{-- <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></a> --}}
+                      <td class="d-flex justify-content-center" style="width: 30%">
+                          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editCountry{{$country->id}}"><i class="fas fa-edit"></i></button>
                           <form action="{{ route('admin.complexes.locations.countries.destroy', ['country' => $country->id]) }}" method="POST">
                             @csrf
                             @method('DELETE')
@@ -68,7 +69,12 @@
                           </form>
                       </td>
                     </tr>
+
+                    @include('admin.sport_complexes.locations.country.edit')
+
                     @endforeach
+
+                    @include('admin.sport_complexes.locations.country.create')
                   </tbody>
                 </table>
               </div>
@@ -76,7 +82,7 @@
             <div class="card-footer text-right">
               <nav class="d-inline-block">
                 <ul class="pagination mb-0">
-                  {!! $countryPaginations->links() !!}
+                  {!! $countries->links() !!}
                 </ul>
               </nav>
             </div>
@@ -84,21 +90,20 @@
         </div>
 
           {{-- Add Region --}}
-        <div class="col-12 col-md-4 col-lg-4">
+        <div class="col-12 col-sm-3 col-md-4 col-lg-4">
           <div class="card">
             <div class="card-header d-flex justify-content-between">
-              
+
               {{-- Dropdown --}}
-              <div class="dropdown d-inline mr-2">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Davlatni tanlang
-                </button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
+              <div style="width: 40%">
+                <select class="form-control bg-primary text-light">
+                  <option value="">Davlatni tanlang</option>
+                  @foreach ($countries as $country)
+                      <option value="{{ $country->id }}">
+                          {{ $country->country }}
+                      </option>
+                  @endforeach
+                </select>
               </div>
 
               <h4>Viloyatlar</h4>
@@ -114,10 +119,10 @@
                   </tr>
                   @foreach ($regions as $region)
                   <tr>
-                    <td>{{ (($loop->iteration)) }}</td>
+                    <td>{{ ((($regions->currentPage()-1) * $regions->perPage() + ($loop->index+1))) }}</td>
                     <td>{{ $region->name}} [{{ $region->countries['country'] }}]</td>
-                    <td>
-                        {{-- <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></a> --}}
+                    <td class="d-flex justify-content-center" style="width: 30%">
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editRegion{{$region->id}}"><i class="fas fa-edit"></i></button>
                         <form action="{{ route('admin.complexes.locations.regions.destroy', ['region' => $region->id]) }}" method="POST">
                           @csrf
                           @method('DELETE')
@@ -125,25 +130,20 @@
                         </form>
                     </td>
                   </tr>
+
+                  @include('admin.sport_complexes.locations.region.edit')
+                  
                   @endforeach
+
+                  @include('admin.sport_complexes.locations.region.create')
+
                 </table>
               </div>
             </div>
             <div class="card-footer text-right">
               <nav class="d-inline-block">
                 <ul class="pagination mb-0">
-                  <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
-                  </li>
-                  <li class="page-item active"><a class="page-link" href="#">1 <span
-                        class="sr-only">(current)</span></a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">2</a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                  </li>
+                  {!! $regions->links() !!}
                 </ul>
               </nav>
             </div>
@@ -151,34 +151,32 @@
         </div>
 
           {{-- Add Area --}}
-        <div class="col-12 col-md-4 col-lg-4">
+        <div class="col-12 col-sm-3 col-md-4 col-lg-4">
             <div class="card">
               <div class="card-header d-flex justify-content-between">
 
                 {{-- Dropdown --}}
-                <div class="dropdown d-inline mr-2">
-                  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Davlatni tanlang
-                  </button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
+                <div style="width: 30%">
+                  <select class="form-control bg-primary text-light">
+                    <option value="">Davlatni tanlang</option>
+                    @foreach ($countries as $country)
+                        <option value="{{ $country->id }}">
+                            {{ $country->country }}
+                        </option>
+                    @endforeach
+                  </select>
                 </div>
 
                 {{-- Dropdown --}}
-                <div class="dropdown d-inline mr-2">
-                  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Viloyatni tanlang
-                  </button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
+                <div style="width: 30%">
+                  <select class="form-control bg-primary text-light">
+                    <option value="">Viloyatni tanlang</option>
+                    @foreach ($regions as $region)
+                        <option value="{{ $region->id }}">
+                            {{ $region->name }}
+                        </option>
+                    @endforeach
+                  </select>
                 </div>
 
                 <h4>Hududlar</h4>
@@ -194,10 +192,10 @@
                     </tr>
                     @foreach ($areas as $area)
                     <tr>
-                      <td>{{ (($loop->iteration)) }}</td>
+                      <td>{{ ((($areas->currentPage()-1) * $areas->perPage() + ($loop->index+1))) }}</td>
                       <td>{{ $area->name}} [{{ $area->regions['name'] }}, {{ $area->regions->countries['country'] }}]</td>
-                      <td>
-                          {{-- <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></a> --}}
+                      <td class="d-flex justify-content-center" style="width: 30%">
+                          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editArea{{$area->id}}"><i class="fas fa-edit"></i></button>
                           <form action="{{ route('admin.complexes.locations.areas.destroy', ['area' => $area->id]) }}" method="POST">
                             @csrf
                             @method('DELETE')
@@ -205,33 +203,26 @@
                           </form>
                       </td>
                     </tr>
+
+                    @include('admin.sport_complexes.locations.area.edit')
+                    
                     @endforeach
+
+                    @include('admin.sport_complexes.locations.area.create')
+
                   </table>
                 </div>
               </div>
               <div class="card-footer text-right">
                 <nav class="d-inline-block">
                   <ul class="pagination mb-0">
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="#">1 <span
-                          class="sr-only">(current)</span></a></li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                      <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                    </li>
+                    {!! $areas->links() !!}
                   </ul>
                 </nav>
               </div>
             </div>
         </div>
     </div>
-
-    @include('admin.sport_complexes.locations.create')
 
     @endsection
 

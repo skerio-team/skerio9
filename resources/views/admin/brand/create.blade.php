@@ -21,16 +21,25 @@
             <div class="card-body">
               <div class="form-group">
                 <label>Nomi</label>
-                <input type="text" class="form-control" placeholder="Nomini kiriting" name="name" >
+                <input type="text" class="form-control" placeholder="Nomini kiriting" name="name" value="{{ old('name') }}" >
+                 @error('name')
+                      <div class="alert alert-danger">
+                          {{ $message }}
+                      </div>
+                 @enderror
               </div>
-
-                <div class="form-group ">
-                    <label class="">Rasm</label>
-                    <div id="image-preview" class="image-preview">
-                        <label for="image-upload" id="image-label">Rasm</label>
-                        <input type="file" name="image" id="image-upload" />
-                    </div>
-                </div>
+              <div class="form-group ">
+                  <label class="">Rasm</label>
+                  <div id="image-preview" class="image-preview">
+                      <label for="image-upload" id="image-label">Rasm</label>
+                      <input type="file" name="image" id="image-upload" />
+                  </div>
+                  @error('image')
+                      <div class="alert alert-danger">
+                          {{ $message }}
+                      </div>
+                  @enderror
+              </div>
             </div>
 
             <!-- /.card-body -->

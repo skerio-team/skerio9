@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\StoreProductCategoryRequest;
+use App\Http\Requests\Admin\UpdateProductCategoryRequest;
 
 class ProductCategoryController extends Controller
 {
@@ -44,7 +46,7 @@ class ProductCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductCategoryRequest $request)
     {
 
         $data=$request->all();
@@ -84,7 +86,7 @@ class ProductCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProductCategoryRequest $request, $id)
     {
         $ProductCategory=ProductCategory::find($id);
         $data=$request->all();

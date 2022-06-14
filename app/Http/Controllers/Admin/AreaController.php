@@ -74,9 +74,13 @@ class AreaController extends Controller
      * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAreaRequest $request, Area $area)
+    public function update(UpdateAreaRequest $request, $id)
     {
-        //
+        $areas = Area::find($id);
+        $data = $request->all();
+        $areas->update($data);
+
+        return redirect()->route('admin.complexes.locations.')->with('success', $areas->name .' - successfully updated!');
     }
 
     /**
@@ -89,6 +93,6 @@ class AreaController extends Controller
     {
         $area->delete();
 
-        return redirect()->route('admin.complexes.locations.')->with('success', $area->name .' - successfully created!');
+        return redirect()->route('admin.complexes.locations.')->with('success', $area->name .' - successfully deleted!');
     }
 }

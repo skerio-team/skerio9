@@ -67,62 +67,99 @@
                                 <div id="uz-form" >
                                     <div class="form-group">
                                         <label>Sarlovha(UZ)</label>
-                                        <input type="text" class="form-control" placeholder="Sarlovhani kiriting" name="uz[title]" value="{{ $item->translate('uz')->title }}" >
+                                        <input type="text" class="form-control" placeholder="Sarlovhani kiriting" name="uz[title]" value="{{ old('uz.title', $item->translate('uz')->title) }}" >
                                     </div>
+
+                                    @error('uz.title')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
 
                                     <div class="form-group">
                                         <label>Tavsif(UZ)</label>
-                                        <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="uz[description]" value="{{ $item->translate('uz')->description }}" >
+                                        <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="uz[description]" value="{{ old('uz.description', $item->translate('uz')->description) }}" >
                                     </div>
+
+                                    @error('uz.description')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <div id="ru-form" class="d-none">
                                     <div class="form-group">
                                         <label>Sarlovha(RU)</label>
-                                        <input type="text" class="form-control" placeholder="Sarlovhani kiriting" name="ru[title]" value="{{ $item->translate('ru')->title }}">
+                                        <input type="text" class="form-control" placeholder="Sarlovhani kiriting" name="ru[title]" value="{{ old('ru.title', $item->translate('ru')->title) }}">
                                     </div>
+
+                                    @error('ru.title')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
 
                                     <div class="form-group">
                                         <label>Tavsif(RU)</label>
-                                        <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="ru[description]" value="{{ $item->translate('ru')->description }}">
+                                        <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="ru[description]" value="{{ old('ru.description', $item->translate('ru')->description) }}">
                                     </div>
+                                    @error('ru.description')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <div id="en-form" class="d-none">
                                     <div class="form-group">
                                         <label>Sarlovha(EN)</label>
-                                        <input type="text" class="form-control" placeholder="Sarlovhani kiriting" name="en[title]" value="{{ $item->translate('en')->title }}">
+                                        <input type="text" class="form-control" placeholder="Sarlovhani kiriting" name="en[title]" value="{{ old('en.title', $item->translate('en')->title) }}">
                                     </div>
+                                    @error('en.title')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
 
                                     <div class="form-group">
                                         <label>Tavsif(EN)</label>
-                                        <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="en[description]" value="{{ $item->translate('en')->description }}">
+                                        <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="en[description]" value="{{ old('en.description', $item->translate('en')->description) }}">
                                     </div>
+                                    @error('en.description')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
 
                                 </div>
 
                                 <div class="form-group ">
                                     <label class="">Rasm</label>
                                     <div id="image-preview" class="image-preview">
-                                        <label for="image-upload" id="image-label">Rasm</label>
+                                        <label for="image-upload" id="image-label"><img src="/admin/images/homes/{{ $item->image }}" alt="" height="200%" width="auto" srcset=""></label>
                                         <input type="file" name="image" id="image-upload" />
                                     </div>
-
                                 </div>
+                                @error('image')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
 
                                 <div class="form-group">
                                     <label>Meta sarlovha (title)</label>
-                                    <input type="text" class="form-control" placeholder="Meta Sarlovhani kiriting" name="meta_title" value="{{ $item->meta_title }}">
+                                    <input type="text" class="form-control" placeholder="Meta Sarlovhani kiriting" name="meta_title" value="{{ old('meta_title', $item->meta_title) }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Meta tavsif(description)</label>
-                                    <input type="text" class="form-control" placeholder="Meta Sarlovhani kiriting" name="meta_description" value="{{ $item->meta_description }}" >
+                                    <input type="text" class="form-control" placeholder="Meta Sarlovhani kiriting" name="meta_description" value="{{ old('meta_description', $item->meta_description) }}" >
                                 </div>
 
                                 <div class="form-group">
                                     <label>Meta kalitso'z (keywords)</label>
-                                    <input type="text" class="form-control" placeholder="Meta Sarlovhani kiriting" name="meta_keywords" value="{{ $item->meta_keywords }}" >
+                                    <input type="text" class="form-control" placeholder="Meta Sarlovhani kiriting" name="meta_keywords" value="{{ old('meta_keywords', $item->meta_keywords) }}" >
                                 </div>
 
                             </div>
