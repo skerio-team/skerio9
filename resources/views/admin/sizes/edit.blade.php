@@ -23,12 +23,22 @@
 
                 <div class="form-group">
                   <label>Raqam</label>
-                  <input type="number" class="form-control" placeholder="Raqam kiriting" name="number" value="{{ $item->number }}">
+                  <input type="number" class="form-control" placeholder="Raqam kiriting" name="number" value="{{ old('number', $item->number) }}">
+                    @error('number')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <div class="form-group">
                   <label>Harf</label>
-                  <input type="text" class="form-control" placeholder="Harf kiriting" name="letter" value="{{ $item->letter }}" >
+                  <input type="text" class="form-control" placeholder="Harf kiriting" name="letter" value="{{ old('letter',$item->letter) }}" >
+                    @error('letter')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
             </div>
