@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreCountryRequest;
-use App\Http\Requests\Admin\UpdateCountryRequest;
+use App\Http\Requests\Admin\Country\StoreCountryRequest;
+use App\Http\Requests\Admin\Country\UpdateCountryRequest;
 use App\Models\Country;
 
 class CountryController extends Controller

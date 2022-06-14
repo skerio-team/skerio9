@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreSportComplexRequest;
-use App\Http\Requests\Admin\UpdateSportComplexRequest;
+use App\Http\Requests\Admin\SportComplex\StoreSportComplexRequest;
+use App\Http\Requests\Admin\SportComplex\UpdateSportComplexRequest;
 use App\Models\Area;
 use App\Models\Country;
 use App\Models\Region;
@@ -19,7 +19,7 @@ class SportLocationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {       
+    {
         $countries = Country::orderBy('country', 'asc')->paginate(10, ['*'], 'countries');
         $countries->setPageName('countries');
         $regions    =   Region::paginate(10, ['*'], 'regions');

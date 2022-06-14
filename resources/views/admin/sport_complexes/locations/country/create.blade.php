@@ -13,9 +13,14 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="country">{{ __("Davlat nomi") }}</label>
-                        <input type="text" class="form-control" placeholder="Davlat nomi" name="country">
+                        <input type="text" class="form-control" placeholder="Davlat nomi" name="country" value="{{ old('country') }}">
+                        @error('country')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary m-t-15 waves-effect">{{ __("Qo'shish") }}</button>  
+                    <button type="submit" class="btn btn-primary m-t-15 waves-effect">{{ __("Qo'shish") }}</button>
                 </div>
             </form>
         </div>

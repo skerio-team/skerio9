@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\UpdateProductRequest;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\SportCategory;
@@ -11,6 +10,8 @@ use App\Models\ProductCategory;
 use App\Models\Size;
 use App\Models\Team;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\Product\UpdateProductRequest;
+use App\Http\Requests\Admin\Product\StoreProductRequest;
 
 class ProductController extends Controller
 {
@@ -58,7 +59,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UpdateProductRequest $request)
+    public function store(StoreProductRequest $request)
     {
 
         $data=$request->all();

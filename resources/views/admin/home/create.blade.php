@@ -50,46 +50,46 @@
                             <div class="form-group ">
                                 <label >Sarlovha(UZ)</label>
                                 <input type="text" class="form-control" placeholder="Sarlovhani kiriting" name="uz[title]" value="{{ old('uz.title') }}" >
+                                @error('uz.title')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
-                            @error('uz.title')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
 
                             <div class="form-group ">
                                 <label>Tavsif(UZ)</label>
                                 <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="uz[description]" value="{{ old('uz.description') }}" >
+                                @error('uz.description')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
-                            @error('uz.description')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
                         </div>
 
                         <div id="ru-form" class="d-none">
                             <div class="form-group ">
                                 <label>Sarlovha(RU)</label>
                                 <input type="text" class="form-control" placeholder="Sarlovhani kiriting" name="ru[title]"  value="{{ old('ru.title') }}">
+                                @error('ru.title')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
-                            @error('ru.title')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
 
                             <div class="form-group ">
                                 <label>Tavsif(RU)</label>
                                 <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="ru[description]" value="{{ old('ru.description') }}">
+                                @error('ru.description')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
-                            @error('ru.description')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
 
                         </div>
 
@@ -97,22 +97,22 @@
                             <div class="form-group ">
                                 <label>Sarlovha(EN)</label>
                                 <input type="text" class="form-control" placeholder="Sarlovhani kiriting" name="en[title]" value="{{ old('en.title') }}" >
+                                @error('en.title')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
-                            @error('en.title')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
 
                             <div class="form-group ">
                                 <label>Tavsif(EN)</label>
                                 <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="en[description]"  value="{{ old('en.description') }}">
+                                @error('en.description')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
-                            @error('en.description')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
                         </div>
 
                         <div class="form-group ">
@@ -121,13 +121,13 @@
                                 <label for="image-upload" id="image-label">Rasm</label>
                                 <input type="file" name="image" id="image-upload" />
                             </div>
+                            @error('image')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
-                        @error('image')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
-                        @enderror
 
                         <div class="form-group ">
                             <label>Meta sarlovha(title)</label>

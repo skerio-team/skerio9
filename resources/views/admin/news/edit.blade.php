@@ -123,7 +123,7 @@
                         </div>
 
                         <div class="form-group ">
-                            <label>Kategoriyaga biriktirish</label>
+                            <label>Sport Kategoriyaga biriktirish</label>
                             <select name="sport_category_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
                                     <option value="0"> - </option>
                                 @foreach ($categories as $category )

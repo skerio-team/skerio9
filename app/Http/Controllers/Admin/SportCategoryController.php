@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\SportCategory;
 use Illuminate\Http\Request;
-use App\Http\Requests\Admin\StoreSportCategoryRequest;
-use App\Http\Requests\Admin\UpdateSportCategoryRequest;
+use App\Http\Requests\Admin\SportCategory\StoreSportCategoryRequest;
+use App\Http\Requests\Admin\SportCategory\UpdateSportCategoryRequest;
 
 class SportCategoryController extends Controller
 {

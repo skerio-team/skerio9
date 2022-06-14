@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreStadiumSectionRequest;
-use App\Http\Requests\Admin\UpdateStadiumSectionRequest;
+use App\Http\Requests\Admin\StadiumSection\StoreStadiumSectionRequest;
+use App\Http\Requests\Admin\StadiumSection\UpdateStadiumSectionRequest;
 use App\Models\StadiumSection;
 
 class StadiumSectionController extends Controller
@@ -53,9 +53,9 @@ class StadiumSectionController extends Controller
             }
         }
         $data['image'] = implode("|", $images);
-        
+
         $stadium_sections = StadiumSection::create($data);
-        
+
         return redirect()->route('admin.tickets.stadiums.table.index')->with('success', 'Stradium section has successfully created!');
     }
 
@@ -115,7 +115,7 @@ class StadiumSectionController extends Controller
             }
             $data['image'] = implode("|", $images);
         }
-        
+
         $item->update($data);
 
         return redirect()->route('admin.tickets.stadiums.table.index')->with('success', $item->name . ' - successfully updated!');
@@ -130,7 +130,7 @@ class StadiumSectionController extends Controller
     public function destroy($id)
     {
         $item = StadiumSection::find($id);
-        
+
         if ($item->image == null)
         {
             $item->delete();

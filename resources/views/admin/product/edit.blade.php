@@ -121,7 +121,7 @@
                         <div class="form-group ">
                             <label>Sport Kategoriyasiga biriktirish</label>
                             <select name="sport_category_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                    <option value="0"> - </option>
+                                    <option value=""> - </option>
                                 @foreach ($sport_categories as $category )
                                     <option {{ old('sport_category_id', $item->sport_category_id ) == $category->id ? 'selected' : '' }} value="{{$category->id}}" {{ $category->id == $item->sport_category_id ? 'selected' : '' }} >{{$category->translate('uz')->name}}</option>
                                 @endforeach
@@ -130,7 +130,7 @@
                         <div class="form-group ">
                             <label>Jamoaga biriktirish</label>
                             <select name="team_id" class="form-control"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                <option value="0"> </option>
+                                <option value=""> </option>
                                 @foreach ($teams as $team )
                                     <option {{ old('team_id', $item->team_id ) == $team->id ? 'selected' : '' }}  value="{{$team->id}}">{{$team->name}}</option>
                                 @endforeach
@@ -140,7 +140,7 @@
                         <div class="form-group ">
                             <label>Mahsulot Kategoriyasiga biriktirish</label>
                             <select name="product_category_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                    <option value="0"> - </option>
+                                    <option value=""> - </option>
                                 @foreach ($product_categories as $category )
                                     <option {{ old('product_category_id', $item->product_category_id ) == $category->id ? 'selected' : '' }}  value="{{$category->id}}" {{ $category->id == $item->product_category_id ? 'selected' : '' }} >{{$category->translate('uz')->name}}</option>
                                 @endforeach
@@ -178,7 +178,7 @@
                         <div class="form-group ">
                             <label>Brendga biriktirish</label>
                             <select name="brand_id" class="form-control"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                <option value="0"> - </option>
+                                <option value=""> - </option>
                                 @foreach ($brands as $brand )
                                     <option {{ old('brand_id', $item->brand_id ) == $brand->id ? 'selected' : '' }}  value="{{$brand->id}}" {{ $brand->id == $item->brand_id ? 'selected' : '' }}>{{$brand->name}}</option>
                                 @endforeach

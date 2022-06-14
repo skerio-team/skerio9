@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreSizeRequest;
-use App\Http\Requests\Admin\UpdateSizeRequest;
+use App\Http\Requests\Admin\Size\StoreSizeRequest;
+use App\Http\Requests\Admin\Size\UpdateSizeRequest;
 use Illuminate\Http\Request;
 use App\Models\Size;
 
