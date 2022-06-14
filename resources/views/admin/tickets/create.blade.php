@@ -61,7 +61,7 @@
 
                             <div class="col-md-8">
                                 <div class="row">
-                                    <div class="col-md-6 col-lg-6">
+                                    <div class="col-sm-12 col-md-12">
                                         <div class="form-group ">
                                             <label>Kategoriyaga biriktirish</label>
                                             <select name="sport_category_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
@@ -71,10 +71,20 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">                                    
+                                    <div class="col-md-6 col-lg-6">
         
                                         <div class="form-group ">
+                                            <label >Nomi</label>
+                                            <input type="text" class="form-control" placeholder="Chipta nomini kiriting" name="name" >
+                                        </div>
+
+                                        <div class="form-group ">
                                             <label>Jamoaga biriktirish</label>
-                                            <select name="team_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                            <select name="team1_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
                                                 <option value="0">Jamoaga tanlang</option>
                                                 @foreach ($teams as $team )
                                                     <option value="{{$team->id}}"> {{$team->name}} </option>
@@ -94,14 +104,19 @@
                                     </div>
     
                                     <div class="col-md-6 col-lg-6">
-                                        <div class="form-group ">
-                                            <label >Nomi</label>
-                                            <input type="text" class="form-control " placeholder="Chipta nomini kiriting" name="name" >
-                                        </div>
-                                        
                                         <div class="form-group">
                                             <label>Sana</label>
                                             <input type="datetime-local" class="form-control" name="date">
+                                        </div>
+
+                                        <div class="form-group ">
+                                            <label>2 - Jamoaga biriktirish</label>
+                                            <select name="team2_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                                <option value="0">2 - Jamoaga tanlang</option>
+                                                @foreach ($teams as $team )
+                                                    <option value="{{$team->id}}"> {{$team->name}} </option>
+                                                @endforeach
+                                            </select>
                                         </div>
         
                                         <div class="form-group ">

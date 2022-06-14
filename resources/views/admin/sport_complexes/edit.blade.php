@@ -27,7 +27,7 @@
                     <div class="card-header col-sm-6 d-flex justify-content-between">
                         <a href="{{ route('admin.complexes.table.index') }}"><button class="btn btn-warning"><i class="fa fa-arrow-left" aria-hidden="true"></i> Ortga</button></a>
                         
-                        <h3> Majmua qo'shish</h3>
+                        <h3> Majmuani tahrirlash </h3>
                     </div>
 
                     <div class="col-sm-6">
@@ -229,7 +229,7 @@
   
                         <div class="form-group ">
                             <div class="">
-                                <button type="submit" class="btn btn-primary">Tasdiqlash</button>
+                                <button type="submit" class="btn btn-primary"> Saqlash </button>
                             </div>
                         </div>
                       </div>

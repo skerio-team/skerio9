@@ -14,7 +14,6 @@
 
         }
 
-
     </style>
 @endsection
 
@@ -28,10 +27,10 @@
                         <div class="card-header col-sm-6">
 
                             <div class=" d-flex justify-content-center">
+                                <a href="{{ route('admin.homes.index') }}"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Ortga</button></a> &nbsp;
                                 @can('home-edit')
                                     <a href="{{ route('admin.homes.edit', $item->id) }}"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square" aria-hidden="true"></i> Tahrirlash</button></a> &nbsp;
                                 @endcan
-                                <a href="{{ route('admin.homes.index') }}"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Ortga</button></a> &nbsp;
                                 @can('home-delete')
                                     <form action="{{route('admin.homes.destroy', $item->id)}}" method="post">
                                         @csrf
@@ -59,73 +58,81 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <hr>
+                        <div class="row d-flex justify-content-between">
+                            <div class="col-md-5">
 
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Sarlovha</h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active uz-form">
-                                <h6> {{$item->translate('uz')->title}} </h6>
-                            </div>
-                            <div class="tab-pane active en-form d-none">
-                                <h6> {{$item->translate('en')->title}} </h6>
-                            </div>
-                            <div class="tab-pane active ru-form d-none">
-                                <h6> {{$item->translate('ru')->title}} </h6>
-                            </div>
-                        </div> <hr>
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Sarlovha</h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active uz-form">
+                                            <h6> {{$item->translate('uz')->title}} </h6>
+                                        </div>
+                                        <div class="tab-pane active en-form d-none">
+                                            <h6> {{$item->translate('en')->title}} </h6>
+                                        </div>
+                                        <div class="tab-pane active ru-form d-none">
+                                            <h6> {{$item->translate('ru')->title}} </h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
 
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Tavsif</h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active uz-form">
-                                <h6> {{$item->translate('uz')->description}} </h6>
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Tavsif</h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active uz-form">
+                                            <h6> {{$item->translate('uz')->description}} </h6>
+                                        </div>
+                                        <div class="tab-pane active en-form d-none">
+                                            <h6> {{$item->translate('en')->description}} </h6>
+                                        </div>
+                                        <div class="tab-pane active ru-form d-none">
+                                            <h6> {{$item->translate('ru')->description}} </h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Meta sarlovha (title) </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            <h6>  {{$item->meta_title}}  </h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Meta tavsif (description)</h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            <h6>  {{$item->meta_description}}  </h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Meta kalitso'z (keywords) </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            <h6>  {{$item->meta_keywords}}  </h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
                             </div>
-                            <div class="tab-pane active en-form d-none">
-                                <h6> {{$item->translate('en')->description}} </h6>
-                            </div>
-                            <div class="tab-pane active ru-form d-none">
-                                <h6> {{$item->translate('ru')->description}} </h6>
-                            </div>
-                        </div> <hr>
 
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Rasm</h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                <img src="/admin/images/homes/{{$item->image}}" width="15%" height="10%">
-                            </div>
-                        </div> <hr>
+                            <div class="col-md-5">
 
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Meta sarlovha (title) </h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                <h6>  {{$item->meta_title}}  </h6>
-                            </div>
-                        </div> <hr>
+                                <div class=" d-flex justify-content-center">
+                                    <div class="box-header"><h5> Rasm</h5></div>
+                                </div>
+                                
+                                <div class="tab-content">
+                                    <div class="tab-pane active">
+                                        <img src="/admin/images/homes/{{$item->image}}" width="100%" height="100%">
+                                    </div>
+                                </div><hr>
 
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Meta tavsif (description)</h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                <h6>  {{$item->meta_description}}  </h6>
                             </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Meta kalitso'z (keywords) </h5></div><br>
                         </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                <h6>  {{$item->meta_keywords}}  </h6>
-                            </div>
-                        </div> <hr>
 
                     </div>
                 </div>

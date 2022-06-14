@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
-use Illuminate\Http\Request;
 use App\Http\Requests\Admin\StoreBrandRequest;
 use App\Http\Requests\Admin\UpdateBrandRequest;
 
@@ -52,7 +51,7 @@ class BrandController extends Controller
 
         if ($request->hasFile('image')) {
             $file=$request->image;
-            $image_name=time().$file->getClientOriginalName();
+            $image_name=time().'_'.$file->getClientOriginalName();
             $file->move('admin/images/brands/', $image_name);
             $data['image']=$image_name;
         }
@@ -99,7 +98,7 @@ class BrandController extends Controller
         $data=$request->all();
         if ($request->hasFile('image')) {
             $file=$request->image;
-            $image_name=time().$file->getClientOriginalName();
+            $image_name=time().'_'.$file->getClientOriginalName();
             $file->move('admin/images/brands/', $image_name);
             $data['image']=$image_name;
         }

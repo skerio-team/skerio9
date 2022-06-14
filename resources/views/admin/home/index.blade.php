@@ -13,18 +13,18 @@
     <div class="col-12">
       <div class="card">
         @can('home-create')
-            <div class="card-header ">
-                <a class="btn btn-primary " href="{{ route('admin.homes.create')}}">Yaratish</a>
+            <div class="card-header d-flex justify-content-between">
+                <h5 align="center">Bosh menyu ma'lumotlar jadvali</h5>
+                <a class="btn btn-success " href="{{ route('admin.homes.create')}}">Yaratish</a>
             </div>
         @endcan
 
         <div class="card-body">
-            <h5 align="center">Bosh menyu ma'lumotlar jadvali</h5>
             @if (Session::has('success'))
                 <div class="alert alert-success alert-dismissible show fade">
                     <div class="alert-body">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                            <span>×</span>
+                            <span>&times;</span>
                         </button>
                         <h5><i class="icon fas fa-check"></i></h5>
                         {{session('success')}}
@@ -33,7 +33,7 @@
             @endif
             @if (Session::has('warning'))
                 <div class="alert alert-danger alert-dismissible show fade">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <span>×</span> </button>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <span>&times;</span> </button>
                     <h5><i class="icon fas fa-ban"></i> </h5>
                     {{session('warning')}}
                 </div>
@@ -54,7 +54,7 @@
                 <tr class="odd">
                     <td>{{$loop->iteration}}</td>
                     <td >{{ $item->translate('uz')->title }}</td>
-                    <td >{{ $item->translate('uz')->description }}</td>
+                    <td class="d-inline-block text-truncate" style="max-width: 400px;">{{ $item->translate('uz')->description }}</td>
 
                     <td class=""><img src="/admin/images/homes/{{$item->image}}" width="100px" alt="" srcset=""></td>
 
@@ -64,7 +64,7 @@
                         </a>
                         @can('home-edit')
                             <a class="btn btn-info " href="{{route('admin.homes.edit', $item->id)}}">
-                                <i class="fas fa-pencil-alt"></i>
+                                <i class="fas fa-edit"></i>
                             </a>
                         @endcan
 

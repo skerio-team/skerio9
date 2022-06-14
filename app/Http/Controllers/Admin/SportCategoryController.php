@@ -93,7 +93,8 @@ class SportCategoryController extends Controller
         $data=$request->all();
         $data['slug']=\Str::slug($request->uz['name']);
         $SportCategory->update($data);
-        return redirect()->route('admin.categories.index')->with('success', 'Sport Kategoriyasi tahrirlandi!');
+
+        return redirect()->route('admin.categories.index')->with('success', $SportCategory->name . ' - kategoriyasi tahrirlandi!');
     }
 
     /**

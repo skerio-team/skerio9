@@ -18,8 +18,8 @@ class Home extends Model implements TranslatableContract
 
     public $translatedAttributes = ['title','description'];
 
+    protected $table = 'homes';
     protected $fillable=[
-
         'image',
         'meta_title',
         'meta_description',

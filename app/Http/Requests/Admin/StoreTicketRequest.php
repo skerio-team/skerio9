@@ -25,7 +25,8 @@ class StoreTicketRequest extends FormRequest
     {
         return [
             'sport_category_id' =>  ['required'],
-            'team_id'           =>  ['required'],
+            'team1_id'           =>  ['required'],
+            'team2_id'           =>  ['required'],
             'stadium_section_id'=>  ['required'],
             'name'              =>  ['required'],
             'date'              =>  ['required'],

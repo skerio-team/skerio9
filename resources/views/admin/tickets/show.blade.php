@@ -64,13 +64,13 @@
 
                                             <div class="tab-content">
                                                 <div class="tab-pane active uz-form">
-                                                    <h6> {{ $item->teams->name }} [{!! $item->sportCategories->translate('uz')->name !!}]  </h6>
+                                                    <h6> {{ $item->teams1->name }} vs {{ $item->teams2->name }} [{!! $item->sportCategories->translate('uz')->name !!}]  </h6>
                                                 </div>
                                                 <div class="tab-pane active en-form d-none">
-                                                    <h6> {{ $item->teams->name }} [{!! $item->sportCategories->translate('en')->name !!}]  </h6>
+                                                    <h6> {{ $item->teams1->name }} vs {{ $item->teams2->name }} [{!! $item->sportCategories->translate('en')->name !!}]  </h6>
                                                 </div>
                                                 <div class="tab-pane active ru-form d-none">
-                                                    <h6> {{ $item->teams->name }} [{!! $item->sportCategories->translate('ru')->name !!}]  </h6>
+                                                    <h6> {{ $item->teams1->name }} vs {{ $item->teams2->name }} [{!! $item->sportCategories->translate('ru')->name !!}]  </h6>
                                                 </div>
                                             </div>
                                         </div> <hr>

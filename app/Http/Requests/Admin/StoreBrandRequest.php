@@ -25,7 +25,7 @@ class StoreBrandRequest extends FormRequest
     {
         return [
             'name'  => 'required|max:20|string|unique:brands',
-            'image' => 'required|file|max:5000|mimes:png,jpg,jpeg,gif',
+            'image' => 'required|image|max:5000|mimes:png,jpg,jpeg,gif',
         ];
     }
 
@@ -38,7 +38,7 @@ class StoreBrandRequest extends FormRequest
             'name.unique'    => 'Bu brend oldin kiritilgan!',
 
             'image.required' => 'Rasm tanlanishi kerak!',
-            'image.file'     => 'Rasm fayl tipida bo`lishligi kerak!',
+            'image.image'     => 'Rasm fayl tipida bo`lishligi kerak!',
             'image.max'      => 'Rasm hajmi 5 mb.dan oshmasligi kerak!',
             'image.mimes'    => 'Rasm: png, jpg, jpeg, gif tipida bo`lishi kerak!',
         ];

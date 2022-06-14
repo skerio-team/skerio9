@@ -57,7 +57,6 @@
                                     <th>Telefon Raqami</th>
                                     <th>Manzil</th>
                                     <th>Dush</th>
-                                    {{-- <th>Rasmi</th> --}}
                                     <th>Status</th>
                                     <th>Created at</th>
                                     <th>Updated at</th>
@@ -80,7 +79,6 @@
                                             <span class="badge badge-danger">Mavjud emas</span>
                                         @endif
                                     </td>
-                                    {{-- <td class=""><img src="/admin/images/complexes/{{$complex->image}}" width="100px" alt="" srcset=""></td> --}}
                                     <td >
                                         @if ($complex->status==1)
                                             <span class="badge badge-success">Faol</span>

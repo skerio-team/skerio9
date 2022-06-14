@@ -51,7 +51,7 @@ class HomeController extends Controller
 
         if ($request->hasFile('image')) {
             $file=$request->image;
-            $image_name=time().$file->getClientOriginalName();
+            $image_name=time().'_'.$file->getClientOriginalName();
             $file->move('admin/images/homes/', $image_name);
             $data['image']=$image_name;
         }
@@ -98,7 +98,7 @@ class HomeController extends Controller
         $data=$request->all();
         if ($request->hasFile('image')) {
             $file=$request->image;
-            $image_name=time().$file->getClientOriginalName();
+            $image_name=time().'_'.$file->getClientOriginalName();
             $file->move('admin/images/homes/', $image_name);
             $data['image']=$image_name;
         }
