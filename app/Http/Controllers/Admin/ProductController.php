@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UpdateProductRequest;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\SportCategory;
@@ -42,12 +43,13 @@ class ProductController extends Controller
     {
         $items=Product::all();
         $brands=Brand::all();
-        $sizes=Size::all();
+        $letters=Size::whereNotNull('letter')->get();
+        $numbers=Size::whereNotNull('number')->get();
         $teams=Team::all();
         $sport_categories=SportCategory::all();
         $product_categories=ProductCategory::all();
 
-        return view('admin.product.create', compact('items', 'sport_categories', 'product_categories', 'brands', 'sizes', 'teams'));
+        return view('admin.product.create', compact('items', 'sport_categories', 'product_categories', 'brands', 'letters', 'numbers', 'teams'));
     }
 
     /**
@@ -56,7 +58,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UpdateProductRequest $request)
     {
 
         $data=$request->all();
@@ -119,7 +121,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProductRequest $request, $id)
     {
         $item=Product::find($id);
         $data=$request->all();

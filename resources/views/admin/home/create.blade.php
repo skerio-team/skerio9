@@ -79,7 +79,7 @@
                                     {{ $message }}
                                 </div>
                             @enderror
- 
+
                             <div class="form-group ">
                                 <label>Tavsif(RU)</label>
                                 <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="ru[description]" value="{{ old('ru.description') }}">
