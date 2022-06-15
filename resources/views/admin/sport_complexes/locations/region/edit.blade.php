@@ -17,13 +17,13 @@
                         <select name="country_id" class="form-control">
                                 <option value="{{ $region->country_id }}">{{ $region->countries['country'] }}</option>
                             @foreach ($countries as $country)
-                                <option value="{{ $country->id }}">{{ $country->country }}</option>
+                                <option {{ old('country_id', $region->id) == $country->id ? 'selected' : '' }} value="{{ $country->id }}">{{ $country->country }}</option>
                             @endforeach
                         </select>
                       </div>
                     <div class="form-group">
                         <label for="name"> {{ __("Viloyat nomi") }} </label>
-                        <input type="text" class="form-control" name="name" id="name" value="{{ $region->name }}">
+                        <input type="text" class="form-control" name="name" id="name" value="{{ old('name', $region->name) }}">
                     </div>
                     <button type="submit" class="btn btn-primary m-t-15 waves-effect"> {{ __("Saqlash") }} </button>
                 </div>

@@ -48,27 +48,47 @@
                         <div id="uz-form" >
                             <div class="form-group ">
                                 <label>Tavsif(UZ) </label>
-                                <input type="text" class="form-control " placeholder="Tavsifni kiriting" name="uz[description]" >
+                                <input type="text" class="form-control " placeholder="Tavsifni kiriting" name="uz[description]" value="{{ old('uz.description') }}" >
+                                @error('uz.description')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
 
                         <div id="ru-form" class="d-none">
                             <div class="form-group ">
                                 <label>Tavsif(RU)</label>
-                                <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="ru[description]" >
+                                <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="ru[description]" value="{{ old('ru.description') }}">
+                                @error('ru.description')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
 
                         <div id="en-form" class="d-none">
                             <div class="form-group ">
                                 <label>Tavsif(EN)</label>
-                                <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="en[description]" >
+                                <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="en[description]" value="{{ old('en.description') }}">
+                                @error('en.description')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group ">
                             <label>Nom</label>
-                            <input type="text" class="form-control" placeholder="Nomni kiriting" name="name" >
+                            <input type="text" class="form-control" placeholder="Nomni kiriting" name="name" value="{{ old('name') }}" >
+                            @error('name')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div class="form-group ">
@@ -77,23 +97,33 @@
                                 <label for="image-upload" id="image-label">Rasm</label>
                                 <input type="file" name="image" id="image-upload" />
                             </div>
+                            @error('image')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label>Chegirma(Majburiy emas)</label>
-                            <input type="number" class="form-control" placeholder="Chegirma bo'lsa kiriting" name="discount" >
+                            <input type="number" class="form-control" placeholder="Chegirma bo'lsa kiriting" name="discount" value="{{ old('discount') }}">
                         </div>
 
                         <div class="form-group">
                             <label>Narx</label>
-                            <input type="number" class="form-control" placeholder="Narxni kiriting" name="price" >
+                            <input type="number" class="form-control" placeholder="Narxni kiriting" name="price" value="{{ old('price') }}">
+                            @error('price')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div class="form-group ">
                             <label>Raqamli O'lchamlarga biriktirish</label>
                             <select name="size_id[]" class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="O'lchamlarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                @foreach ($sizes as $size )
-                                    <option value="{{$size->id}}">{{$size->number }}</option>
+                                @foreach ($numbers as $n )
+                                    <option value="{{$n->id}}">{{$n->number }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -101,8 +131,8 @@
                         <div class="form-group ">
                             <label>Harfli O'lchamlarga biriktirish</label>
                             <select name="size_id[]" class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="O'lchamlarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                @foreach ($sizes as $size )
-                                    <option value="{{$size->id}}">{{ $size->letter}}</option>
+                                @foreach ($letters as $l )
+                                    <option value="{{$l->id}}">{{ $l->letter}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -110,29 +140,39 @@
                         <div class="form-group ">
                             <label>Sport Kategoriyasiga biriktirish</label>
                             <select name="sport_category_id" class="form-control"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                <option value="0"> </option>
+                                <option value=""> </option>
                                 @foreach ($sport_categories as $category )
-                                    <option value="{{$category->id}}">{{$category->translate('uz')->name}}</option>
+                                    <option {{ old('sport_category_id' ) == $category->id ? 'selected' : '' }} value="{{$category->id}}">{{$category->translate('uz')->name}}</option>
                                 @endforeach
                             </select>
+                            @error('sport_category_id')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div class="form-group ">
                             <label>Mahsulot Kategoriyasiga biriktirish</label>
                             <select name="product_category_id" class="form-control"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="8" tabindex="-1" aria-hidden="true">
-                                <option value="0"> </option>
+                                <option value=""> </option>
                                 @foreach ($product_categories as $category )
-                                    <option value="{{$category->id}}">{{$category->translate('uz')->name}}</option>
+                                    <option {{ old('product_category_id' ) == $category->id ? 'selected' : '' }} value="{{$category->id}}">{{$category->translate('uz')->name}}</option>
                                 @endforeach
                             </select>
+                            @error('sport_category_id')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div class="form-group ">
                             <label>Brendga biriktirish</label>
                             <select name="brand_id" class="form-control"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                <option value="0"> </option>
+                                <option value=""> </option>
                                 @foreach ($brands as $brand )
-                                    <option value="{{$brand->id}}">{{$brand->name}}</option>
+                                    <option {{ old('brand_id' ) == $brand->id ? 'selected' : '' }} value="{{$brand->id}}">{{$brand->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -140,9 +180,9 @@
                         <div class="form-group ">
                             <label>Jamoga biriktirish</label>
                             <select name="team_id" class="form-control"  data-placeholder="Jamoaga biriktirish tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                <option value="0"> </option>
+                                <option value=""> </option>
                                 @foreach ($teams as $team )
-                                    <option value="{{$team->id}}">{{$team->name}}</option>
+                                    <option {{ old('team_id' ) == $team->id ? 'selected' : '' }} value="{{$team->id}}">{{$team->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -150,24 +190,24 @@
                         <div class="form-group ">
                             <label for="">Status</label>
                             <select name="status" class="form-control  select2 select2-hidden-accessible" id="">
-                                <option value="1">Faol</option>
-                                <option value="0">Faol emas</option>
+                                <option {{ old('status' ) == '1' ? 'selected' : '' }} value="1">Faol</option>
+                                <option {{ old('status' ) == '0' ? 'selected' : '' }} value="0">Faol emas</option>
                             </select>
                         </div>
 
                         <div class="form-group ">
                             <label>Meta Nomi(title)</label>
-                            <input type="text" class="form-control" placeholder="Meta Sarlovhani kiriting" name="meta_title" >
+                            <input type="text" class="form-control" placeholder="Meta Sarlovhani kiriting" name="meta_title" value="{{ old('meta_title' )}}" >
                         </div>
 
                         <div class="form-group ">
                             <label>Meta Nomi(description)</label>
-                            <input type="text" class="form-control" placeholder="Meta Tavsifni kiriting" name="meta_description" >
+                            <input type="text" class="form-control" placeholder="Meta Tavsifni kiriting" name="meta_description" value="{{ old('meta_description' )}}">
                         </div>
 
                         <div class="form-group ">
                             <label>Meta kalitso'z (keywords)</label>
-                            <input type="text" class="form-control" placeholder="Meta Kalitso'zni kiriting" name="meta_keywords" >
+                            <input type="text" class="form-control" placeholder="Meta Kalitso'zni kiriting" name="meta_keywords" value="{{ old('meta_keywords' )}}">
                         </div>
 
                         <div class="form-group ">

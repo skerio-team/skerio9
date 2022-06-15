@@ -49,27 +49,47 @@
                         <div id="uz-form" >
                             <div class="form-group ">
                                 <label>Tavsif(UZ) </label>
-                                <input type="text" class="form-control " placeholder="Tavsifni kiriting" name="uz[description]" value="{{ $item->translate('uz')->description }}">
+                                <input type="text" class="form-control " placeholder="Tavsifni kiriting" name="uz[description]" value="{{ old('uz.description', $item->translate('uz')->description) }}" >
+                                @error('uz.description')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
 
                         <div id="ru-form" class="d-none">
                             <div class="form-group ">
                                 <label>Tavsif(RU)</label>
-                                <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="ru[description]" value="{{ $item->translate('ru')->description }}">
+                                <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="ru[description]" value="{{ old('ru.description', $item->translate('ru')->description) }}">
+                                @error('ru.description')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
 
                         <div id="en-form" class="d-none">
                             <div class="form-group ">
                                 <label>Tavsif(EN)</label>
-                                <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="en[description]" value="{{ $item->translate('en')->description }}">
+                                <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="en[description]" value="{{ old('en.description',$item->translate('en')->description) }}">
+                                @error('en.description')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group ">
                             <label>Nom</label>
-                            <input type="text" class="form-control" placeholder="Nomni kiriting" name="name" value="{{ $item->name }}">
+                            <input type="text" class="form-control" placeholder="Nomni kiriting" name="name" value="{{ $item->name }}" value="{{ old('name') }}">
+                            @error('name')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div class="form-group ">
@@ -82,37 +102,37 @@
 
                         <div class="form-group">
                             <label>Chegirma(Majburiy emas)</label>
-                            <input type="number" class="form-control" placeholder="Chegirma bo'lsa kiriting" name="discount" value="{{ $item->discount }}" >
+                            <input type="number" class="form-control" placeholder="Chegirma bo'lsa kiriting" name="discount" value="{{ old('discount', $item->discount) }}" >
                         </div>
 
                         <div class="form-group">
                             <label>Narx</label>
-                            <input type="number" class="form-control" placeholder="Narxni kiriting" name="price" value="{{ $item->price }}">
+                            <input type="number" class="form-control" placeholder="Narxni kiriting" name="price" value="{{ old('price', $item->price) }}">
                         </div>
 
                         <div class="form-group ">
                             <label for="">Status</label>
                             <select name="status" class="form-control" id="">
-                                <option value="1" {{ $item->status==1 ? 'selected' : '' }}>Faol</option>
-                                <option value="0" {{ $item->status==0 ? 'selected' : '' }}>Faol emas</option>
+                                <option value="1" {{ old('status', $item->status) == 1 ? 'selected' : " " }}>Faol</option>
+                                <option value="0" {{ old('status', $item->status) == 0 ? 'selected' : " " }}>Faol emas</option>
                             </select>
                         </div>
 
                         <div class="form-group ">
                             <label>Sport Kategoriyasiga biriktirish</label>
                             <select name="sport_category_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                    <option value="0"> - </option>
+                                    <option value=""> - </option>
                                 @foreach ($sport_categories as $category )
-                                    <option value="{{$category->id}}" {{ $category->id == $item->sport_category_id ? 'selected' : '' }} >{{$category->translate('uz')->name}}</option>
+                                    <option {{ old('sport_category_id', $item->sport_category_id ) == $category->id ? 'selected' : '' }} value="{{$category->id}}" {{ $category->id == $item->sport_category_id ? 'selected' : '' }} >{{$category->translate('uz')->name}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group ">
-                            <label>Jamoa biriktirish</label>
-                            <select name="sport_category_id" class="form-control"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                <option value="0"> </option>
+                            <label>Jamoaga biriktirish</label>
+                            <select name="team_id" class="form-control"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                <option value=""> </option>
                                 @foreach ($teams as $team )
-                                    <option value="{{$team->id}}">{{$team->name}}</option>
+                                    <option {{ old('team_id', $item->team_id ) == $team->id ? 'selected' : '' }}  value="{{$team->id}}">{{$team->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -120,9 +140,9 @@
                         <div class="form-group ">
                             <label>Mahsulot Kategoriyasiga biriktirish</label>
                             <select name="product_category_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                    <option value="0"> - </option>
+                                    <option value=""> - </option>
                                 @foreach ($product_categories as $category )
-                                    <option value="{{$category->id}}" {{ $category->id == $item->product_category_id ? 'selected' : '' }} >{{$category->translate('uz')->name}}</option>
+                                    <option {{ old('product_category_id', $item->product_category_id ) == $category->id ? 'selected' : '' }}  value="{{$category->id}}" {{ $category->id == $item->product_category_id ? 'selected' : '' }} >{{$category->translate('uz')->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -158,44 +178,26 @@
                         <div class="form-group ">
                             <label>Brendga biriktirish</label>
                             <select name="brand_id" class="form-control"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                <option value="0"> - </option>
+                                <option value=""> - </option>
                                 @foreach ($brands as $brand )
-                                    <option value="{{$brand->id}}" {{ $brand->id == $item->brand_id ? 'selected' : '' }}>{{$brand->name}}</option>
+                                    <option {{ old('brand_id', $item->brand_id ) == $brand->id ? 'selected' : '' }}  value="{{$brand->id}}" {{ $brand->id == $item->brand_id ? 'selected' : '' }}>{{$brand->name}}</option>
                                 @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group ">
-                            <label>Jamoaga biriktirish</label>
-                            <select name="team_id" class="form-control"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                <option value="0"> - </option>
-                                @foreach ($teams as $team )
-                                    <option value="{{$team->id}}" {{ $team->id == $item->team_id ? 'selected' : '' }}>{{$team->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group ">
-                            <label for="">Status</label>
-                            <select name="status" class="form-control  select2 select2-hidden-accessible" id="">
-                                <option value="1">Faol</option>
-                                <option value="0">Faol emas</option>
                             </select>
                         </div>
 
                         <div class="form-group ">
                             <label>Meta Nomi(title)</label>
-                            <input type="text" class="form-control" placeholder="Meta Sarlovhani kiriting" name="meta_title" value="{{ $item->meta_title }}">
+                            <input type="text" class="form-control" placeholder="Meta Sarlovhani kiriting" name="meta_title" value="{{ old('meta_title',$item->meta_title) }}">
                         </div>
 
                         <div class="form-group ">
                             <label>Meta Nomi(description)</label>
-                            <input type="text" class="form-control" placeholder="Meta Tavsifni kiriting" name="meta_description" value="{{ $item->meta_description }}">
+                            <input type="text" class="form-control" placeholder="Meta Tavsifni kiriting" name="meta_description" value="{{ old('meta_description',$item->meta_description) }}">
                         </div>
 
                         <div class="form-group ">
                             <label>Meta kalitso'z (keywords)</label>
-                            <input type="text" class="form-control" placeholder="Meta Kalitso'zni kiriting" name="meta_keywords" value="{{ $item->meta_keywords }}">
+                            <input type="text" class="form-control" placeholder="Meta Kalitso'zni kiriting" name="meta_keywords" value="{{ old('meta_keywords',$item->meta_keywords) }}">
                         </div>
 
                         <div class="form-group ">

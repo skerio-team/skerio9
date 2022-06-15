@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreRegionRequest;
-use App\Http\Requests\Admin\UpdateRegionRequest;
+use App\Http\Requests\Admin\Region\StoreRegionRequest;
+use App\Http\Requests\Admin\Region\UpdateRegionRequest;
 use App\Models\Region;
 
 class RegionController extends Controller
@@ -92,7 +92,7 @@ class RegionController extends Controller
     public function destroy(Region $region)
     {
         $region->delete();
-        
+
         return redirect()->route('admin.complexes.locations.')->with('success', $region->name. ' - successfully deleted!');
     }
 }

@@ -26,7 +26,7 @@
 
                     <div class="card-header col-sm-6 d-flex justify-content-between">
                         <a href="{{ route('admin.complexes.table.index') }}"><button class="btn btn-warning"><i class="fa fa-arrow-left" aria-hidden="true"></i> Ortga</button></a>
-                        
+
                         <h3> Majmua qo'shish</h3>
                     </div>
 
@@ -45,7 +45,7 @@
                     </div>
 
                   </div>
-                 
+
                   <form action="{{ route('admin.complexes.table.update', $complexes->id) }}" method="post" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
@@ -58,9 +58,14 @@
                                     <select name="sport_category_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
                                         <option value="0">Categoriyani tanlang</option>
                                         @foreach ($categories as $category )
-                                            <option value="{{$category->id}}" {{ $category->id == $complexes->sport_category_id ? 'selected' : ' ' }} >{{$category->translate('uz')->name}}</option>
+                                            <option value="{{$category->id}}" {{ old('sport_category_id', $complexes->sport_category_id ) == $category->id ? 'selected' : '' }} >{{$category->translate('uz')->name}}</option>
                                         @endforeach
                                     </select>
+                                    @error('sport_category_id')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -70,46 +75,77 @@
                                     <select name="area_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
                                         <option value="0">Hududni tanlang</option>
                                         @foreach ($areas as $area )
-                                            <option value="{{$area->id}}" {{ $area->id == $complexes->area_id ? 'selected' : ' ' }} >{{$area->name}} [{{ $area->regions['name'] }}, {{ $area->regions->countries['country'] }}]</option>
+                                            <option value="{{$area->id}}" {{ old('area_id', $complexes->area_id ) == $area->id ? 'selected' : '' }} >{{$area->name}} [{{ $area->regions['name'] }}, {{ $area->regions->countries['country'] }}]</option>
                                         @endforeach
                                     </select>
+                                    @error('area_id')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group ">
                                     <label >Majmua Nomi</label>
-                                    <input type="text" class="form-control " placeholder="Nomini kiriting" name="name" value="{{ $complexes->name }}">
+                                    <input type="text" class="form-control " placeholder="Nomini kiriting" name="name" value="{{ old('name', $complexes->name) }}">
+                                    @error('name')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group ">
                                     <label>Manzil</label>
-                                    <input type="text" class="form-control" placeholder="Majmuaning manzili" name="address" value="{{ $complexes->address }}">
+                                    <input type="text" class="form-control" placeholder="Majmuaning manzili" name="address" value="{{ old('address',$complexes->address) }}">
+                                    @error('address')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group ">
                                     <label >Majmua geolakatsiyasi</label>
-                                    <input type="text" class="form-control " placeholder="Geolakatsiyani kiriting" name="location" value="{{ $complexes->location }}">
+                                    <input type="text" class="form-control " placeholder="Geolakatsiyani kiriting" name="location" value="{{ old('location',$complexes->location) }}">
+                                    @error('location')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group ">
                                     <label>Telefon Raqami</label>
-                                    <input type="text" class="form-control" placeholder="+99812345678" name="phone" value="{{ $complexes->phone }}">
+                                    <input type="text" class="form-control" placeholder="+99812345678" name="phone" value="{{ old('phone',$complexes->phone) }}">
+                                    @error('phone')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group ">
                                     <label>Majmua Narxi (1 soat uchun)</label>
-                                    <input type="number" class="form-control" placeholder="Majmua narxini kiriting" name="price" value="{{ $complexes->price }}">
+                                    <input type="number" class="form-control" placeholder="Majmua narxini kiriting" name="price" value="{{ old('price', $complexes->price) }}">
+                                    @error('price')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group ">
                                     <label for="">Majmua ishlash holati</label>
                                     <select name="working_status" class="form-control select2 select2-hidden-accessible" id="">
-                                        <option value="1" {{ $complexes->working_status==1 ? 'selected' : ' ' }}>Ochiq majmua</option>
-                                        <option value="0" {{ $complexes->working_status==0 ? 'selected' : ' ' }}>Yopiq majmua</option>
+                                        <option value="1" {{ old('working_status', $complexes->working_status) == 1 ? 'selected' : ' ' }}>Ochiq majmua</option>
+                                        <option value="0" {{ old('working_status', $complexes->working_status) == 0 ? 'selected' : ' ' }}>Yopiq majmua</option>
                                     </select>
+
                                 </div>
                             </div>
 
@@ -117,16 +153,16 @@
                                 <div class="form-group ">
                                     <label for="">Ovqatlanish joyi</label>
                                     <select name="food" class="form-control select2 select2-hidden-accessible" id="">
-                                        <option value="1" {{ $complexes->food==1 ? 'selected' : ' ' }}>Mavjud</option>
-                                        <option value="0" {{ $complexes->food==0 ? 'selected' : ' ' }}>Mavjud emas</option>
+                                        <option value="1" {{ old('food', $complexes->food) == 1 ? 'selected' : ' ' }}>Mavjud</option>
+                                        <option value="0" {{ old('food', $complexes->food) == 0 ? 'selected' : ' ' }}>Mavjud emas</option>
                                     </select>
                                 </div>
-        
+
                                 <div class="form-group ">
                                     <label for="">Kiyinish xonasi</label>
                                     <select name="dress_room" class="form-control select2 select2-hidden-accessible" id="">
-                                        <option value="1" {{ $complexes->dress_room==1 ? 'selected' : ' ' }}>Mavjud</option>
-                                        <option value="0" {{ $complexes->dress_room==0 ? 'selected' : ' ' }}>Mavjud emas</option>
+                                        <option value="1" {{ old('dress_room', $complexes->dress_room) == 1 ? 'selected' : ' ' }}>Mavjud</option>
+                                        <option value="0" {{ old('dress_room', $complexes->dress_room) == 0 ? 'selected' : ' ' }}>Mavjud emas</option>
                                     </select>
                                 </div>
                             </div>
@@ -135,16 +171,16 @@
                                 <div class="form-group ">
                                     <label for="">Yuvunish xonasi</label>
                                     <select name="bath_room" class="form-control select2 select2-hidden-accessible" id="">
-                                        <option value="1" {{ $complexes->bath_room==1 ? 'selected' : ' ' }}>Mavjud</option>
-                                        <option value="0" {{ $complexes->bath_room==0 ? 'selected' : ' ' }}>Mavjud emas</option>
+                                        <option value="1" {{ old('bath_room', $complexes->bath_room)== 1 ? 'selected' : ' ' }}>Mavjud</option>
+                                        <option value="0" {{ old('bath_room', $complexes->bath_room)== 0 ? 'selected' : ' ' }}>Mavjud emas</option>
                                     </select>
                                   </div>
-        
+
                                   <div class="form-group ">
                                     <label for="">Tribuna</label>
                                     <select name="sit_place" class="form-control select2 select2-hidden-accessible" id="">
-                                        <option value="1" {{ $complexes->sit_place==1 ? 'selected' : ' ' }}>Mavjud</option>
-                                        <option value="0" {{ $complexes->sit_place==0 ? 'selected' : ' ' }}>Mavjud emas</option>
+                                        <option value="1" {{ old('sit_place', $complexes->sit_place)==1 ? 'selected' : ' ' }}>Mavjud</option>
+                                        <option value="0" {{ old('sit_place', $complexes->sit_place)==0 ? 'selected' : ' ' }}>Mavjud emas</option>
                                     </select>
                                 </div>
                             </div>
@@ -153,21 +189,36 @@
                                 <div id="uz-form" >
                                     <div class="form-group ">
                                         <label>Tavsif(UZ)</label>
-                                        <textarea name="uz[description]" id="" cols="30" rows="10"> {{ $complexes->translate('uz')->description }} </textarea>
+                                        <textarea name="uz[description]" id="" cols="30" rows="10"> {{ old('uz.description', $complexes->translate('uz')->description) }} </textarea>
                                     </div>
+                                    @error('uz.description')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
-        
+
                                 <div id="ru-form" class="d-none">
                                     <div class="form-group ">
                                         <label>Tavsif(RU)</label>
-                                        <textarea name="ru[description]" id="" cols="30" rows="10"> {{ $complexes->translate('ru')->description }} </textarea>
+                                        <textarea name="ru[description]" id="" cols="30" rows="10"> {{ old('ru.description', $complexes->translate('ru')->description) }} </textarea>
+                                        @error('ru.description')
+                                            <div class="alert alert-danger">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
-        
+
                                 <div id="en-form" class="d-none">
                                     <div class="form-group ">
                                         <label>Tavsif(EN)</label>
-                                        <textarea name="en[description]" id="" cols="30" rows="10"> {{ $complexes->translate('en')->description }} </textarea>
+                                        <textarea name="en[description]" id="" cols="30" rows="10"> {{ old('en.description', $complexes->translate('en')->description) }} </textarea>
+                                        @error('en.description')
+                                            <div class="alert alert-danger">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -175,25 +226,25 @@
                             <div class="col-md-6">
                                 <div class="form-group ">
                                     <label>Meta kalitso'z (tag)</label>
-                                    <input type="text" class="form-control" placeholder="Meta Kalitso'zni kiriting" name="meta_tag" value="{{ $complexes->meta_tag }}">
+                                    <input type="text" class="form-control" placeholder="Meta Kalitso'zni kiriting" name="meta_tag" value="{{ old('meta_tag', $complexes->meta_tag) }}">
                                 </div>
 
                                 <div class="form-group ">
                                     <label>Meta sarlovha(title)</label>
-                                    <input type="text" class="form-control" placeholder="Meta Sarlovhani kiriting" name="meta_title" value="{{ $complexes->meta_title }}">
+                                    <input type="text" class="form-control" placeholder="Meta Sarlovhani kiriting" name="meta_title" value="{{ old('meta_title', $complexes->meta_title) }}">
                                 </div>
-        
+
                                 <div class="form-group ">
                                     <label>Meta tavsif(description)</label>
-                                    <input type="text" class="form-control" placeholder="Meta Tavsifni kiriting" name="meta_description" value="{{ $complexes->meta_description }}">
+                                    <input type="text" class="form-control" placeholder="Meta Tavsifni kiriting" name="meta_description" value="{{ old('meta_description', $complexes->meta_description) }}">
                                 </div>
 
                                 <div class="form-group ">
                                     <label for="">Status</label>
                                     <select name="status" class="form-control select2 select2-hidden-accessible" id="">
                                         <option value="">Statusni tanlang</option>
-                                        <option value="1" {{ $complexes->status==1 ? 'selected' : ' ' }}>Faol</option>
-                                        <option value="0" {{ $complexes->status==0 ? 'selected' : ' ' }}>Faol emas</option>
+                                        <option value="1" {{ old('status', $complexes->status)==1 ? 'selected' : ' ' }}>Faol</option>
+                                        <option value="0" {{ old('status', $complexes->status)==0 ? 'selected' : ' ' }}>Faol emas</option>
                                     </select>
                                 </div>
                             </div>
@@ -201,11 +252,16 @@
                             <div class="col-md-6">
                                 <div class="form-group ">
                                     <label class="">Rasm</label>
-        
+
                                     <div id="image-preview" class="image-preview">
                                         <label for="image-upload" id="image-label">Rasm</label>
                                         <input type="file" name="image[]" id="image-upload" multiple />
                                     </div>
+                                    @error('image')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -226,7 +282,7 @@
                                 </div>
                             </div>
                         </div>
-  
+
                         <div class="form-group ">
                             <div class="">
                                 <button type="submit" class="btn btn-primary">Tasdiqlash</button>

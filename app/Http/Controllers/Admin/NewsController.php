@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\News;
 use App\Models\SportCategory;
 use Illuminate\Http\Request;
-use App\Http\Requests\Admin\StoreNewsRequest;
-use App\Http\Requests\Admin\UpdateNewsRequest;
+use App\Http\Requests\Admin\News\StoreNewsRequest;
+use App\Http\Requests\Admin\News\UpdateNewsRequest;
 
 class NewsController extends Controller
 {

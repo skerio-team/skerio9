@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreTicketRequest;
-use App\Http\Requests\Admin\UpdateTicketRequest;
+use App\Http\Requests\Admin\Ticket\StoreTicketRequest;
+use App\Http\Requests\Admin\Ticket\UpdateTicketRequest;
 use App\Models\SportCategory;
 use App\Models\StadiumSection;
 use App\Models\Team;
@@ -62,9 +62,9 @@ class TicketController extends Controller
             }
         }
         $data['image'] = implode("|", $images);
-        
+
         $tickets = Ticket::create($data);
-        
+
         return redirect()->route('admin.tickets.table.store')->with('success', 'Ticket has successfully created!');
     }
 
@@ -131,7 +131,7 @@ class TicketController extends Controller
             }
             $data['image'] = implode("|", $images);
         }
-        
+
         $item->update($data);
 
         return redirect()->route('admin.tickets.table.index')->with('success', $item->name . ' - successfully updated!');
@@ -146,7 +146,7 @@ class TicketController extends Controller
     public function destroy($id)
     {
         $tickets = Ticket::find($id);
-        
+
         if ($tickets->image == null)
         {
             $tickets->delete();

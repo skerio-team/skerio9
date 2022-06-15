@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use Illuminate\Http\Request;
-use App\Http\Requests\Admin\StoreBrandRequest;
-use App\Http\Requests\Admin\UpdateBrandRequest;
+use App\Http\Requests\Admin\Brand\StoreBrandRequest;
+use App\Http\Requests\Admin\Brand\UpdateBrandRequest;
 
 class BrandController extends Controller
 {

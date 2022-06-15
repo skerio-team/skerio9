@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreStadiumRequest;
-use App\Http\Requests\Admin\UpdateStadiumRequest;
+use App\Http\Requests\Admin\Stadium\StoreStadiumRequest;
+use App\Http\Requests\Admin\Stadium\UpdateStadiumRequest;
 use App\Models\Stadium;
 use App\Models\StadiumSection;
 
@@ -19,7 +19,7 @@ class StadiumController extends Controller
     {
         $stadiums = Stadium::orderBy('name', 'asc')->paginate(10, ['*'], 'stadiums');
         $stadiums->setPageName('stadiums');
-        
+
         $stadium_sections = StadiumSection::orderBy('name', 'asc')->paginate(10, ['*'], 'stadium_sections');
         $stadium_sections->setPageName('stadium_sections');
 

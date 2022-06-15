@@ -56,7 +56,7 @@
                                 @enderror
                             </div>
 
-                           
+
                             <div class="form-group ">
                                 <label>Tavsif(UZ)</label>
                                 <textarea name="uz[description]" id="" cols="30" rows="10"> {{ old('uz.description') }} </textarea>
@@ -101,7 +101,7 @@
                                 @enderror
                             </div>
 
-                            
+
                             <div class="form-group ">
                                 <label>Tavsif(EN)</label>
                                 <textarea name="en[description]" id="" cols="30" rows="10"> {{ old('en.description') }} </textarea>
@@ -128,7 +128,7 @@
                         </div>
 
                         <div class="form-group ">
-                            <label>Kategoriyaga biriktirish</label>
+                            <label>Sport Kategoriyaga biriktirish</label>
                             <select name="sport_category_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
                                 @foreach ($categories as $category )
                                     <option value="{{$category->id}}" {{ old('sport_category_id' ) == $category->id ? 'selected' : '' }}>{{$category->translate('uz')->name}}</option>
