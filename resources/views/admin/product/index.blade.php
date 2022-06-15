@@ -13,18 +13,19 @@
     <div class="col-12">
       <div class="card">
             @can('product-create')
-                <div class="card-header ">
-                    <a class="btn btn-primary " href="{{ route('admin.products.create')}}">Yaratish</a>
+                <div class="card-header d-flex justify-content-between">
+                    <h5 align="center">Mahsulotlar jadvali</h5>
+
+                    <a class="btn btn-primary" href="{{ route('admin.products.create')}}">Yaratish</a>
                 </div>
             @endcan
 
         <div class="card-body">
-            <h5 align="center">Mahsulotlar jadvali</h5>
             @if (Session::has('success'))
                 <div class="alert alert-success alert-dismissible show fade">
                     <div class="alert-body">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                            <span>×</span>
+                            <span>&times;</span>
                         </button>
                         <h5><i class="icon fas fa-check"></i></h5>
                         {{session('success')}}
@@ -33,7 +34,7 @@
             @endif
             @if (Session::has('warning'))
                 <div class="alert alert-danger alert-dismissible show fade">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <span>×</span> </button>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <span>&times;</span> </button>
                     <h5><i class="icon fas fa-ban"></i> </h5>
                     {{session('warning')}}
                 </div>
@@ -53,20 +54,28 @@
               <tbody>
                 @foreach ($items as $item)
                 <tr class="odd">
-                    <td>{{$loop->iteration}}</td>
-                    <td >{{ $item->name }}</td>
-                    <td >{{ $item->translate('uz')->description }}</td>
-                    <td >{{ $item->like }}</td>
+                    <td> {{$loop->iteration}} </td>
+                    <td> {{ $item->name }} </td>
+                    <td> {{ $item->translate('uz')->description }} </td>
+                    <td> {{ $item->like }} </td>
 
-                    <td class=""><img src="/admin/images/products/{{$item->image}}" width="100px" alt="" srcset=""></td>
+                    <td style="width: 15%">
+                        @php
+                            $images=explode("|", $item->image);
+                        @endphp
+
+                        @foreach ($images as $img)
+                            <img src="/admin/images/products/{{ $img }}" width="100%"> <hr>
+                        @endforeach
+                    </td>
 
                     <td class="d-flex justify-content-center ">
-                        <a class="btn btn-primary  " href="{{route('admin.products.show', $item->id)}}">
+                        <a class="btn btn-primary" href="{{route('admin.products.show', $item->id)}}">
                             <i class="fas fa-eye"></i>
                         </a>
                         @can('product-edit')
-                            <a class="btn btn-info " href="{{route('admin.products.edit', $item->id)}}">
-                                <i class="fas fa-pencil-alt"></i>
+                            <a class="btn btn-warning" href="{{route('admin.products.edit', $item->id)}}">
+                                <i class="fas fa-edit"></i>
                             </a>
                         @endcan
                         @can('product-delete')

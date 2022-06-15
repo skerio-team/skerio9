@@ -92,7 +92,7 @@ class ProductCategoryController extends Controller
         $data=$request->all();
         $data['slug']=\Str::slug($request->uz['name']);
         $ProductCategory->update($data);
-        return redirect()->route('admin.productCategories.index')->with('success', 'Mahsulot Kategoriyasi tahrirlandi!');
+        return redirect()->route('admin.productCategories.index')->with('success', $ProductCategory->name . ' - mahsulot Kategoriyasi tahrirlandi!');
     }
 
     /**

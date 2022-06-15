@@ -24,24 +24,22 @@
               <div class="card">
                   <div class="row mb-2">
 
-                    <div class="card-header col-sm-6 d-flex justify-content-between">
-                        <a href="{{ route('admin.complexes.table.index') }}"><button class="btn btn-warning"><i class="fa fa-arrow-left" aria-hidden="true"></i> Ortga</button></a>
+                    <div class="card-header col-sm-12 d-flex justify-content-between">
+                        <a href="{{ route('admin.complexes.table.index') }}"><button class="btn btn-warning"><i class="fa fa-arrow-left" aria-hidden="true"></i> {{ __("Ortga") }} </button></a>
                         
                         <h3> Majmua qo'shish</h3>
-                    </div>
 
-                    <div class="col-sm-6">
                         <ul class="nav nav-tabs float-sm-right " >
-                             <li class="nav-item">
-                                <a class="nav-link " href="#" id="ru-link">Ru</a>
-                            </li>
                             <li class="nav-item">
-                                <a class="nav-link bg-aqua-active" href="#" id="uz-link">Uzb</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" id="en-link">En</a>
-                            </li>
-                        </ul>
+                               <a class="nav-link " href="#" id="ru-link">Ru</a>
+                           </li>
+                           <li class="nav-item">
+                               <a class="nav-link bg-aqua-active" href="#" id="uz-link">Uzb</a>
+                           </li>
+                           <li class="nav-item">
+                               <a class="nav-link" href="#" id="en-link">En</a>
+                           </li>
+                       </ul>
                     </div>
 
                   </div>

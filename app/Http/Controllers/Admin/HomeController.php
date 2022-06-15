@@ -115,7 +115,16 @@ class HomeController extends Controller
      */
     public function destroy($id)
     {
-        Home::destroy($id);
-        return redirect()->route('admin.homes.index')->with('warning', "Ma`lumot o'chirildi!");
+        $model = Home::find($id);
+        if ($model->image == null)
+        {
+            $model->delete();
+        }
+        else {
+            $model->deleteImage();
+            $model->delete();
+        }
+        
+        return redirect()->route('admin.homes.index')->with('warning', $model->name . " - ma`lumoti o'chirildi!");
     }
 }

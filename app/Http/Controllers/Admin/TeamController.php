@@ -26,8 +26,9 @@ class TeamController extends Controller
     public function index()
     {
         $items=Team::paginate(10);
+        $sport_categories=SportCategory::all();
 
-        return view('admin.teams.index', compact('items'));
+        return view('admin.teams.index', compact('items', 'sport_categories'));
     }
 
     /**
@@ -37,11 +38,7 @@ class TeamController extends Controller
      */
     public function create()
     {
-
-        $sport_categories=SportCategory::all();
-
-
-        return view('admin.teams.create', compact('sport_categories'));
+        //
     }
 
     /**
@@ -52,14 +49,22 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        $data=$request->all();
-
-        if ($request->hasFile('image')) {
-            $file=$request->image;
-            $image_name=time().$file->getClientOriginalName();
-            $file->move('admin/images/teams/', $image_name);
-            $data['image']=$image_name;
+        $data = $request->all();
+        $images = array();
+        $destination = public_path('admin/images/teams/');
+        if ($files = $request->file('image'))
+        {
+            if (!file_exists($destination))
+            {
+                mkdir($destination, 0777, true);
+            }
+            foreach ($files as $file) {
+                $name = time().'_'.$file->getClientOriginalName();
+                $file->move($destination, $name);
+                $images[]   =   $name;
+            }
         }
+        $data['image'] = implode("|",$images);
 
         $team=Team::create($data);
 
@@ -103,16 +108,33 @@ class TeamController extends Controller
     {
         $item=Team::find($id);
         $data=$request->all();
-        if ($request->hasFile('image')) {
-            $file=$request->image;
-            $image_name=time().$file->getClientOriginalName();
-            $file->move('admin/images/teams/', $image_name);
-            $data['image']=$image_name;
+
+        if ($request->file('image') !== null)
+        {
+            $images = array();
+            $destination = public_path('admin/images/teams/');
+
+            $images_db = explode("|", $item->image);
+            foreach ($images_db as $img)
+            {
+                if (file_exists($destination . $img))
+                {
+                    unlink($destination . $img);
+                }
+            }
+            $files = $request->file('image');
+
+            foreach ($files as $file) {
+                $name = time().'_'.$file->getClientOriginalName();
+                $file->move($destination, $name);
+                $images[]   =   $name;
+            }
+            $data['image'] = implode("|",$images);
         }
 
         $item->update($data);
 
-        return redirect()->route('admin.team.index')->with('success', 'Ma`lumot tahrirlandi!');
+        return redirect()->route('admin.team.index')->with('success', $item->name . ' - ma`lumoti tahrirlandi!');
 
     }
 
@@ -124,9 +146,16 @@ class TeamController extends Controller
      */
     public function destroy($id)
     {
-        Team::destroy($id);
+        $item = Team::find($id);
+        if ($item->image == null)
+        {
+            $item->delete();
+        }
+        else {
+            $item->deleteImage();
+            $item->delete();
+        }
 
-        return redirect()->route('admin.team.index')->with('warning', "Ma`lumot o'chirildi!");
-
+        return redirect()->route('admin.team.index')->with('warning', $item->name . " - ma`lumoti o'chirildi!");
     }
 }

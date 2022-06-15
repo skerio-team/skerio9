@@ -104,7 +104,7 @@ class BrandController extends Controller
         }
 
         $item->update($data);
-        return redirect()->route('admin.brands.index')->with('success', 'Ma`lumot tahrirlandi!');
+        return redirect()->route('admin.brands.index')->with('success', $item->name . ' - ma`lumoti tahrirlandi!');
     }
 
     /**
@@ -115,7 +115,16 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        Brand::destroy($id);
-        return redirect()->route('admin.brands.index')->with('warning', "Ma`lumot o'chirildi!");
+        $model = Brand::find($id);
+        if ($model->image == null)
+        {
+            $model->delete();
+        }
+        else {
+            $model->delete();
+            $model->deleteImage();
+        }
+        
+        return redirect()->route('admin.brands.index')->with('warning', $model->name . " - ma`lumoti o'chirildi!");
     }
 }

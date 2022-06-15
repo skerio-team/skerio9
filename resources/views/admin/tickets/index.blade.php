@@ -92,7 +92,7 @@
                                         <a class="btn btn-primary" href="{{ route('admin.tickets.table.show', $ticket->id) }}">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                        <a class="btn btn-info" href="{{ route('admin.tickets.table.edit', $ticket->id) }}">
+                                        <a class="btn btn-warning" href="{{ route('admin.tickets.table.edit', $ticket->id) }}">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <form action="{{ route('admin.tickets.table.destroy', $ticket->id) }}" method="post">

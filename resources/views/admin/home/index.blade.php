@@ -15,7 +15,7 @@
         @can('home-create')
             <div class="card-header d-flex justify-content-between">
                 <h5 align="center">Bosh menyu ma'lumotlar jadvali</h5>
-                <a class="btn btn-success " href="{{ route('admin.homes.create')}}">Yaratish</a>
+                <a class="btn btn-primary" href="{{ route('admin.homes.create')}}">Yaratish</a>
             </div>
         @endcan
 
@@ -59,17 +59,17 @@
                     <td class=""><img src="/admin/images/homes/{{$item->image}}" width="100px" alt="" srcset=""></td>
 
                     <td class="d-flex justify-content-center ">
-                        <a class="btn btn-primary  " href="{{route('admin.homes.show', $item->id)}}">
+                        <a class="btn btn-primary" href="{{route('admin.homes.show', $item->id)}}">
                             <i class="fas fa-eye"></i>
                         </a>
                         @can('home-edit')
-                            <a class="btn btn-info " href="{{route('admin.homes.edit', $item->id)}}">
+                            <a class="btn btn-warning" href="{{route('admin.homes.edit', $item->id)}}">
                                 <i class="fas fa-edit"></i>
                             </a>
                         @endcan
 
                         @can('home-delete')
-                            <form action="{{route('admin.homes.destroy', $item->id)}}" method="item">
+                            <form action="{{route('admin.homes.destroy', $item->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">

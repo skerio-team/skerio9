@@ -16,7 +16,7 @@
             <div class="card-header d-flex justify-content-between">
                 <h5 align="center">Sport Kategoriyalari jadvali</h5>
 
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addCategory">Qo'shish</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCategory">{{ __("Qo'shish") }}</button>
             </div>
         @endcan
 

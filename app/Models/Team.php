@@ -38,5 +38,17 @@ class Team extends Model
         return $this->hasMany(Ticket::class);
     }
 
+    const IMAGE_PATH = 'admin/images/teams/';
 
+    public function deleteImage(): bool
+    {
+        $images = explode("|", $this->image);
+
+        foreach ($images as $img)
+        {
+            unlink(self::IMAGE_PATH . $img);
+        }
+
+        return true;
+    }
 }

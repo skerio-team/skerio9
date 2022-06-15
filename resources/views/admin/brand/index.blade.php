@@ -17,8 +17,7 @@
             <div class="card-header d-flex justify-content-between">
                 <h5 align="center">Brendlar jadvali</h5>
                 
-                {{-- <a href="{{ route('admin.brands.create') }}" class="btn btn-success">Qo'shish</a> --}}
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addBrand">Qo'shish</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addBrand">Qo'shish</button>
             </div>
         @endcan
 
@@ -68,7 +67,7 @@
                  <td class=" d-flex justify-content-center">
 
                     @can('brand-edit')
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editCategory{{$item->id}}"><i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editBrand{{$item->id}}"><i class="fas fa-edit"></i></button>
                     @endcan
                     @can('brand-delete')
                         <form action="{{route('admin.brands.destroy', $item->id)}}" method="POST">
@@ -81,6 +80,8 @@
                     @endcan
                 </td>
               </tr>
+              @include('admin.brand.edit')
+
               @endforeach
 
               @include('admin.brand.create')

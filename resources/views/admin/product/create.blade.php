@@ -24,132 +24,169 @@
           <div class="col-12">
             <div class="card">
                 <div class="row mb-2">
-                    <div class="card-header col-sm-6">
+                    <div class="card-header col-sm-12 d-flex justify-content-between">
+                        <a href="{{ route('admin.products.store') }}"><button class="btn btn-warning"><i class="fa fa-arrow-left" aria-hidden="true"></i> {{ __("Ortga") }} </button></a>
+                        
                         <h4> Mahsulot qo'shish </h4>
-                    </div>
-                    <div class="col-sm-6">
+                        
                         <ul class="nav nav-tabs float-sm-right " >
-                             <li class="nav-item">
-                                <a class="nav-link " href="#" id="ru-link">Ru</a>
-                            </li>
                             <li class="nav-item">
-                                <a class="nav-link bg-aqua-active" href="#" id="uz-link">Uzb</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" id="en-link">En</a>
-                            </li>
-                        </ul>
+                               <a class="nav-link " href="#" id="ru-link">Ru</a>
+                           </li>
+                           <li class="nav-item">
+                               <a class="nav-link bg-aqua-active" href="#" id="uz-link">Uzb</a>
+                           </li>
+                           <li class="nav-item">
+                               <a class="nav-link" href="#" id="en-link">En</a>
+                           </li>
+                       </ul>
                     </div>
                 </div>
                 <form action="{{route('admin.products.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <div class="card-body " >
+                    <div class="card-body">
 
-                        <div id="uz-form" >
-                            <div class="form-group ">
-                                <label>Tavsif(UZ) </label>
-                                <input type="text" class="form-control " placeholder="Tavsifni kiriting" name="uz[description]" >
+                        <div class="row">
+                            <div class="col-sm-6 col-md-3 col-lg-3">
+                                <div class="form-group ">
+                                    <label>Sport Kategoriyasiga biriktirish</label>
+                                    <select name="sport_category_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                        <option value="0"> </option>
+                                        @foreach ($sport_categories as $category )
+                                            <option value="{{$category->id}}">{{$category->translate('uz')->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-3 col-lg-3">
+                                <div class="form-group ">
+                                    <label>Mahsulot Kategoriyasiga biriktirish</label>
+                                    <select name="product_category_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="8" tabindex="-1" aria-hidden="true">
+                                        <option value="0"> </option>
+                                        @foreach ($product_categories as $category )
+                                            <option value="{{$category->id}}">{{$category->translate('uz')->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-3 col-lg-3">
+                                <div class="form-group ">
+                                    <label>Brendga biriktirish</label>
+                                    <select name="brand_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                        <option value="0"> </option>
+                                        @foreach ($brands as $brand )
+                                            <option value="{{$brand->id}}">{{$brand->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-3 col-lg-3">
+                                <div class="form-group ">
+                                    <label>Jamoga biriktirish</label>
+                                    <select name="team_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Jamoaga biriktirish tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                        <option value="0"> </option>
+                                        @foreach ($teams as $team )
+                                            <option value="{{$team->id}}">{{$team->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </div>
 
-                        <div id="ru-form" class="d-none">
-                            <div class="form-group ">
-                                <label>Tavsif(RU)</label>
-                                <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="ru[description]" >
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div class="row">
+                                    <div class="col-sm-4 col-md-4 col-lg-4">
+                                        <div class="form-group ">
+                                            <label>Nom</label>
+                                            <input type="text" class="form-control" placeholder="Nomni kiriting" name="name" >
+                                        </div>
+                                    </div>
+    
+                                    <div class="col-sm-4 col-md-4 col-lg-4">
+                                        <div class="form-group">
+                                            <label>Narx</label>
+                                            <input type="number" class="form-control" placeholder="Narxni kiriting" name="price" >
+                                        </div>
+                                    </div>
+    
+                                    <div class="col-sm-4 col-md-4 col-lg-4">
+                                        <div class="form-group">
+                                            <label>Chegirma(Majburiy emas)</label>
+                                            <input type="number" class="form-control" placeholder="Chegirma bo'lsa kiriting" name="discount" >
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
 
-                        <div id="en-form" class="d-none">
-                            <div class="form-group ">
-                                <label>Tavsif(EN)</label>
-                                <input type="text" class="form-control" placeholder="Tavsifni kiriting" name="en[description]" >
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label class="">Rasm</label>
+                                            <div id="image-preview" class="image-preview">
+                                                <label for="image-upload" id="image-label">Rasm</label>
+                                                <input type="file" name="image[]" id="image-upload" multiple />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                                <div class="form-group ">
+                                                    <label>Raqamli O'lchamlarga biriktirish</label>
+                                                    <select name="size_id[]" class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="O'lchamlarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                                        @foreach ($sizes as $size )
+                                                            <option value="{{$size->id}}">{{$size->number }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                
+                                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                                <div class="form-group ">
+                                                    <label>Harfli O'lchamlarga biriktirish</label>
+                                                    <select name="size_id[]" class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="O'lchamlarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                                        @foreach ($sizes as $size )
+                                                            <option value="{{$size->id}}">{{ $size->letter}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div id="uz-form">
+                                            <div class="form-group ">
+                                                <label>Tavsif(UZ) </label>
+                                                <textarea name="uz[description]" id="" cols="30" rows="10">  </textarea>
+                                            </div>
+                                        </div>
+                
+                                        <div id="ru-form" class="d-none">
+                                            <div class="form-group ">
+                                                <label>Tavsif(RU)</label>
+                                                <textarea name="ru[description]" id="" cols="30" rows="10">  </textarea>
+                                            </div>
+                                        </div>
+                
+                                        <div id="en-form" class="d-none">
+                                            <div class="form-group ">
+                                                <label>Tavsif(EN)</label>
+                                                <textarea name="en[description]" id="" cols="30" rows="10">  </textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="form-group ">
-                            <label>Nom</label>
-                            <input type="text" class="form-control" placeholder="Nomni kiriting" name="name" >
-                        </div>
-
-                        <div class="form-group ">
-                            <label class="">Rasm</label>
-                            <div id="image-preview" class="image-preview">
-                                <label for="image-upload" id="image-label">Rasm</label>
-                                <input type="file" name="image" id="image-upload" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Chegirma(Majburiy emas)</label>
-                            <input type="number" class="form-control" placeholder="Chegirma bo'lsa kiriting" name="discount" >
-                        </div>
-
-                        <div class="form-group">
-                            <label>Narx</label>
-                            <input type="number" class="form-control" placeholder="Narxni kiriting" name="price" >
-                        </div>
-
-                        <div class="form-group ">
-                            <label>Raqamli O'lchamlarga biriktirish</label>
-                            <select name="size_id[]" class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="O'lchamlarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                @foreach ($sizes as $size )
-                                    <option value="{{$size->id}}">{{$size->number }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group ">
-                            <label>Harfli O'lchamlarga biriktirish</label>
-                            <select name="size_id[]" class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="O'lchamlarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                @foreach ($sizes as $size )
-                                    <option value="{{$size->id}}">{{ $size->letter}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group ">
-                            <label>Sport Kategoriyasiga biriktirish</label>
-                            <select name="sport_category_id" class="form-control"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                <option value="0"> </option>
-                                @foreach ($sport_categories as $category )
-                                    <option value="{{$category->id}}">{{$category->translate('uz')->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group ">
-                            <label>Mahsulot Kategoriyasiga biriktirish</label>
-                            <select name="product_category_id" class="form-control"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="8" tabindex="-1" aria-hidden="true">
-                                <option value="0"> </option>
-                                @foreach ($product_categories as $category )
-                                    <option value="{{$category->id}}">{{$category->translate('uz')->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group ">
-                            <label>Brendga biriktirish</label>
-                            <select name="brand_id" class="form-control"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                <option value="0"> </option>
-                                @foreach ($brands as $brand )
-                                    <option value="{{$brand->id}}">{{$brand->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group ">
-                            <label>Jamoga biriktirish</label>
-                            <select name="team_id" class="form-control"  data-placeholder="Jamoaga biriktirish tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                <option value="0"> </option>
-                                @foreach ($teams as $team )
-                                    <option value="{{$team->id}}">{{$team->name}}</option>
-                                @endforeach
-                            </select>
                         </div>
 
                         <div class="form-group ">
                             <label for="">Status</label>
-                            <select name="status" class="form-control  select2 select2-hidden-accessible" id="">
+                            <select name="status" class="form-control select2 select2-hidden-accessible" id="">
                                 <option value="1">Faol</option>
                                 <option value="0">Faol emas</option>
                             </select>
@@ -172,7 +209,7 @@
 
                         <div class="form-group ">
                             <div class="">
-                                <button class="btn btn-primary">Tasdiqlash</button>
+                                <button class="btn btn-primary">Yaratish</button>
                             </div>
                         </div>
                     </div>

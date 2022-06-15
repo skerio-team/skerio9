@@ -60,12 +60,22 @@ class ProductController extends Controller
     {
 
         $data=$request->all();
-        if ($request->hasFile('image')) {
-            $file=$request->image;
-            $image_name=time().$file->getClientOriginalName();
-            $file->move('admin/images/products/', $image_name);
-            $data['image']=$image_name;
+        $images = array();
+        $destination = public_path('admin/images/products/');
+        if ($files = $request->file('image'))
+        {
+            if (!file_exists($destination))
+            {
+                mkdir($destination, 0777, true);
+            }
+            foreach ($files as $file) {
+                $name = time().'_'.$file->getClientOriginalName();
+                $file->move($destination, $name);
+                $images[]   =   $name;
+            }
         }
+        $data['image'] = implode("|",$images);
+
         if($data['discount'] > "0"){
             $d=$data['discount'];
             $p=$data['price'];
@@ -87,7 +97,6 @@ class ProductController extends Controller
     public function show($id)
     {
         $item=Product::whereId($id)->first();
-        //  dd($item->sport_categories);
         return view('admin.product.show', compact('item'));
     }
 
@@ -123,11 +132,28 @@ class ProductController extends Controller
     {
         $item=Product::find($id);
         $data=$request->all();
-        if ($request->hasFile('image')) {
-            $file=$request->image;
-            $image_name=time().$file->getClientOriginalName();
-            $file->move('admin/images/products/', $image_name);
-            $data['image']=$image_name;
+
+        if ($request->file('image') !== null)
+        {
+            $images = array();
+            $destination = public_path('admin/images/products/');
+
+            $images_db = explode("|", $item->image);
+            foreach ($images_db as $img)
+            {
+                if (file_exists($destination . $img))
+                {
+                    unlink($destination . $img);
+                }
+            }
+            $files = $request->file('image');
+
+            foreach ($files as $file) {
+                $name = time().'_'.$file->getClientOriginalName();
+                $file->move($destination, $name);
+                $images[]   =   $name;
+            }
+            $data['image'] = implode("|",$images);
         }
         if($data['discount'] > "0"){
             $d=$data['discount'];
@@ -135,11 +161,9 @@ class ProductController extends Controller
             $data['price']=$p-($p*$d/100);
         }
 
-
-
         $item->sizes()->sync($request->size_id);
         $item->update($data);
-        return redirect()->route('admin.products.index')->with('success', 'Ma`lumot tahrirlandi!');
+        return redirect()->route('admin.products.index')->with('success', $item->name . ' - ma`lumoti tahrirlandi!');
     }
 
     /**
@@ -152,8 +176,16 @@ class ProductController extends Controller
     {
         $item = Product::find($id);
         $item->sizes()->detach();
-        Product::destroy($id);
+        if ($item->image == null)
+        {
+            $item->delete();
+        }
+        else {
+            $item->deleteImage();
+            $item->delete();
+        }
 
-        return redirect()->route('admin.products.index')->with('warning', "Ma`lumot o'chirildi!");
+        return redirect()->route('admin.products.index')->with('warning', $item->name . " - ma`lumoti o'chirildi!");
     }
 }
+

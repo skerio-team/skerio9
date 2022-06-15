@@ -50,17 +50,11 @@
                 class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
             <div class="dropdown-menu dropdown-menu-right pullDown">
               <div class="dropdown-title"> {{ Auth::user()->name }} </div>
-              <a href="profile.html" class="dropdown-item has-icon"> <i class="far
-										fa-user"></i> Profile
-              </a> <a href="timeline.html" class="dropdown-item has-icon"> <i class="fas fa-bolt"></i>
-                Activities
-              </a> <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
-                Settings
-              </a>
+                <a href="profile.html" class="dropdown-item has-icon"> <i class="far fa-user"></i> Profile </a>
+                <a href="timeline.html" class="dropdown-item has-icon"> <i class="fas fa-bolt"></i> Activities </a>
+                <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i> Settings </a>
               <div class="dropdown-divider"></div>
-              <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
-                Logout
-              </a>
+              <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i> Logout </a>
             </div>
           </li>
         </ul>
@@ -79,11 +73,11 @@
             </li>
 
             <li class="dropdown {{ request()->is('admin/homes*') ? 'active' : ''  }}">
-              <a href="{{ route('admin.homes.index') }}" ><i class="far fa-newspaper"></i><span>Home</span></a>
+              <a href="{{ route('admin.homes.index') }}" ><i class="fas fa-home"></i><span>Home</span></a>
             </li>
 
             <li class="dropdown {{ request()->is('admin/categories*') ? 'active' : ''  }}">
-              <a href="{{ route('admin.categories.index') }}" ><i class="far fa-newspaper"></i><span>Sport Kategoriyasi</span></a>
+              <a href="{{ route('admin.categories.index') }}" ><i class="fas fa-align-left"></i><span>Sport Kategoriyasi</span></a>
             </li>
 
             <li class="dropdown {{ request()->is('admin/news*') ? 'active' : ''  }}">
@@ -91,42 +85,30 @@
             </li>
 
             <li class="dropdown {{ request()->is('admin/brands*') ? 'active' : ''  }}">
-              <a href="{{ route('admin.brands.index') }}" ><i class="far fa-newspaper"></i><span>Brendlar</span></a>
+              <a href="{{ route('admin.brands.index') }}" ><i class="fas fa-podcast"></i><span>Brendlar</span></a>
             </li>
 
-            <li class="dropdown {{ request()->is('admin/productCategories*') ? 'active' : ''  }}">
-              <a href="{{ route('admin.productCategories.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulot kategoriyasi</span></a>
-            </li>
-
-            <li class="dropdown {{ request()->is('admin/sizes*') ? 'active' : ''  }}">
-              <a href="{{ route('admin.sizes.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulot O'lchamlari</span></a>
-            </li>
-
-            {{-- sizes --}}
-            {{-- <li class="dropdown {{ request()->is('admin/sizes*') ? 'active' : ''  }}">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="user-check"></i><span> Mahsulot O'lchamlari </span></a>
-                  <ul class="dropdown-menu">
-                    <li class="{{ request()->is('admin/complexes/locations*') ? 'active' : ''  }}">
-                        <a href="{{ route('admin.complexes.locations.') }}"> <i class="fas fa-map-marker-alt"></i><span> Harflar bilan </span></a>
-                    </li>
-                    <li class="{{ request()->is('admin/complexes/table*') ? 'active' : ''  }}">
-                        <a href="{{ route('admin.complexes.table.index') }}"> <i class="fas fa-building"></i><span> Majmualar </span></a>
-                    </li>
-                  </ul>
-            </li> --}}
-
-
-            <li class="dropdown {{ request()->is('admin/products*') ? 'active' : ''  }}">
-              <a href="{{ route('admin.products.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulotlar</span></a>
+            <li class="dropdown {{ request()->is('admin/products*' || 'admin/productCategories*' || 'admin/sizes*') ? 'active' : ''  }}">
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="user-check"></i><span> Mahsulotlar </span></a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown {{ request()->is('admin/products*') ? 'active' : ''  }}">
+                    <a href="{{ route('admin.products.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulotlar</span></a>
+                  </li>
+                  <li class="dropdown {{ request()->is('admin/productCategories*') ? 'active' : ''  }}">
+                    <a href="{{ route('admin.productCategories.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulot kategoriyasi</span></a>
+                  </li>
+      
+                  <li class="dropdown {{ request()->is('admin/sizes*') ? 'active' : ''  }}">
+                    <a href="{{ route('admin.sizes.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulot O'lchamlari</span></a>
+                  </li>
+                </ul>
             </li>
 
             <li class="dropdown {{ request()->is('admin/team*') ? 'active' : ''  }}">
               <a href="{{ route('admin.team.index') }}" ><i class="far fa-newspaper"></i><span>Jamoalar</span></a>
             </li>
 
-            
             {{-- Sport Complexes --}}
-
             <li class="dropdown {{ request()->is('admin/complexes*') ? 'active' : ''  }}">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="user-check"></i><span> Sport majmuolari </span></a>
                 <ul class="dropdown-menu">
@@ -138,13 +120,6 @@
                   </li>
                 </ul>
             </li>
-
-            {{-- <li class="dropdown {{ request()->is('admin/categories*') ? 'active' : ''  }}">
-              <a href="{{ route('admin.categories.index') }}" ><i class="fas fa-bars"></i><span>Kategoriyalar</span></a>
-            </li>
-            <li class="dropdown {{ request()->is('admin/tags*') ? 'active' : ''  }}">
-              <a href="{{ route('admin.tags.index') }}" ><i class="fas fa-vector-square"></i><span>Taglar</span></a>
-            </li> --}}
 
             @can('user')
 

@@ -13,18 +13,19 @@
     <div class="col-12">
       <div class="card">
         @can('size-create')
-            <div class="card-header ">
-                <a class="btn btn-primary " href="{{ route('admin.sizes.create')}}">Yaratish</a>
+            <div class="card-header d-flex justify-content-between">
+                <h5 align="center">O'lchamlar jadvali</h5>
+
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addSize">{{ __("Qo'shish") }}</button>
             </div>
         @endcan
 
         <div class="card-body">
-            <h5 align="center">O'lchamlar jadvali</h5>
             @if (Session::has('success'))
                 <div class="alert alert-success alert-dismissible show fade">
                     <div class="alert-body">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                            <span>×</span>
+                            <span>&times;</span>
                         </button>
                         <h5><i class="icon fas fa-check"></i></h5>
                         {{session('success')}}
@@ -33,7 +34,7 @@
             @endif
             @if (Session::has('warning'))
                 <div class="alert alert-danger alert-dismissible show fade">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <span>×</span> </button>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <span>&times;</span> </button>
                     <h5><i class="icon fas fa-ban"></i> </h5>
                     {{session('warning')}}
                 </div>
@@ -54,9 +55,7 @@
                  <td>{{$item->letter}}</td>
                  <td class=" d-flex justify-content-center" style="width: 100px">
                     @can('size-edit')
-                        <a class="btn btn-info " href="{{route('admin.sizes.edit', $item->id)}}">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editSize{{$item->id}}"><i class="fas fa-edit"></i></button>
                     @endcan
                     @can('size-delete')
                         <form action="{{route('admin.sizes.destroy', $item->id)}}" method="POST">
@@ -69,7 +68,11 @@
                     @endcan
                 </td>
               </tr>
+              @include('admin.sizes.edit')
+
               @endforeach
+
+              @include('admin.sizes.create')
 
             </table>
           </div>
