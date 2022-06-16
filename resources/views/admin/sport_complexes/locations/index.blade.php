@@ -132,7 +132,7 @@
                   </tr>
 
                   @include('admin.sport_complexes.locations.region.edit')
-                  
+
                   @endforeach
 
                   @include('admin.sport_complexes.locations.region.create')
@@ -204,7 +204,7 @@
                     </tr>
 
                     @include('admin.sport_complexes.locations.area.edit')
-                    
+
                     @endforeach
 
                     @include('admin.sport_complexes.locations.area.create')

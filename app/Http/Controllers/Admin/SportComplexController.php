@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreSportComplexRequest;
-use App\Http\Requests\Admin\UpdateSportComplexRequest;
+use App\Http\Requests\Admin\SportComplex\StoreSportComplexRequest;
+use App\Http\Requests\Admin\SportComplex\UpdateSportComplexRequest;
 use App\Models\Area;
 use App\Models\SportCategory;
 use App\Models\SportComplex;
@@ -60,9 +60,9 @@ class SportComplexController extends Controller
             }
         }
         $data['image'] = implode("|",$images);
-        
+
         $complexes = SportComplex::create($data);
-        
+
         return redirect()->route('admin.complexes.table.index')->with('success', $complexes->name .'- successfully created!');
     }
 
@@ -75,7 +75,7 @@ class SportComplexController extends Controller
     public function show($id)
     {
         $item=SportComplex::whereId($id)->first();
-        
+
         return view('admin.sport_complexes.show', compact('item'));
     }
 
@@ -128,7 +128,7 @@ class SportComplexController extends Controller
             }
             $data['image'] = implode("|",$images);
         }
-        
+
         $item->update($data);
 
         return redirect()->route('admin.complexes.table.index')->with('success', $item->name .'- successfully updated!');

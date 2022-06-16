@@ -94,6 +94,13 @@
             </table>
           </div>
         </div>
+        <div class="card-footer text-right">
+            <nav class="d-inline-block">
+              <ul class="pagination mb-0">
+                {!! $items->links() !!}
+              </ul>
+            </nav>
+          </div>
       </div>
     </div>
 </div>

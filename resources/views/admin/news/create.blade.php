@@ -45,7 +45,6 @@
                 <form action="{{route('admin.news.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
-
                         <div class="row">
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group ">

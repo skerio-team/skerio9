@@ -21,7 +21,15 @@ class User extends Authenticatable
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
+     * 
+     * 
      */
+
+      public function likes()
+     {
+        return $this->hasMany(Like::class, 'user_id');
+     }
+
     protected $fillable = [
         'name',
         'email',

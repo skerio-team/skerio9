@@ -70,6 +70,7 @@ class PermissionTableSeeder extends Seeder
             'user-edit',
             'user-delete',
 
+            'simple-user',
          ];
 
          foreach ($permissions as $permission) {

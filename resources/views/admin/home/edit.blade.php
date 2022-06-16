@@ -45,7 +45,6 @@
                             @csrf
                             @method('PUT')
                             <div class="card-body">
-
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12">
                                         <div id="uz-form">
@@ -151,6 +150,11 @@
                                             <input type="text" class="form-control" placeholder="Meta Sarlovhani kiriting" name="meta_keywords" value="{{ old('meta_keywords', $item->meta_keywords) }}" >
                                         </div>
                                     </div>
+                                    @error('image')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <hr>

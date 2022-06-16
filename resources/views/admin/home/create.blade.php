@@ -118,8 +118,13 @@
                                     @enderror
                                 </div>
                             </div>
+                            @error('image')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
-
+                        
                         <div class="row">
                             <div class="col-sm-12 col-md-4">
                                 <div class="form-group ">

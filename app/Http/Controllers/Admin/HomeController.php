@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Home;
 use Illuminate\Http\Request;
-use App\Http\Requests\Admin\StoreHomeRequest;
-use App\Http\Requests\Admin\UpdateHomeRequest;
+use App\Http\Requests\Admin\Home\StoreHomeRequest;
+use App\Http\Requests\Admin\Home\UpdateHomeRequest;
 class HomeController extends Controller
 {
     /**

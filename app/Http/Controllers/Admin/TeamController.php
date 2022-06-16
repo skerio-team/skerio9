@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SportCategory;
 use App\Models\Team;
+use App\Http\Requests\Admin\Team\StoreTeamRequest;
+use App\Http\Requests\Admin\Team\UpdateTeamRequest;
 
 
 class TeamController extends Controller
@@ -47,7 +49,7 @@ class TeamController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTeamRequest $request)
     {
         $data = $request->all();
         $images = array();
@@ -104,7 +106,7 @@ class TeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTeamRequest $request, $id)
     {
         $item=Team::find($id);
         $data=$request->all();

@@ -14,6 +14,11 @@ class NewsResource extends JsonResource
      */
     public function toArray($request)
     {
+
+        $id=$this->likes->all();
+       
+        $likes = count($id);
+        
         return [
 
             'id'=>$this->id,
@@ -21,7 +26,7 @@ class NewsResource extends JsonResource
             'sport_category'=>$this->sport_category_id,
             'status'=>$this->status,
             'special'=>$this->special,
-            'like'=>$this->popularity,
+            'likes' => $likes,
             'image'=>$this->image,
             'title_uz'=>$this->translate('uz')->title,
             'title_ru'=>$this->translate('ru')->title,

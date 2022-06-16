@@ -13,6 +13,11 @@ class News extends Model implements TranslatableContract
     use HasFactory;
     use Translatable; // 2. To add translation methods
 
+    public function likes()
+    {
+       return $this->hasMany(Like::class, 'news_id');
+    }
+
     public $translatedAttributes = ['title','description'];
 
     protected $table = 'news';

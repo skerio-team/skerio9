@@ -45,7 +45,6 @@
                 <form action="{{route('admin.products.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
-
                         <div class="row">
                             <div class="col-sm-6 col-md-3 col-lg-3">
                                 <div class="form-group ">
@@ -194,17 +193,17 @@
 
                         <div class="form-group ">
                             <label>Meta Nomi(title)</label>
-                            <input type="text" class="form-control" placeholder="Meta Sarlovhani kiriting" name="meta_title" >
+                            <input type="text" class="form-control" placeholder="Meta Sarlovhani kiriting" name="meta_title" value="{{ old('meta_title' )}}" >
                         </div>
 
                         <div class="form-group ">
                             <label>Meta Nomi(description)</label>
-                            <input type="text" class="form-control" placeholder="Meta Tavsifni kiriting" name="meta_description" >
+                            <input type="text" class="form-control" placeholder="Meta Tavsifni kiriting" name="meta_description" value="{{ old('meta_description' )}}">
                         </div>
 
                         <div class="form-group ">
                             <label>Meta kalitso'z (keywords)</label>
-                            <input type="text" class="form-control" placeholder="Meta Kalitso'zni kiriting" name="meta_keywords" >
+                            <input type="text" class="form-control" placeholder="Meta Kalitso'zni kiriting" name="meta_keywords" value="{{ old('meta_keywords' )}}">
                         </div>
 
                         <div class="form-group ">

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreAreaRequest;
-use App\Http\Requests\Admin\UpdateAreaRequest;
+use App\Http\Requests\Admin\Area\StoreAreaRequest;
+use App\Http\Requests\Admin\Area\UpdateAreaRequest;
 use App\Models\Area;
 
 class AreaController extends Controller

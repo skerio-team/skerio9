@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
-use App\Http\Requests\Admin\StoreProductCategoryRequest;
-use App\Http\Requests\Admin\UpdateProductCategoryRequest;
+use App\Http\Requests\Admin\ProductCategory\StoreProductCategoryRequest;
+use App\Http\Requests\Admin\ProductCategory\UpdateProductCategoryRequest;
 
 class ProductCategoryController extends Controller
 {

@@ -17,13 +17,23 @@
                         <select name="region_id" class="form-control">
                                 <option value="{{ $area->region_id }}"> {{ $area->regions->name }} [{{ $area->regions->countries['country'] }}] </option>
                             @foreach ($regions as $region)
-                                <option value="{{ $region->id }}">{{ $region->name }} [{{ $region->countries['country'] }}]</option>
+                                <option {{ old('region_id', $area->id) == $region->id ? 'selected' : '' }} value="{{ $region->id }}">{{ $region->name }} [{{ $region->countries['country'] }}]</option>
                             @endforeach
                         </select>
+                        @error('region_id')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="name"> {{ __("Hudud nomi") }} </label>
-                        <input type="text" class="form-control" name="name" id="name" value="{{ $area->name }}">
+                        <input type="text" class="form-control" name="name" id="name" value="{{ old('name', $area->name) }}">
+                        @error('name')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary m-t-15 waves-effect"> {{ __("Saqlash") }} </button>
                 </div>

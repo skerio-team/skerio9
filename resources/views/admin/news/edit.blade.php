@@ -45,8 +45,7 @@
                 <form action="{{route('admin.news.update', $item->id)}}" method="post" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
-                    <div class="card-body " >
-
+                    <div class="card-body">
                         <div class="row">
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group ">
