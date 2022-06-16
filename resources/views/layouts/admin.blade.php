@@ -88,20 +88,16 @@
               <a href="{{ route('admin.brands.index') }}" ><i class="fas fa-podcast"></i><span>Brendlar</span></a>
             </li>
 
-            <li class="dropdown {{ request()->is('admin/products*' || 'admin/productCategories*' || 'admin/sizes*') ? 'active' : ''  }}">
-              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="user-check"></i><span> Mahsulotlar </span></a>
-                <ul class="dropdown-menu">
-                  <li class="dropdown {{ request()->is('admin/products*') ? 'active' : ''  }}">
-                    <a href="{{ route('admin.products.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulotlar</span></a>
-                  </li>
-                  <li class="dropdown {{ request()->is('admin/productCategories*') ? 'active' : ''  }}">
-                    <a href="{{ route('admin.productCategories.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulot kategoriyasi</span></a>
-                  </li>
-      
-                  <li class="dropdown {{ request()->is('admin/sizes*') ? 'active' : ''  }}">
-                    <a href="{{ route('admin.sizes.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulot O'lchamlari</span></a>
-                  </li>
-                </ul>
+            <li class="dropdown {{ request()->is('admin/products*') ? 'active' : ''  }}">
+              <a href="{{ route('admin.products.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulotlar</span></a>
+            </li>
+
+            <li class="dropdown {{ request()->is('admin/productCategories*') ? 'active' : ''  }}">
+              <a href="{{ route('admin.productCategories.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulot kategoriyasi</span></a>
+            </li>
+
+            <li class="dropdown {{ request()->is('admin/sizes*') ? 'active' : ''  }}">
+              <a href="{{ route('admin.sizes.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulot O'lchamlari</span></a>
             </li>
 
             <li class="dropdown {{ request()->is('admin/team*') ? 'active' : ''  }}">
@@ -280,5 +276,4 @@
 
 <!-- index.html  21 Nov 2019 03:47:04 GMT -->
 </html>
-
 

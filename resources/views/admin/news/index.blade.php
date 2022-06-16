@@ -13,18 +13,18 @@
     <div class="col-12">
       <div class="card">
             @can('news-create')
-                <div class="card-header ">
-                    <a class="btn btn-primary " href="{{ route('admin.news.create')}}">Yaratish</a>
+                <div class="card-header d-flex justify-content-between">
+                    <h5 align="center">Yangiliklar jadvali</h5>
+                    <a class="btn btn-primary" href="{{ route('admin.news.create')}}">Yaratish</a>
                 </div>
             @endcan
 
         <div class="card-body">
-            <h5 align="center">Yangiliklar jadvali</h5>
             @if (Session::has('success'))
                 <div class="alert alert-success alert-dismissible show fade">
                     <div class="alert-body">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                            <span>×</span>
+                            <span>&times;</span>
                         </button>
                         <h5><i class="icon fas fa-check"></i></h5>
                         {{session('success')}}
@@ -33,7 +33,7 @@
             @endif
             @if (Session::has('warning'))
                 <div class="alert alert-danger alert-dismissible show fade">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <span>×</span> </button>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <span>&times;</span> </button>
                     <h5><i class="icon fas fa-ban"></i> </h5>
                     {{session('warning')}}
                 </div>
@@ -65,8 +65,8 @@
                             <i class="fas fa-eye"></i>
                         </a>
                         @can('news-edit')
-                            <a class="btn btn-info " href="{{route('admin.news.edit', $item->id)}}">
-                                <i class="fas fa-pencil-alt"></i>
+                            <a class="btn btn-warning" href="{{route('admin.news.edit', $item->id)}}">
+                                <i class="fas fa-edit"></i>
                             </a>
                         @endcan
                         @can('news-delete')
@@ -74,7 +74,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">
-                                    <i class="fas fa-trash"></i>
+                                    <i class="fas fa-trash-alt"></i>
                                 </button>
                             </form>
                         @endcan
