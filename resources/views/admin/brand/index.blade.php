@@ -14,18 +14,19 @@
       <div class="card">
 
         @can('brand-create')
-            <div class="card-header ">
-                <a class="btn btn-primary " href="{{ route('admin.brands.create')}}">Yaratish</a>
+            <div class="card-header d-flex justify-content-between">
+                <h5 align="center">Brendlar jadvali</h5>
+                
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addBrand">Qo'shish</button>
             </div>
         @endcan
 
         <div class="card-body">
-            <h5 align="center">Brend jadvali</h5>
             @if (Session::has('success'))
                 <div class="alert alert-success alert-dismissible show fade">
                     <div class="alert-body">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                            <span>×</span>
+                            <span>&times;</span>
                         </button>
                         <h5><i class="icon fas fa-check"></i></h5>
                         {{session('success')}}
@@ -34,11 +35,21 @@
             @endif
             @if (Session::has('warning'))
                 <div class="alert alert-danger alert-dismissible show fade">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <span>×</span> </button>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <span>&times;</span> </button>
                     <h5><i class="icon fas fa-ban"></i> </h5>
                     {{session('warning')}}
                 </div>
             @endif
+            @error('name')
+                <div class="alert alert-danger">
+                    {{ $message }}
+                </div>
+            @enderror
+            @error('image')
+                <div class="alert alert-danger">
+                    {{ $message }}
+                </div>
+            @enderror
           <div class="table-responsive">
             <table class="table table-bordered table-md">
               <tr>
@@ -56,22 +67,24 @@
                  <td class=" d-flex justify-content-center">
 
                     @can('brand-edit')
-                        <a class="btn btn-info " href="{{route('admin.brands.edit', $item->id)}}">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editBrand{{$item->id}}"><i class="fas fa-edit"></i></button>
                     @endcan
                     @can('brand-delete')
                         <form action="{{route('admin.brands.destroy', $item->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger deleteCat ">
-                                <i class="fas fa-trash"></i>
+                                <i class="fas fa-trash-alt"></i>
                             </button>
                         </form>
                     @endcan
                 </td>
               </tr>
+              @include('admin.brand.edit')
+
               @endforeach
+
+              @include('admin.brand.create')
 
             </table>
           </div>

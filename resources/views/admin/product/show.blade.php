@@ -54,182 +54,197 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <hr>
+                        <div class="row d-flex justify-content-between">
+                            <div class="col-md-5">
 
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5>  Tavsif </h5></div><br>
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5>  Tavsif </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active uz-form">
+                                            <h6> {{$item->translate('uz')->description}} </h6>
+                                        </div>
+                                        <div class="tab-pane active en-form d-none">
+                                            <h6> {{$item->translate('en')->description}} </h6>
+                                        </div>
+                                        <div class="tab-pane active ru-form d-none">
+                                            <h6> {{$item->translate('ru')->description}} </h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Nomi </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            <h6>{{$item->name}}</h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Yoqtirishlar soni</h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            <h6>{{$item->like}}</h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Necha marta sotilganligi  </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            <h6>{{$item->sale_number}}</h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Chegirma </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            <h6>{{$item->discount}}</h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Narx </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            <h6>{{$item->price}}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Status </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            <h6>
+                                                @if($item->status==1)
+                                                    <span class="badge badge-success">Faol</span>
+                                                @else
+                                                    <span class="badge badge-danger">Faol emas</span>
+                                                @endif
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> O'lchamlari </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            @foreach ($item->sizes as $i )
+                                                {{-- <h6> @if ($i->number > 0)
+                                                    {{ $i->number }}
+                                                @else
+                                                    {{ $i->letter }}
+                                                @endif </h6> --}}
+                                                <h6>  {{$i->number}} | {{ $i->letter }}   </h6>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Birikkan Sport Kategoriyalari </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            @if ($item->sport_categories)
+                                                <h6>{{ $item->sport_categories->translate('uz')->name }}</h6>
+                                            @else
+                                                <h6>Hech qaysi kategoriyaga bog`lanmagan!</h6>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Birikkan Mahsulot Kategoriyalari </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            @if ($item->product_categories)
+                                                <h6>{{ $item->product_categories->translate('uz')->name }}</h6>
+                                            @else
+                                                <h6>Hech qaysi kategoriyaga bog`lanmagan!</h6>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Birikkan Brendlari </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            @if ($item->brands)
+                                                <h6>{{ $item->brands['name'] }}</h6>
+                                            @else
+                                                <h6>Hech qaysi Brendga bog`lanmagan!</h6>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Birikkan Jamoalari </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            @if ($item->teams)
+                                                <h6>{{ $item->teams['name'] }}</h6>
+                                            @else
+                                                <h6>Hech qaysi Jamoaga bog`lanmagan!</h6>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Meta sarlovha </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            <h6>  {{$item->meta_title}}  </h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Meta tavsif </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            <h6>  {{$item->meta_description}}  </h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Meta kalitso'z (keywords) </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            <h6>  {{$item->meta_keywords}}  </h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+                            </div>
+
+                            <div class="col-md-5">
+                                <div class=" d-flex justify-content-center">
+                                    <div class="box-header"><h5> Rasm </h5></div><br>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane active">
+                                        @php
+                                            $images=explode("|", $item->image);
+                                        @endphp
+
+                                        @foreach ($images as $img)
+                                            <img src="/admin/images/products/{{ $img }}" width="100%" height="100%"> <hr>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active uz-form">
-                                <h6> {{$item->translate('uz')->description}} </h6>
-                            </div>
-                            <div class="tab-pane active en-form d-none">
-                                <h6> {{$item->translate('en')->description}} </h6>
-                            </div>
-                            <div class="tab-pane active ru-form d-none">
-                                <h6> {{$item->translate('ru')->description}} </h6>
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Nomi </h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                <h6>{{$item->name}}</h6>
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Rasm </h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                <img src="/admin/images/products/{{$item->image}}" width="15%" height="10%">
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Yoqtirishlar soni</h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                <h6>{{$item->like}}</h6>
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Necha marta sotilganligi  </h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                <h6>{{$item->sale_number}}</h6>
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Chegirma </h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                <h6>{{$item->discount}}</h6>
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Narx </h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                <h6>{{$item->price}}</h6>
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Status </h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                <h6>
-                                    @if($item->status==1)
-                                        <span class="badge badge-success">Faol</span>
-                                    @else
-                                        <span class="badge badge-danger">Faol emas</span>
-                                    @endif
-                                </h6>
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> O'lchamlari </h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                @foreach ($item->sizes as $i )
-                                    <h6>  {{$i->number}} | {{ $i->letter }}   </h6>
-                                @endforeach
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Birikkan Sport Kategoriyalari </h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                @if ($item->sport_categories)
-                                    <h6>{{ $item->sport_categories->translate('uz')->name }}</h6>
-                                @else
-                                    <h6>Hech qaysi kategoriyaga bog`lanmagan!</h6>
-                                @endif
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Birikkan Mahsulot Kategoriyalari </h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                @if ($item->product_categories)
-                                    <h6>{{ $item->product_categories->translate('uz')->name }}</h6>
-                                @else
-                                    <h6>Hech qaysi kategoriyaga bog`lanmagan!</h6>
-                                @endif
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Birikkan Brendlari </h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                @if ($item->brands)
-                                    <h6>{{ $item->brands['name'] }}</h6>
-                                @else
-                                    <h6>Hech qaysi Brendga bog`lanmagan!</h6>
-                                @endif
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Birikkan Jamoalari </h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                @if ($item->teams)
-                                    <h6>{{ $item->teams['name'] }}</h6>
-                                @else
-                                    <h6>Hech qaysi Jamoaga bog`lanmagan!</h6>
-                                @endif
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Meta sarlovha </h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                <h6>  {{$item->meta_title}}  </h6>
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Meta tavsif </h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                <h6>  {{$item->meta_description}}  </h6>
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Meta kalitso'z (keywords) </h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                <h6>  {{$item->meta_keywords}}  </h6>
-                            </div>
-                        </div> <hr>
-
                     </div>
                 </div>
             </div>

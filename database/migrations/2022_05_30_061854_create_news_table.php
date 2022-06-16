@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sport_category_id')->nullable();
+            $table->foreignId('sport_category_id')->constrained('sport_categories')->onDelete('cascade');
+            $table->enum('continent_id', ['europe', 'asia']);
             $table->string('image')->nullable();
             $table->string('status')->nullable();
             $table->string('special')->nullable();

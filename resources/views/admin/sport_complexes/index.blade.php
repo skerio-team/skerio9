@@ -13,7 +13,7 @@
 
                 <div class="card-header d-flex justify-content-between">
                     <h5 align="center">Majmualar jadvali</h5>
-                    <a class="btn btn-success " href="{{ route('admin.complexes.table.create')}}">Qo'shish</a>
+                    <a class="btn btn-primary" href="{{ route('admin.complexes.table.create')}}">Qo'shish</a>
                 </div>
 
                 <div class="card-body">
@@ -57,7 +57,6 @@
                                     <th>Telefon Raqami</th>
                                     <th>Manzil</th>
                                     <th>Dush</th>
-                                    {{-- <th>Rasmi</th> --}}
                                     <th>Status</th>
                                     <th>Created at</th>
                                     <th>Updated at</th>
@@ -80,7 +79,6 @@
                                             <span class="badge badge-danger">Mavjud emas</span>
                                         @endif
                                     </td>
-                                    {{-- <td class=""><img src="/admin/images/complexes/{{$complex->image}}" width="100px" alt="" srcset=""></td> --}}
                                     <td >
                                         @if ($complex->status==1)
                                             <span class="badge badge-success">Faol</span>
@@ -92,10 +90,10 @@
                                     <td >{{ $complex->updated_at }}</td>
 
                                     <td class="d-flex justify-content-center ">
-                                        <a class="btn btn-primary  " href="{{ route('admin.complexes.table.show', $complex->id) }}">
+                                        <a class="btn btn-primary" href="{{ route('admin.complexes.table.show', $complex->id) }}">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                        <a class="btn btn-info " href="{{ route('admin.complexes.table.edit', $complex->id) }}">
+                                        <a class="btn btn-warning" href="{{ route('admin.complexes.table.edit', $complex->id) }}">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <form action="{{ route('admin.complexes.table.destroy', $complex->id) }}" method="post">
@@ -123,3 +121,4 @@
     <script src="/assets/bundles/jquery-ui/jquery-ui.min.js"></script>
     <script src="/assets/js/page/datatables.js"></script>
 @endsection
+

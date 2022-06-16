@@ -54,7 +54,7 @@ class SportComplexController extends Controller
                 mkdir($destination, 0777, true);
             }
             foreach ($files as $file) {
-                $name = time().$file->getClientOriginalName();
+                $name = time().'_'.$file->getClientOriginalName();
                 $file->move($destination, $name);
                 $images[]   =   $name;
             }
@@ -123,7 +123,7 @@ class SportComplexController extends Controller
 
             foreach ($files as $file) {
                 $name = time().'_'.$file->getClientOriginalName();
-                $file->move('admin/images/complexes/', $name);
+                $file->move($destination, $name);
                 $images[]   =   $name;
             }
             $data['image'] = implode("|",$images);

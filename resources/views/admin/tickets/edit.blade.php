@@ -49,7 +49,7 @@
                       <div class="card-body">
 
                         <div class="row">
-                            <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="col-sm-12 col-md-12">
                                 <div class="form-group ">
                                     <label>Kategoriyaga biriktirish</label>
                                     <select name="sport_category_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
@@ -59,11 +59,18 @@
                                         @endforeach
                                     </select>
                                 </div>
+                            </div>
 
+                            <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group ">
-                                    <label>Jamoaga biriktirish</label>
+                                    <label >Nomi</label>
+                                    <input type="text" class="form-control " name="name" value="{{ $tickets->name }}">
+                                </div>
+                                
+                                <div class="form-group ">
+                                    <label>1 - Jamoaga biriktirish</label>
                                     <select name="team_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                        <option value="{{ $tickets->team_id }}"> {{ $tickets->teams->name }}  </option>
+                                        <option value="{{ $tickets->team1_id }}"> {{ $tickets->teams1->name }}  </option>
                                         @foreach ($teams as $team )
                                             <option value="{{$team->id}}"> {{$team->name}} </option>
                                         @endforeach
@@ -81,15 +88,20 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group ">
-                                    <label >Nomi</label>
-                                    <input type="text" class="form-control " name="name" value="{{ $tickets->name }}">
-                                </div>
-                                
+                            <div class="col-sm-12 col-md-6 col-lg-6">                                
                                 <div class="form-group">
                                     <label>Sana</label>
                                     <input type="datetime-local" class="form-control" name="date" value="{{ $tickets->date }}">
+                                </div>
+
+                                <div class="form-group ">
+                                    <label>2 - Jamoaga biriktirish</label>
+                                    <select name="team_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                        <option value="{{ $tickets->team2_id }}"> {{ $tickets->teams2->name }}  </option>
+                                        @foreach ($teams as $team )
+                                            <option value="{{$team->id}}"> {{$team->name}} </option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
                                 <div class="form-group ">

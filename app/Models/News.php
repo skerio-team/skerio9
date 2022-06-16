@@ -20,8 +20,11 @@ class News extends Model implements TranslatableContract
 
     public $translatedAttributes = ['title','description'];
 
+    protected $table = 'news';
+
     protected $fillable=[
         'sport_category_id',
+        'continent_id',
         'image',
         'status',
         'special',
@@ -30,8 +33,23 @@ class News extends Model implements TranslatableContract
         'meta_description',
         'meta_keywords',
     ];
+
     public function sport_categories()
     {
         return $this->belongsTo(SportCategory::class);
+    }
+
+    const IMAGE_PATH = 'admin/images/news/';
+
+    public function deleteImage(): bool
+    {
+        $images = explode("|", $this->image);
+
+        foreach ($images as $img)
+        {
+            unlink(self::IMAGE_PATH . $img);
+        }
+
+        return true;
     }
 }

@@ -56,4 +56,18 @@ class Product extends Model  implements TranslatableContract
     {
         return $this->belongsTo(Team::class, 'team_id');
     }
+
+    const IMAGE_PATH = 'admin/images/products/';
+
+    public function deleteImage(): bool
+    {
+        $images = explode("|", $this->image);
+
+        foreach ($images as $img)
+        {
+            unlink(self::IMAGE_PATH . $img);
+        }
+
+        return true;
+    }
 }

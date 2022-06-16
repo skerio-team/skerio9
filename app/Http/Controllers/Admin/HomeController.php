@@ -51,7 +51,7 @@ class HomeController extends Controller
 
         if ($request->hasFile('image')) {
             $file=$request->image;
-            $image_name=time().$file->getClientOriginalName();
+            $image_name=time().'_'.$file->getClientOriginalName();
             $file->move('admin/images/homes/', $image_name);
             $data['image']=$image_name;
         }
@@ -98,7 +98,7 @@ class HomeController extends Controller
         $data=$request->all();
         if ($request->hasFile('image')) {
             $file=$request->image;
-            $image_name=time().$file->getClientOriginalName();
+            $image_name=time().'_'.$file->getClientOriginalName();
             $file->move('admin/images/homes/', $image_name);
             $data['image']=$image_name;
         }
@@ -115,7 +115,16 @@ class HomeController extends Controller
      */
     public function destroy($id)
     {
-        Home::destroy($id);
-        return redirect()->route('admin.homes.index')->with('warning', "Ma`lumot o'chirildi!");
+        $model = Home::find($id);
+        if ($model->image == null)
+        {
+            $model->delete();
+        }
+        else {
+            $model->deleteImage();
+            $model->delete();
+        }
+        
+        return redirect()->route('admin.homes.index')->with('warning', $model->name . " - ma`lumoti o'chirildi!");
     }
 }

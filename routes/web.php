@@ -6,11 +6,6 @@ use App\Http\Controllers\Admin\AreaController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\SportCategoryController;
-use App\Http\Controllers\Admin\NewsController;
-use App\Http\Controllers\Admin\BrandController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\ProductCategoryController;
-use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\RegionController;
@@ -69,8 +64,10 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function (){
             Route::resource('/sections', StadiumSectionController::class);
         });
 
+        Route::post('/storeCountry', [CountryController::class, 'store'])->name('storeCountry');
+        Route::post('/storeRegion', [RegionController::class, 'store'])->name('storeRegion');
+        Route::post('/storeArea', [AreaController::class, 'store'])->name('storeArea');
     });
-
 
 });
 
