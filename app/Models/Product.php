@@ -1,0 +1,73 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
+
+class Product extends Model  implements TranslatableContract
+{
+    use HasFactory;
+    use Translatable; // 2. To add translation methods
+
+    public $translatedAttributes = ['description'];
+
+    protected $fillable=[
+        'sport_category_id',
+        'team_id',
+        'product_category_id',
+        'brand_id',
+        'name',
+        'image',
+        'discount',
+        'price',
+        'status',
+        'like',
+        'sale_number',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
+    ];
+
+
+    public function sport_categories()
+    {
+        return $this->belongsTo(SportCategory::class, 'sport_category_id');
+    }
+
+    public function product_categories()
+    {
+        return $this->belongsTo(ProductCategory::class, 'product_category_id');
+    }
+
+    public function brands(){
+        return $this->belongsTo(Brand::class, 'brand_id'); // Model Name
+    }
+
+    public function sizes()
+    {
+        return $this->belongsToMany(Size::class, 'product_size');
+    }
+
+    public function teams()
+    {
+        return $this->belongsTo(Team::class, 'team_id');
+    }
+
+    const IMAGE_PATH = 'admin/images/products/';
+
+    public function deleteImage(): bool
+    {
+        $images = explode("|", $this->image);
+
+        foreach ($images as $img)
+        {
+            unlink(self::IMAGE_PATH . $img);
+        }
+
+        return true;
+    }
+}

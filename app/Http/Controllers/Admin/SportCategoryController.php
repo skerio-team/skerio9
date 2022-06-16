@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\SportCategory;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\StoreSportCategoryRequest;
+use App\Http\Requests\Admin\UpdateSportCategoryRequest;
 
 class SportCategoryController extends Controller
 {
@@ -13,6 +15,15 @@ class SportCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    function __construct()
+    {
+         $this->middleware('permission:sport_category-list|sport_category-create|sport_category-edit|sport_category-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:sport_category-create', ['only' => ['create','store']]);
+         $this->middleware('permission:sport_category-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:sport_category-delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $items=SportCategory::paginate(10);
@@ -35,7 +46,7 @@ class SportCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSportCategoryRequest $request)
     {
         $data=$request->all();
         $data['slug']=\Str::slug($request->uz['name']);
@@ -76,13 +87,14 @@ class SportCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateSportCategoryRequest $request, $id)
     {
         $SportCategory=SportCategory::find($id);
         $data=$request->all();
         $data['slug']=\Str::slug($request->uz['name']);
         $SportCategory->update($data);
-        return redirect()->route('admin.categories.index')->with('success', 'Sport Kategoriyasi tahrirlandi!');
+
+        return redirect()->route('admin.categories.index')->with('success', $SportCategory->name . ' - kategoriyasi tahrirlandi!');
     }
 
     /**

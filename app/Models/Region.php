@@ -27,4 +27,3 @@ class Region extends Model
         return $this->hasMany(Area::class);
     }
 }
-

@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Home;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\Admin\StoreHomeRequest;
+use App\Http\Requests\Admin\UpdateHomeRequest;
 class HomeController extends Controller
 {
     /**
@@ -13,6 +14,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    function __construct()
+    {
+         $this->middleware('permission:home-list|home-create|home-edit|home-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:home-create', ['only' => ['create','store']]);
+         $this->middleware('permission:home-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:home-delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $items=Home::paginate(10);
@@ -35,18 +45,16 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreHomeRequest $request)
     {
         $data=$request->all();
-       
+
         if ($request->hasFile('image')) {
             $file=$request->image;
-            $image_name=time().$file->getClientOriginalName();
+            $image_name=time().'_'.$file->getClientOriginalName();
             $file->move('admin/images/homes/', $image_name);
             $data['image']=$image_name;
         }
-
-        //  $data['slug']=\Str::slug($request->uz['title']);
 
         $home=Home::create($data);
 
@@ -84,10 +92,16 @@ class HomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateHomeRequest $request, $id)
     {
         $item=Home::find($id);
         $data=$request->all();
+        if ($request->hasFile('image')) {
+            $file=$request->image;
+            $image_name=time().'_'.$file->getClientOriginalName();
+            $file->move('admin/images/homes/', $image_name);
+            $data['image']=$image_name;
+        }
 
         $item->update($data);
         return redirect()->route('admin.homes.index')->with('success', 'Ma`lumot tahrirlandi!');
@@ -101,7 +115,16 @@ class HomeController extends Controller
      */
     public function destroy($id)
     {
-        Home::destroy($id);
-        return redirect()->route('admin.homes.index')->with('warning', "Ma`lumot o'chirildi!");
+        $model = Home::find($id);
+        if ($model->image == null)
+        {
+            $model->delete();
+        }
+        else {
+            $model->deleteImage();
+            $model->delete();
+        }
+        
+        return redirect()->route('admin.homes.index')->with('warning', $model->name . " - ma`lumoti o'chirildi!");
     }
 }

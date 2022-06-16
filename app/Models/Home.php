@@ -18,11 +18,25 @@ class Home extends Model implements TranslatableContract
 
     public $translatedAttributes = ['title','description'];
 
+    protected $table = 'homes';
     protected $fillable=[
-
         'image',
         'meta_title',
         'meta_description',
         'meta_keywords',
     ];
+
+    const IMAGE_PATH = 'admin/images/homes/';
+
+    public function deleteImage(): bool
+    {
+        $images = explode("|", $this->image);
+
+        foreach ($images as $img)
+        {
+            unlink(self::IMAGE_PATH . $img);
+        }
+
+        return true;
+    }
 }

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class SportComplexTranslation extends Model
 {
     use HasFactory;
+
+    protected $fillable=[
+        'description',
+    ];
+    
+    public $timestamps = false;
 }

@@ -16,8 +16,7 @@
   <link rel="stylesheet" href="/assets/css/custom.css">
   <link rel="stylesheet" href="/assets/css/components.css">
   <link rel='shortcut icon' type='image/x-icon' href='/assets/img/favicon.ico' />
-
-
+    {{-- <style> .error{border :2px solid red}    </style> --}}
 </head>
 
 <body>
@@ -50,18 +49,12 @@
               class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="/assets/img/user.png"
                 class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
             <div class="dropdown-menu dropdown-menu-right pullDown">
-              <div class="dropdown-title">Hello Sarah Smith</div>
-              <a href="profile.html" class="dropdown-item has-icon"> <i class="far
-										fa-user"></i> Profile
-              </a> <a href="timeline.html" class="dropdown-item has-icon"> <i class="fas fa-bolt"></i>
-                Activities
-              </a> <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
-                Settings
-              </a>
+              <div class="dropdown-title"> {{ Auth::user()->name }} </div>
+                <a href="profile.html" class="dropdown-item has-icon"> <i class="far fa-user"></i> Profile </a>
+                <a href="timeline.html" class="dropdown-item has-icon"> <i class="fas fa-bolt"></i> Activities </a>
+                <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i> Settings </a>
               <div class="dropdown-divider"></div>
-              <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
-                Logout
-              </a>
+              <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i> Logout </a>
             </div>
           </li>
         </ul>
@@ -69,7 +62,7 @@
       <div class="main-sidebar sidebar-style-2">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="index.html"> <img alt="image" src="/assets/img/logo.png" class="header-logo" /> <span
+            <a href="{{route('admin.dashboard')}}"> <img alt="image" src="/assets/img/logo.png" class="header-logo" /> <span
                 class="logo-name">Skerio</span>
             </a>
           </div>
@@ -78,48 +71,72 @@
             <li class="dropdown {{ request()->is('admin/dashboard*') ? 'active' : ''  }}">
               <a href="{{ Route('admin.dashboard') }}" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
             </li>
+
             <li class="dropdown {{ request()->is('admin/homes*') ? 'active' : ''  }}">
-              <a href="{{ route('admin.homes.index') }}" ><i class="far fa-newspaper"></i><span>Home</span></a>
-            </li>
-            <li class="dropdown {{ request()->is('admin/categories*') ? 'active' : ''  }}">
-              <a href="{{ route('admin.categories.index') }}" ><i class="far fa-newspaper"></i><span>Sport Kategoriyasi</span></a>
+              <a href="{{ route('admin.homes.index') }}" ><i class="fas fa-home"></i><span>Home</span></a>
             </li>
 
-            {{-- Locations --}}
+            <li class="dropdown {{ request()->is('admin/categories*') ? 'active' : ''  }}">
+              <a href="{{ route('admin.categories.index') }}" ><i class="fas fa-align-left"></i><span>Sport Kategoriyasi</span></a>
+            </li>
+
+            <li class="dropdown {{ request()->is('admin/productCategories*') ? 'active' : ''  }}">
+              <a href="{{ route('admin.productCategories.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulot kategoriyasi</span></a>
+            </li>
+
+            <li class="dropdown {{ request()->is('admin/sizes*') ? 'active' : ''  }}">
+              <a href="{{ route('admin.sizes.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulot O'lchamlari</span></a>
+            </li>
+
+            <li class="dropdown {{ request()->is('admin/team*') ? 'active' : ''  }}">
+              <a href="{{ route('admin.team.index') }}" ><i class="far fa-newspaper"></i><span>Jamoalar</span></a>
+            </li>
+
+            {{-- Sport Complexes --}}
             <li class="dropdown {{ request()->is('admin/complexes*') ? 'active' : ''  }}">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="user-check"></i><span> Sport majmuolari </span></a>
                 <ul class="dropdown-menu">
                   <li class="{{ request()->is('admin/complexes/locations*') ? 'active' : ''  }}">
                       <a href="{{ route('admin.complexes.locations.') }}"> <i class="fas fa-map-marker-alt"></i><span> Joylashuvlar </span></a>
                   </li>
-                  <li class="{{ request()->is('admin/complexes*') ? 'active' : ''  }}">
-                      <a href="{{ route('admin.complexes.index') }}"> <i class="fas fa-building"></i><span> Majmualar </span></a>
+                  <li class="{{ request()->is('admin/complexes/table*') ? 'active' : ''  }}">
+                      <a href="{{ route('admin.complexes.table.index') }}"> <i class="fas fa-building"></i><span> Majmualar </span></a>
                   </li>
                 </ul>
             </li>
 
-            {{-- <li class="dropdown {{ request()->is('admin/categories*') ? 'active' : ''  }}">
-              <a href="{{ route('admin.categories.index') }}" ><i class="fas fa-bars"></i><span>Kategoriyalar</span></a>
+            @can('user')
+
+            @endcan
+
+            @if (Auth::user()->hasAllPermissions(['role-list', 'user-list']))
+                <li class="menu-header"> Xavfsizlik </li>
+                <li class="dropdown">
+                <a href="#" class="menu-toggle nav-link has-dropdown"><i
+                    data-feather="user-check"></i><span> Administratsiya </span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ request()->is('admin/roles*') ? 'active' : ''  }}">
+                        <a href="{{ route('admin.roles.index') }}" > <i class="fas fa-universal-access"></i> Rollar</a>
+                    </li>
+                    <li class=" {{ request()->is('admin/users*') ? 'active' : ''  }}">
+                        <a href="{{ route('admin.users.index') }}" > <i class="fas fa-users-cog"></i><span>Foydalanuvchi&Admin</span></a>
+                    </li>
+                </ul>
+                </li>
+            @endif
+
+            {{-- Tickets --}}
+            <li class="dropdown {{ request()->is('admin/tickets*') ? 'active' : ''  }}">
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="user-check"></i><span> Chiptalar bo'limi </span></a>
+                <ul class="dropdown-menu">
+                  <li class="{{ request()->is('admin/tickets/table*') ? 'active' : ''  }}">
+                    <a href="{{ route('admin.tickets.table.index') }}"> <i class="fas fa-building"></i><span> Chiptalar </span></a>
+                  </li>
+                  <li class="dropdown {{ request()->is('admin/tickets/stadiums*') ? 'active' : ''  }}">
+                    <a href="{{ route('admin.tickets.stadiums.table.index') }}" ><i class="far fa-newspaper"></i><span> Stadionlar </span></a>
+                  </li>
+                </ul>
             </li>
-            <li class="dropdown {{ request()->is('admin/tags*') ? 'active' : ''  }}">
-              <a href="{{ route('admin.tags.index') }}" ><i class="fas fa-vector-square"></i><span>Taglar</span></a>
-            </li> --}}
-
-
-
-            {{-- <li class="menu-header">  </li> --}}
-            {{-- <li class="dropdown">
-              <a href="#" class="menu-toggle nav-link has-dropdown"><i
-                  data-feather="user-check"></i><span> Auth </span></a>
-              <ul class="dropdown-menu">
-                <li class="{{ request()->is('admin/roles*') ? 'active' : ''  }}">
-                    <a href="" > <i class="fas fa-universal-access"></i> Rollar</a>
-                </li>
-                <li class=" {{ request()->is('admin/users*') ? 'active' : ''  }}">
-                    <a href="" > <i class="fas fa-users-cog"></i><span>Foydalanuvchi&Admin</span></a>
-                </li>
-              </ul>
-            </li> --}}
 
           </ul>
         </aside>
@@ -247,5 +264,4 @@
 
 <!-- index.html  21 Nov 2019 03:47:04 GMT -->
 </html>
-
 

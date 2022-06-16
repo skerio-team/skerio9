@@ -12,18 +12,20 @@
 <div class="row">
     <div class="col-12">
       <div class="card">
+        @can('sport_category-create')
+            <div class="card-header d-flex justify-content-between">
+                <h5 align="center">Sport Kategoriyalari jadvali</h5>
 
-            <div class="card-header ">
-                <a class="btn btn-primary " href="{{ route('admin.categories.create')}}">Yaratish</a>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCategory">{{ __("Qo'shish") }}</button>
             </div>
+        @endcan
 
         <div class="card-body">
-            <h5 align="center">Sport Kategoriyalari jadvali</h5>
             @if (Session::has('success'))
                 <div class="alert alert-success alert-dismissible show fade">
                     <div class="alert-body">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                            <span>×</span>
+                            <span>&times;</span>
                         </button>
                         <h5><i class="icon fas fa-check"></i></h5>
                         {{session('success')}}
@@ -32,7 +34,7 @@
             @endif
             @if (Session::has('warning'))
                 <div class="alert alert-danger alert-dismissible show fade">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <span>×</span> </button>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <span>&times;</span> </button>
                     <h5><i class="icon fas fa-ban"></i> </h5>
                     {{session('warning')}}
                 </div>
@@ -57,22 +59,25 @@
                  <td>{{$item->translate('en')->name}}</td>
                  <td>{{$item->slug}}</td>
                  <td class=" d-flex justify-content-center">
-
-                    <a class="btn btn-info " href="{{route('admin.categories.edit', $item->id)}}">
-                        <i class="fas fa-pencil-alt"></i>
-                    </a>
-
-                    <form action="{{route('admin.categories.destroy', $item->id)}}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger deleteCat ">
-                            <i class="fas fa-trash"></i>
-                        </button>
-
-                    </form>
+                    @can('sport_category-edit')
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editCategory{{$item->id}}"><i class="fas fa-edit"></i></button>
+                    @endcan
+                    @can('sport_category-delete')
+                        <form action="{{route('admin.categories.destroy', $item->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger deleteCat ">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    @endcan
                 </td>
               </tr>
+              @include('admin.sport_category.edit')
+
               @endforeach
+
+              @include('admin.sport_category.create')
 
             </table>
           </div>
