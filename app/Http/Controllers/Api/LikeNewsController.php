@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Http\Resources\ProductResource;
+use App\Models\News;
+use App\Http\Resources\LikeNewsResource;
 
-class ProductController extends Controller
+class LikeNewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        
-        return ProductResource::collection(Product::all());
+       $like =  News::withCount('likes')->orderBy('likes_count', 'desc')->take(6)->get();
+
+        return LikeNewsResource::collection($like);
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class NewsResource extends JsonResource
+class LikeNewsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,7 +14,6 @@ class NewsResource extends JsonResource
      */
     public function toArray($request)
     {
-
         $id=$this->likes->all();
        
         $likes = count($id);
