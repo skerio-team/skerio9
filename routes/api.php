@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\SportCategoryController;
 use App\Http\Controllers\Api\newsController;
 use App\Http\Controllers\Api\LastNewsController;
 use App\Http\Controllers\Api\LikeNewsController;
+use App\Http\Controllers\Api\StatusNewsController;
 use App\Http\Controllers\Api\BrandController;
 use App\Http\Controllers\Api\ProductCategoryController;
 use App\Http\Controllers\Api\SizeController;
@@ -45,6 +46,8 @@ Route::resource('news', newsController::class);
 Route::resource('lastnews', LastNewsController::class);
 
 Route::resource('likenews', LikeNewsController::class);
+
+Route::resource('statusnews', StatusNewsController::class);
 
 Route::post('/like', [LikeController::class, 'store'])->middleware('auth:api');
 
