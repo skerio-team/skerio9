@@ -112,7 +112,7 @@
                                     <div class="box-header"><h5> Narx </h5></div>
                                     <div class="tab-content">
                                         <div class="tab-pane active">
-                                            <h6>{{$item->price}}</h6>
+                                            <h6>{{ number_format($item->price) }}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +142,7 @@
                                                 @else
                                                     {{ $i->letter }}
                                                 @endif </h6> --}}
-                                                <h6>  {{$i->number}} | {{ $i->letter }}   </h6>
+                                                <h6> {{$i->number}} | {{ $i->letter }} </h6>
                                             @endforeach
                                         </div>
                                     </div>
@@ -152,11 +152,15 @@
                                     <div class="box-header"><h5> Birikkan Sport Kategoriyalari </h5></div>
                                     <div class="tab-content">
                                         <div class="tab-pane active">
-                                            @if ($item->sport_categories)
+                                            <div class="tab-pane active uz-form">
                                                 <h6>{{ $item->sport_categories->translate('uz')->name }}</h6>
-                                            @else
-                                                <h6>Hech qaysi kategoriyaga bog`lanmagan!</h6>
-                                            @endif
+                                            </div>
+                                            <div class="tab-pane active en-form d-none">
+                                                <h6>{{ $item->sport_categories->translate('en')->name }}</h6>
+                                            </div>
+                                            <div class="tab-pane active ru-form d-none">
+                                                <h6>{{ $item->sport_categories->translate('ru')->name }}</h6>
+                                            </div>
                                         </div>
                                     </div>
                                 </div> <hr>
@@ -165,11 +169,15 @@
                                     <div class="box-header"><h5> Birikkan Mahsulot Kategoriyalari </h5></div>
                                     <div class="tab-content">
                                         <div class="tab-pane active">
-                                            @if ($item->product_categories)
+                                            <div class="tab-pane active uz-form">
                                                 <h6>{{ $item->product_categories->translate('uz')->name }}</h6>
-                                            @else
-                                                <h6>Hech qaysi kategoriyaga bog`lanmagan!</h6>
-                                            @endif
+                                            </div>
+                                            <div class="tab-pane active en-form d-none">
+                                                <h6>{{ $item->product_categories->translate('en')->name }}</h6>
+                                            </div>
+                                            <div class="tab-pane active ru-form d-none">
+                                                <h6>{{ $item->product_categories->translate('ru')->name }}</h6>
+                                            </div>
                                         </div>
                                     </div>
                                 </div> <hr>

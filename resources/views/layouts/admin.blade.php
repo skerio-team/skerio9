@@ -80,12 +80,24 @@
               <a href="{{ route('admin.categories.index') }}" ><i class="fas fa-align-left"></i><span>Sport Kategoriyasi</span></a>
             </li>
 
+            <li class="dropdown {{ request()->is('admin/news*') ? 'active' : ''  }}">
+              <a href="{{ route('admin.news.index') }}" ><i class="far fa-newspaper"></i><span> Yangiliklar </span></a>
+            </li>
+            
+            <li class="dropdown {{ request()->is('admin/brands*') ? 'active' : ''  }}">
+              <a href="{{ route('admin.brands.index') }}" ><i class="far fa-newspaper"></i><span> Brendlar </span></a>
+            </li>
+
             <li class="dropdown {{ request()->is('admin/productCategories*') ? 'active' : ''  }}">
               <a href="{{ route('admin.productCategories.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulot kategoriyasi</span></a>
             </li>
 
             <li class="dropdown {{ request()->is('admin/sizes*') ? 'active' : ''  }}">
               <a href="{{ route('admin.sizes.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulot O'lchamlari</span></a>
+            </li>
+
+            <li class="dropdown {{ request()->is('admin/products*') ? 'active' : ''  }}">
+              <a href="{{ route('admin.products.index') }}" ><i class="far fa-newspaper"></i><span> Mahsulotlar </span></a>
             </li>
 
             <li class="dropdown {{ request()->is('admin/team*') ? 'active' : ''  }}">

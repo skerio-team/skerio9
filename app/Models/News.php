@@ -36,7 +36,7 @@ class News extends Model implements TranslatableContract
 
     public function sport_categories()
     {
-        return $this->belongsTo(SportCategory::class);
+        return $this->belongsTo(SportCategory::class, 'sport_category_id');
     }
 
     const IMAGE_PATH = 'admin/images/news/';

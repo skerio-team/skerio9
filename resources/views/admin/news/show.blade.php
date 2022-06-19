@@ -58,6 +58,22 @@
                     <div class="card-body">
                         <div class="row d-flex justify-content-between">
                             <div class="col-md-5">
+                                
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Birikkan Kategoriya </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active uz-form">
+                                            <h6> {!! $item->sport_categories->translate('uz')->name !!} </h6>
+                                        </div>
+                                        <div class="tab-pane active en-form d-none">
+                                            <h6> {!! $item->sport_categories->translate('en')->name !!} </h6>
+                                        </div>
+                                        <div class="tab-pane active ru-form d-none">
+                                            <h6> {!! $item->sport_categories->translate('ru')->name !!} </h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
                                 <div class=" d-flex justify-content-between">
                                     <div class="box-header"><h5> Sarlovha</h5></div>
                                     <div class="tab-content">
@@ -123,22 +139,6 @@
                                                     <span class="badge badge-danger"> Oddiy </span>
                                                 @endif
                                             </h6>
-                                        </div>
-                                    </div>
-                                </div> <hr>
-        
-                                <div class=" d-flex justify-content-between">
-                                    <div class="box-header"><h5> Birikkan Kategoriyalar </h5></div>
-                                    <div class="tab-content">
-                                        <div class="tab-pane active">
-                                            @if ($item->sport_categories)
-            
-                                                @foreach ($item->sport_categories as $cat )
-                                                    <h6>  {{$cat->translate('uz')->name}}  </h6>
-                                                @endforeach
-                                            @else
-                                                Hech qaysi kategoriyaga bog'lanmagan!
-                                            @endif
                                         </div>
                                     </div>
                                 </div> <hr>

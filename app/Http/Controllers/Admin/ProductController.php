@@ -44,13 +44,14 @@ class ProductController extends Controller
     {
         $items=Product::all();
         $brands=Brand::all();
+        $sizes=Size::all();
         $letters=Size::whereNotNull('letter')->get();
         $numbers=Size::whereNotNull('number')->get();
         $teams=Team::all();
         $sport_categories=SportCategory::all();
         $product_categories=ProductCategory::all();
 
-        return view('admin.product.create', compact('items', 'sport_categories', 'product_categories', 'brands', 'letters', 'numbers', 'teams'));
+        return view('admin.product.create', compact('items', 'sport_categories', 'product_categories', 'brands', 'sizes', 'letters', 'numbers', 'teams'));
     }
 
     /**
@@ -59,9 +60,8 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProductRequest $request)
+    public function store(Request $request)
     {
-
         $data=$request->all();
         $images = array();
         $destination = public_path('admin/images/products/');

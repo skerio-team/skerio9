@@ -51,7 +51,7 @@
                         <div class="col-sm-12 col-md-4">
                             <div class="form-group">
                                 <label>Jamoa Rasmiy Sayti</label>
-                                <input type="text" class="form-control" placeholder="Manzilni kiriting" name="official_site" >
+                                <input type="text" class="form-control" placeholder="Rasmiy sayt nomini kiriting" name="official_site" >
                             </div>
                         </div>
                     </div>

@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\SportComplex\UpdateSportComplexRequest;
 use App\Models\Area;
 use App\Models\SportCategory;
 use App\Models\SportComplex;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 class SportComplexController extends Controller
@@ -101,7 +102,7 @@ class SportComplexController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSportComplexRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $item = SportComplex::find($id);
         $data = $request->all();
