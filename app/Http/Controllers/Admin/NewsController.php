@@ -54,7 +54,7 @@ class NewsController extends Controller
         $data=$request->all();
         if ($request->hasFile('image')) {
             $file=$request->image;
-            $image_name=time().$file->getClientOriginalName();
+            $image_name=time().'_'.$file->getClientOriginalName();
             $file->move('admin/images/news/', $image_name);
             $data['image']=$image_name;
         }
@@ -100,7 +100,7 @@ class NewsController extends Controller
         $data=$request->all();
         if ($request->hasFile('image')) {
             $file=$request->image;
-            $image_name=time().$file->getClientOriginalName();
+            $image_name=time().'_'.$file->getClientOriginalName();
             $file->move('admin/images/news/', $image_name);
             $data['image']=$image_name;
         }
@@ -116,7 +116,10 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        News::destroy($id);
+        $model = News::find($id);
+        $model->delete();
+        $model->deleteImage();
+
         return redirect()->route('admin.news.index')->with('warning', "Ma`lumot o'chirildi!");
     }
 }

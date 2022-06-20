@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->foreignId('sport_category_id')->constrained('sport_categories')->onDelete('cascade');
-            $table->foreignId('team_id')->constrained('teams')->onDelete('cascade');
+            $table->foreignId('team1_id')->constrained('teams')->onDelete('cascade');
+            $table->foreignId('team2_id')->constrained('teams')->onDelete('cascade');
             $table->foreignId('stadium_section_id')->constrained('stadium_sections')->onDelete('cascade');
             $table->string('name');
             $table->string('date');

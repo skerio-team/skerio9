@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
-use Illuminate\Http\Request;
 use App\Http\Requests\Admin\Brand\StoreBrandRequest;
 use App\Http\Requests\Admin\Brand\UpdateBrandRequest;
 
@@ -52,7 +51,7 @@ class BrandController extends Controller
 
         if ($request->hasFile('image')) {
             $file=$request->image;
-            $image_name=time().$file->getClientOriginalName();
+            $image_name=time().'_'.$file->getClientOriginalName();
             $file->move('admin/images/brands/', $image_name);
             $data['image']=$image_name;
         }
@@ -99,13 +98,13 @@ class BrandController extends Controller
         $data=$request->all();
         if ($request->hasFile('image')) {
             $file=$request->image;
-            $image_name=time().$file->getClientOriginalName();
+            $image_name=time().'_'.$file->getClientOriginalName();
             $file->move('admin/images/brands/', $image_name);
             $data['image']=$image_name;
         }
 
         $item->update($data);
-        return redirect()->route('admin.brands.index')->with('success', 'Ma`lumot tahrirlandi!');
+        return redirect()->route('admin.brands.index')->with('success', $item->name . ' - ma`lumoti tahrirlandi!');
     }
 
     /**
@@ -116,7 +115,16 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        Brand::destroy($id);
-        return redirect()->route('admin.brands.index')->with('warning', "Ma`lumot o'chirildi!");
+        $model = Brand::find($id);
+        if ($model->image == null)
+        {
+            $model->delete();
+        }
+        else {
+            $model->delete();
+            $model->deleteImage();
+        }
+        
+        return redirect()->route('admin.brands.index')->with('warning', $model->name . " - ma`lumoti o'chirildi!");
     }
 }

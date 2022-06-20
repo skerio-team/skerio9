@@ -178,7 +178,6 @@
                     @endforeach
                   </select>
                 </div>
-
                 <h4>Hududlar</h4>
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addArea">Qo'shish</button>
               </div>
@@ -223,7 +222,7 @@
             </div>
         </div>
     </div>
-
+    
     @endsection
 
 @section('scripts')

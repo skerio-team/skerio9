@@ -4,6 +4,7 @@
     <!-- DataTables -->
     <link rel="stylesheet" href="/assets/bundles/datatables/datatables.min.css">
     <link rel="stylesheet" href="/assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/bundles/select2/dist/css/select2.min.css') }}">
 
 @endsection
 
@@ -13,18 +14,18 @@
     <div class="col-12">
       <div class="card">
         @can('team-create')
-            <div class="card-header ">
-                <a class="btn btn-primary " href="{{ route('admin.team.create')}}">Yaratish</a>
+            <div class="card-header d-flex justify-content-between">
+                <h5 align="center">Jamoalar Ro'yxati</h5>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTeam">{{ __("Qo'shish") }}</button>
             </div>
         @endcan
 
         <div class="card-body">
-            <h5 align="center">Jamoalar Ro'yxati</h5>
             @if (Session::has('success'))
                 <div class="alert alert-success alert-dismissible show fade">
                     <div class="alert-body">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                            <span>×</span>
+                            <span>&times;</span>
                         </button>
                         <h5><i class="icon fas fa-check"></i></h5>
                         {{session('success')}}
@@ -33,7 +34,7 @@
             @endif
             @if (Session::has('warning'))
                 <div class="alert alert-danger alert-dismissible show fade">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <span>×</span> </button>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <span>&times;</span> </button>
                     <h5><i class="icon fas fa-ban"></i> </h5>
                     {{session('warning')}}
                 </div>
@@ -59,25 +60,34 @@
                  <td>{{$item->year}}</td>
                  <td>{{$item->address}}</td>
                  <td>{{$item->official_site}}</td>
-                 <td class=""><img src="/admin/images/teams/{{$item->image}}" width="100px" alt="" srcset=""></td>
+                 <td>
+                    @if (!empty($item->image))
+                            <img src="/admin/images/teams/{{$item->image}}" width="200px">
+                        @else 
+                            <h5 class="text-danger"> {{ __("Rasm mavjud emas!") }} </h5>
+                        @endif
+                 </td>
+                 {{-- <td class=""><img src="/admin/images/teams/{{$item->image}}" width="100px" alt="" srcset=""></td> --}}
                  <td class=" d-flex justify-content-center">
                     @can('team-edit')
-                        <a class="btn btn-info " href="{{route('admin.team.edit', $item->id)}}">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editTeam{{$item->id}}"><i class="fas fa-edit"></i></button>
                     @endcan
                     @can('team-delete')
                         <form action="{{route('admin.team.destroy', $item->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger deleteCat ">
-                                <i class="fas fa-trash"></i>
+                                <i class="fas fa-trash-alt"></i>
                             </button>
                         </form>
                     @endcan
                 </td>
               </tr>
+              @include('admin.teams.edit')
+
               @endforeach
+
+              @include('admin.teams.create')
 
             </table>
           </div>
@@ -97,4 +107,5 @@
     <script src="/assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
     <script src="/assets/bundles/jquery-ui/jquery-ui.min.js"></script>
     <script src="/assets/js/page/datatables.js"></script>
+    <script src="/assets/bundles/select2/dist/js/select2.full.min.js"></script>
 @endsection

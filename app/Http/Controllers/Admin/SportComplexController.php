@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\SportComplex\UpdateSportComplexRequest;
 use App\Models\Area;
 use App\Models\SportCategory;
 use App\Models\SportComplex;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 class SportComplexController extends Controller
@@ -54,7 +55,7 @@ class SportComplexController extends Controller
                 mkdir($destination, 0777, true);
             }
             foreach ($files as $file) {
-                $name = time().$file->getClientOriginalName();
+                $name = time().'_'.$file->getClientOriginalName();
                 $file->move($destination, $name);
                 $images[]   =   $name;
             }
@@ -101,7 +102,7 @@ class SportComplexController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSportComplexRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $item = SportComplex::find($id);
         $data = $request->all();
@@ -123,7 +124,7 @@ class SportComplexController extends Controller
 
             foreach ($files as $file) {
                 $name = time().'_'.$file->getClientOriginalName();
-                $file->move('admin/images/complexes/', $name);
+                $file->move($destination, $name);
                 $images[]   =   $name;
             }
             $data['image'] = implode("|",$images);

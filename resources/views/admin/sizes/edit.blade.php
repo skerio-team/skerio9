@@ -1,28 +1,20 @@
-@extends('layouts.admin')
-
-@section('content')
-
-    <div class="col-md-9">
-
-        <!-- general form elements -->
-        <div>
-            <a href="{{ route('admin.sizes.index') }}"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Ortga</button></a><br><br>
-        </div>
-        <div class="card card-primary">
-
-          <div class="card-header">
-            <h3 class="card-title">O'lchamni Tahrirlash</h3>
+{{-- Category Modal --}}
+<div class="modal fade" id="editSize{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="formModal"aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="formModal"> {{ __("Mahsulot o'lcham nomini tahrirlash") }} </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
           </div>
-          <!-- /.card-header -->
-
-          <!-- form start -->
-          <form action="{{route('admin.sizes.update', $item->id)}}" method="post">
-            @csrf
-            @method('PUT')
-            <div class="card-body">
-
+          <form action="{{ route('admin.sizes.update', $item->id) }}" method="POST">
+              @csrf
+              @method('PUT')
+              <div class="modal-body">
+              
                 <div class="form-group">
-                  <label>Raqam</label>
+                  <label> {{ __("Raqam") }} </label>
                   <input type="number" class="form-control" placeholder="Raqam kiriting" name="number" value="{{ old('number', $item->number) }}">
                     @error('number')
                         <div class="alert alert-danger">
@@ -32,7 +24,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label>Harf</label>
+                  <label> {{ __("Harf") }} </label>
                   <input type="text" class="form-control" placeholder="Harf kiriting" name="letter" value="{{ old('letter',$item->letter) }}" >
                     @error('letter')
                         <div class="alert alert-danger">
@@ -41,16 +33,12 @@
                     @enderror
                 </div>
 
-            </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary m-t-15 waves-effect"> {{ __("Saqlash") }} </button>
+                </div>
 
-            <!-- /.card-body -->
-            <div class="card-footer">
-              <button type="submit" class="btn btn-primary">Tasdiqlash</button>
-            </div>
+              </div>
           </form>
-
-
-        </div>
-        <!-- /.card -->
-    </div>
-@endsection
+      </div>
+  </div>
+</div>

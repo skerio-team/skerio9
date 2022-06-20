@@ -16,7 +16,8 @@ class Ticket extends Model implements TranslatableContract
     protected $table = 'tickets';
     protected $fillable = [
         'sport_category_id',
-        'team_id',
+        'team1_id',
+        'team2_id',
         'stadium_section_id',
         'name',
         'date',
@@ -35,9 +36,14 @@ class Ticket extends Model implements TranslatableContract
         return $this->belongsTo(SportCategory::class, 'sport_category_id');
     }
 
-    public function teams(): BelongsTo
+    public function teams1(): BelongsTo
     {
-        return $this->belongsTo(Team::class, 'team_id');
+        return $this->belongsTo(Team::class, 'team1_id');
+    }
+
+    public function teams2(): BelongsTo
+    {
+        return $this->belongsTo(Team::class, 'team2_id');
     }
 
     public function stadiumSections(): BelongsTo

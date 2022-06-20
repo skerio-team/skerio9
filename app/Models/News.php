@@ -13,10 +13,18 @@ class News extends Model implements TranslatableContract
     use HasFactory;
     use Translatable; // 2. To add translation methods
 
+    public function likes()
+    {
+       return $this->hasMany(Like::class, 'news_id');
+    }
+
     public $translatedAttributes = ['title','description'];
+
+    protected $table = 'news';
 
     protected $fillable=[
         'sport_category_id',
+        'continent_id',
         'image',
         'status',
         'special',
@@ -25,8 +33,23 @@ class News extends Model implements TranslatableContract
         'meta_description',
         'meta_keywords',
     ];
+
     public function sport_categories()
     {
-        return $this->belongsTo(SportCategory::class);
+        return $this->belongsTo(SportCategory::class, 'sport_category_id');
+    }
+
+    const IMAGE_PATH = 'admin/images/news/';
+
+    public function deleteImage(): bool
+    {
+        $images = explode("|", $this->image);
+
+        foreach ($images as $img)
+        {
+            unlink(self::IMAGE_PATH . $img);
+        }
+
+        return true;
     }
 }

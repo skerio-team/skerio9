@@ -39,6 +39,7 @@ class StoreTicketRequest extends FormRequest
     public function messages()
     {
         return [
+
             'image.required'                => 'Rasm tanlanishi kerak!',
             'image.image'                    => 'Rasm fayl tipida bo`lishligi kerak!',
             'image.max'                     => 'Rasm hajmi 5 mb.dan oshmasligi kerak!',
@@ -64,6 +65,7 @@ class StoreTicketRequest extends FormRequest
             'uz.description.string'         => 'O`zbekcha tavsif matn ko`rinishida bo`lishi kerak!',
             'ru.description.string'         => 'Ruscha tavsif matn ko`rinishida bo`lishi kerak!',
             'en.description.string'         => 'Inglizcha tavsif matn ko`rinishida bo`lishi kerak!',
+
         ];
     }
 }

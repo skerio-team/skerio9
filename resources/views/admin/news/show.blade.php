@@ -56,128 +56,132 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <hr>
+                        <div class="row d-flex justify-content-between">
+                            <div class="col-md-5">
+                                
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Birikkan Kategoriya </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active uz-form">
+                                            <h6> {!! $item->sport_categories->translate('uz')->name !!} </h6>
+                                        </div>
+                                        <div class="tab-pane active en-form d-none">
+                                            <h6> {!! $item->sport_categories->translate('en')->name !!} </h6>
+                                        </div>
+                                        <div class="tab-pane active ru-form d-none">
+                                            <h6> {!! $item->sport_categories->translate('ru')->name !!} </h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Sarlovha</h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active uz-form">
+                                            <h6> {{$item->translate('uz')->title}} </h6>
+                                        </div>
+                                        <div class="tab-pane active en-form d-none">
+                                            <h6> {{$item->translate('en')->title}} </h6>
+                                        </div>
+                                        <div class="tab-pane active ru-form d-none">
+                                            <h6> {{$item->translate('ru')->title}} </h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
 
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Sarlovha</h5></div><br>
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Tavsif</h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active uz-form">
+                                            <h6> {{ htmlspecialchars( $item->translate('uz')->description) }} </h6>
+                                        </div>
+                                        <div class="tab-pane active en-form d-none">
+                                            <h6> {!! $item->translate('en')->description !!} </h6>
+                                        </div>
+                                        <div class="tab-pane active ru-form d-none">
+                                            <h6> {!! $item->translate('ru')->description !!} </h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Yoqtirishlar soni</h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            <h6>{{$item->popularity}}</h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Status </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            <h6>
+                                                @if($item->status==1)
+                                                    <span class="badge badge-success">Faol</span>
+                                                @else
+                                                    <span class="badge badge-danger">Faol emas</span>
+                                                @endif
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Maxsus </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            <h6>
+                                                @if($item->special==1)
+                                                    <span class="badge badge-success"> Maxsus </span>
+                                                @else
+                                                    <span class="badge badge-danger"> Oddiy </span>
+                                                @endif
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Meta sarlovha </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            <h6>  {{$item->meta_title}}  </h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Meta tavsif </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            <h6>  {{$item->meta_description}}  </h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+        
+                                <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Meta kalitso'z (keywords) </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            <h6>  {{$item->meta_keywords}}  </h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+                            </div>
+
+                            <div class="col-md-5">
+                                <div class=" d-flex justify-content-center">
+                                    <div class="box-header"><h2> Rasmi </h2></div>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane active">
+                                        <img src="/admin/images/news/{{$item->image}}" width="100%">
+                                    </div>
+                                </div> <hr>
+                            </div>
                         </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active uz-form">
-                                <h6> {{$item->translate('uz')->title}} </h6>
-                            </div>
-                            <div class="tab-pane active en-form d-none">
-                                <h6> {{$item->translate('en')->title}} </h6>
-                            </div>
-                            <div class="tab-pane active ru-form d-none">
-                                <h6> {{$item->translate('ru')->title}} </h6>
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Tavsif</h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active uz-form">
-                                <h6> {{ htmlspecialchars( $item->translate('uz')->description) }} </h6>
-                            </div>
-                            <div class="tab-pane active en-form d-none">
-                                <h6> {!! $item->translate('en')->description !!} </h6>
-                            </div>
-                            <div class="tab-pane active ru-form d-none">
-                                <h6> {!! $item->translate('ru')->description !!} </h6>
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Rasm</h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                <img src="/admin/images/news/{{$item->image}}" width="15%" height="10%">
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Yoqtirishlar soni</h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                <h6>{{$item->popularity}}</h6>
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Status </h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                <h6>
-                                    @if($item->status==1)
-                                        <span class="badge badge-success">Faol</span>
-                                    @else
-                                        <span class="badge badge-danger">Faol emas</span>
-                                    @endif
-                                </h6>
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Maxsus </h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                <h6>
-                                    @if($item->special==1)
-                                        <span class="badge badge-success"> Maxsus </span>
-                                    @else
-                                        <span class="badge badge-danger"> Oddiy </span>
-                                    @endif
-                                </h6>
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Birikkan Kategoriyalar </h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                @if ($item->sport_categories)
-
-                                    @foreach ($item->sport_categories as $cat )
-                                        <h6>  {{$cat->translate('uz')->name}}  </h6>
-                                    @endforeach
-                                @else
-                                    Hech qaysi kategoriyaga bog'lanmagan!
-                                @endif
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Meta sarlovha </h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                <h6>  {{$item->meta_title}}  </h6>
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Meta tavsif </h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                <h6>  {{$item->meta_description}}  </h6>
-                            </div>
-                        </div> <hr>
-
-                        <div class=" d-flex justify-content-center">
-                            <div class="box-header"><h5> Meta kalitso'z (keywords) </h5></div><br>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active">
-                                <h6>  {{$item->meta_keywords}}  </h6>
-                            </div>
-                        </div> <hr>
 
                     </div>
                 </div>

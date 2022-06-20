@@ -7,6 +7,8 @@ use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\SportCategoryController;
 use App\Http\Controllers\Api\newsController;
 use App\Http\Controllers\Api\LastNewsController;
+use App\Http\Controllers\Api\LikeNewsController;
+use App\Http\Controllers\Api\StatusNewsController;
 use App\Http\Controllers\Api\BrandController;
 use App\Http\Controllers\Api\ProductCategoryController;
 use App\Http\Controllers\Api\SizeController;
@@ -16,6 +18,7 @@ use App\Http\Controllers\Api\CountController;
 use App\Http\Controllers\Api\ComplexController;
 use App\Http\Controllers\Api\RegionController;
 use App\Http\Controllers\Api\AreaController;
+use App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +44,14 @@ Route::resource('sportcategory', SportCategoryController::class);
 Route::resource('news', newsController::class);
 
 Route::resource('lastnews', LastNewsController::class);
+
+Route::resource('likenews', LikeNewsController::class);
+
+Route::resource('statusnews', StatusNewsController::class);
+
+Route::post('/like', [LikeController::class, 'store'])->middleware('auth:api');
+
+Route::get('/like', [LikeController::class, 'index'])->middleware('auth:api');
 
 Route::resource('brand', BrandController::class);
 

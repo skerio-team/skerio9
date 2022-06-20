@@ -18,7 +18,6 @@ class ProductCategory extends Model  implements TranslatableContract
         'slug',
     ];
 
-
     public function products()
     {
         return $this->hasMany(Product::class);

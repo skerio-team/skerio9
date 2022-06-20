@@ -56,7 +56,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="card-body">                             
+                            <div class="card-body">
                                 <div class="row d-flex justify-content-between">
                                     <div class="col-md-5">
 

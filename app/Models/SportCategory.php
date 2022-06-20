@@ -18,6 +18,8 @@ class SportCategory extends Model implements TranslatableContract
 
     public $translatedAttributes = ['name'];
 
+    protected $table = 'sport_categories';
+    
     protected $fillable=[
         'slug',
     ];
