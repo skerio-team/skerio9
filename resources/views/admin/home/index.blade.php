@@ -69,7 +69,7 @@
                         @endcan
 
                         @can('home-delete')
-                            <form action="{{route('admin.homes.destroy', $item->id)}}" method="item">
+                            <form action="{{route('admin.homes.destroy', $item->id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">

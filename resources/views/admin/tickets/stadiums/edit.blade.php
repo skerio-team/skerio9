@@ -14,9 +14,14 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="name">{{ __("Stadion nomi") }}</label>
-                        <input type="text" class="form-control" name="name" value="{{ $stadium['name'] }}">
+                        <input type="text" class="form-control" name="name" value="{{ old('name', $stadium['name']) }}">
+                        @error('name')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary m-t-15 waves-effect">{{ __("Saqlash") }}</button>  
+                    <button type="submit" class="btn btn-primary m-t-15 waves-effect">{{ __("Saqlash") }}</button>
                 </div>
             </form>
         </div>
