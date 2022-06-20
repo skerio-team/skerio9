@@ -30,26 +30,45 @@
                         <div class="col-sm-5 col-md-4">
                             <div class="form-group ">
                                 <label class="">Rasm</label>
-    
                                 <div id="image-preview" class="image-preview" style="width: 100%">
                                     <label for="image-upload" id="image-label">Rasm</label>
                                     <input type="file" name="image[]" id="image-upload" multiple />
                                 </div>
+                                @error('image')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
-  
+
                         <div class="col-sm-7 col-md-8">
                             <div class="form-group">
                                 <label for="name">Nomi</label>
-                                <input type="text" class="form-control" placeholder="Sektor nomi" name="name">
+                                <input type="text" class="form-control" placeholder="Sektor nomi" name="name" value="{{ old('name', $section->name) }}">
+                                @error('name')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="price">Narxi</label>
-                                <input type="number" class="form-control" placeholder="Sektor narxi" name="price">
+                                <input type="number" class="form-control" placeholder="Sektor narxi" name="price" value="{{ old('price', $section->price) }}">
+                                @error('price')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="capacity">Sig'imi</label>
-                                <input type="number" class="form-control" placeholder="Sektor sig'imi" name="capacity">
+                                <input type="number" class="form-control" placeholder="Sektor sig'imi" name="capacity" value="{{ old('capacity', $section->capacity) }}">
+                                @error('capacity')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -63,11 +82,11 @@
                             @foreach ($images as $img)
                                 <img src="/admin/images/tickets/stadium_sections/{{ $img }}" width="50%"> <hr>
                             @endforeach
-                        @else 
+                        @else
                             <h4 class="text-danger"> Rasm mavjud emas! </h4>
                         @endif
                     </div>
-  
+
                     <div class="form-group ">
                         <div class="">
                             <button type="submit" class="btn btn-primary m-t-15 waves-effect">{{ __("Qo'shish") }}</button>

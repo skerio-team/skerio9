@@ -24,7 +24,24 @@ class UpdateStadiumSectionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'stadium_id'=>  'required',
+            'name'      =>  'required',
+            'price'     =>  'required',
+            'capacity'  =>  'nullable',
+            'image'     =>  'max:5000|image|mimes:png,jpg,gif,jpeg',
+        ];
+    }
+
+    public function messages(){
+        return [
+            'stadium_id.required'   => 'Stadion Tanlanishi kerak!',
+            'name.required'         => 'Nomi kiritilishi kerak!',
+            'price.required'        => 'Stadion kiritlishi kerak!',
+            'capacity.required'     => 'Hajmi kiritlishi kerak!',
+
+            'image.file'            => 'Rasm fayl tipida bo`lishligi kerak!',
+            'image.max'             => 'Rasm hajmi 5 mb.dan oshmasligi kerak!',
+            'image.mimes'           => 'Rasm: png, jpg, jpeg, gif tipida bo`lishi kerak!',
         ];
     }
 }

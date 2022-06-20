@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\Ticket;
 
+use Astrotomic\Translatable\Validation\RuleFactory;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateTicketRequest extends FormRequest
@@ -23,15 +24,46 @@ class UpdateTicketRequest extends FormRequest
      */
     public function rules()
     {
+        return RuleFactory::make([
+            'image'              => 'file|max:5000|mimes:png,jpg,jpeg,gif',
+            'sport_category_id'  => 'required',
+            'team_id'           =>  'required',
+            'stadium_section_id'=>  'required',
+            'name'              =>  'required|string',
+            'date'              =>  'required',
+            'price'             =>  'required|numeric',
+            '%description%'      => 'required|string',
+        ]);
+    }
+
+    public function messages()
+    {
         return [
-            'sport_category_id' =>  ['required'],
-            'team_id'           =>  ['required'],
-            'stadium_section_id'=>  ['required'],
-            'name'              =>  ['required'],
-            'date'              =>  ['required'],
-            'price'             =>  ['required', 'numeric'],
-            'image.*'           =>  ['nullable|image|mimes:png,jpg,gif,jpeg'],
-            'status'            =>  ['required'],
+
+            'image.file'                    => 'Rasm fayl tipida bo`lishligi kerak!',
+            'image.max'                     => 'Rasm hajmi 5 mb.dan oshmasligi kerak!',
+            'image.mimes'                   => 'Rasm: png, jpg, jpeg, gif tipida bo`lishi kerak!',
+
+            'sport_category_id.required'    => 'Sport Kategoriyasi tanlanishi kerak!',
+
+            'team_id.required'              => 'Jamoa tanlanishi kerak!',
+
+            'stadium_section_id.required'   => 'Stadion maydoni tanlanishi kerak',
+
+            'name.required'                 => 'Nomi to`ldirilishi kerak!',
+            'name.string'                   => 'Nomi matn ko`rinishida bo`lishi kerak!',
+
+            'date.required'                 => 'Sana to`ldirilishi kerak!',
+
+            'price.required'                => 'Narx to`ldirilishi kerak!',
+
+            'uz.description.required'       => 'O`zbekcha tavsif to`ldirilishi kerak!',
+            'ru.description.required'       => 'Ruscha tavsif to`ldirilishi kerak!',
+            'en.description.required'       => 'Inglizcha tavsif to`ldirilishi kerak!',
+
+            'uz.description.string'         => 'O`zbekcha tavsif matn ko`rinishida bo`lishi kerak!',
+            'ru.description.string'         => 'Ruscha tavsif matn ko`rinishida bo`lishi kerak!',
+            'en.description.string'         => 'Inglizcha tavsif matn ko`rinishida bo`lishi kerak!',
         ];
     }
 }

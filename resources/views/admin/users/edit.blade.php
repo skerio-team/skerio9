@@ -13,6 +13,9 @@
       <div class="section-body">
         <div class="row">
           <div class="col-12">
+            <div>
+                <a href="{{ route('admin.users.index') }}"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Ortga</button></a><br><br>
+            </div>
             <div class="card">
                 <div class="row mb-2">
                     <div class="card-header col-sm-6">
@@ -59,7 +62,7 @@
 
                       <div class="form-group ">
                         <label> Birikkan Rollar </label>
-                           
+
                         <select name="roles[]" class="form-control select2 " multiple="">
                             @foreach ($roles as $role )
                                 <option

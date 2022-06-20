@@ -77,20 +77,15 @@
                             </a>
                         @endcan
                         @can('user-delete')
-                           {{-- @hasrole('GeneralAdmin')
-
-                           @endhasrole --}}
-                           @foreach ($user->roles as $role)
-                                @if ($role->id !== 1)
-                                    <form action="{{route('admin.users.destroy', $user->id)}}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
-                                @endif
-                           @endforeach
+                            @if ($user->email !== 'general@gmail.com')
+                                <form action="{{route('admin.users.destroy', $user->id)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            @endif
                         @endcan
                     </td>
                 </tr>

@@ -26,7 +26,7 @@
 
                     <div class="card-header col-sm-12 col-md-12 d-flex justify-content-between">
                         <a href="{{ route('admin.tickets.table.index') }}"><button class="btn btn-warning"><i class="fa fa-arrow-left" aria-hidden="true"></i> Ortga</button></a>
-                        
+
                         <h3> Chipta nomini tahrirlash</h3>
 
                         <ul class="nav nav-tabs float-sm-right " >
@@ -51,11 +51,11 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group ">
-                                    <label>Kategoriyaga biriktirish</label>
+                                    <label>Sport Kategoriyasiga biriktirish</label>
                                     <select name="sport_category_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                        <option value="{{ $tickets->sport_category_id }}"> {{ $tickets->sportCategories->name }} </option>
+                                            <option value=""> - </option>
                                         @foreach ($categories as $category )
-                                            <option value="{{$category->id}}">{{$category->translate('uz')->name}}</option>
+                                            <option {{ old('sport_category_id', $tickets->sport_category_id ) == $category->id ? 'selected' : '' }} value="{{$category->id}}">{{$category->translate('uz')->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -70,11 +70,18 @@
                                 <div class="form-group ">
                                     <label>1 - Jamoaga biriktirish</label>
                                     <select name="team_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+
                                         <option value="{{ $tickets->team1_id }}"> {{ $tickets->teams1->name }}  </option>
+
                                         @foreach ($teams as $team )
                                             <option value="{{$team->id}}"> {{$team->name}} </option>
                                         @endforeach
                                     </select>
+                                    @error('team_id')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group ">
@@ -85,13 +92,37 @@
                                             <option value="{{$section->id}}"> {{$section->name}} [{{$section->stadiums->name}}]</option>
                                         @endforeach
                                     </select>
+                                    @error('stadium_section_id')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
 
+
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group ">
+                                    <label >Nomi</label>
+                                    <input type="text" class="form-control " name="name" value="{{ $tickets->name }}">
+                                    @error('name')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+
+
                             <div class="col-sm-12 col-md-6 col-lg-6">                                
+
                                 <div class="form-group">
                                     <label>Sana</label>
                                     <input type="datetime-local" class="form-control" name="date" value="{{ $tickets->date }}">
+                                    @error('date')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group ">
@@ -107,28 +138,48 @@
                                 <div class="form-group ">
                                     <label>Narxi (1 kishi uchun)</label>
                                     <input type="number" class="form-control" name="price" value="{{ $tickets->price }}">
+                                    @error('price')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
-                        
+
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div id="uz-form" >
                                     <div class="form-group ">
                                         <label>Tavsif(UZ)</label>
-                                        <textarea name="uz[description]" id="" cols="30" rows="10"> {{ $tickets->translate('uz')->description }} </textarea>
+                                        <textarea name="uz[description]" id="" cols="30" rows="10"> {!! $tickets->translate('uz')->description !!} </textarea>
+                                        @error('uz.description')
+                                            <div class="alert alert-danger">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
-        
+
                                 <div id="ru-form" class="d-none">
                                     <div class="form-group ">
                                         <label>Tavsif(RU)</label>
-                                        <textarea name="ru[description]" id="" cols="30" rows="10"> {{ $tickets->translate('ru')->description }} </textarea>
+                                        <textarea name="ru[description]" id="" cols="30" rows="10"> {!! $tickets->translate('ru')->description !!} </textarea>
+                                        @error('ru.description')
+                                            <div class="alert alert-danger">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
-        
+
                                 <div id="en-form" class="d-none">
                                     <div class="form-group ">
                                         <label>Tavsif(EN)</label>
-                                        <textarea name="en[description]" id="" cols="30" rows="10"> {{ $tickets->translate('en')->description }} </textarea>
+                                        <textarea name="en[description]" id="" cols="30" rows="10"> {!! $tickets->translate('en')->description !!} </textarea>
+                                        @error('en.description')
+                                            <div class="alert alert-danger">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -143,7 +194,7 @@
                                     <label>Meta sarlovha(title)</label>
                                     <input type="text" class="form-control" name="meta_title" value="{{ $tickets->meta_title }}">
                                 </div>
-        
+
                                 <div class="form-group ">
                                     <label>Meta tavsif(description)</label>
                                     <input type="text" class="form-control" name="meta_description" value="{{ $tickets->meta_description }}">
@@ -157,15 +208,20 @@
                                     </select>
                                 </div>
                             </div>
-                        
+
                             <div class="col-sm-12 col-md-6 col-lg-4">
                                 <div class="form-group ">
                                     <label class="">Rasm</label>
-        
+
                                     <div id="image-preview" class="image-preview">
                                         <label for="image-upload" id="image-label">Rasm</label>
                                         <input type="file" name="image[]" id="image-upload" multiple />
                                     </div>
+                                    @error('image')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -179,18 +235,18 @@
                                             @php
                                                 $images=explode("|", $tickets->image);
                                             @endphp
-    
+
                                             @foreach ($images as $img)
                                                 <img src="/admin/images/tickets/{{ $img }}" width="100%"> <hr>
                                             @endforeach
-                                        @else 
+                                        @else
                                             <h5 class="text-danger"> Rasm mavjud emas! </h5>
                                         @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
-  
+
                         <div class="form-group ">
                             <div class="">
                                 <button type="submit" class="btn btn-primary">Tasdiqlash</button>

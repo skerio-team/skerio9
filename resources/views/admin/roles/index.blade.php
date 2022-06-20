@@ -62,12 +62,15 @@
                             </a>
                         @endcan
                         @can('role-delete')
+                            
                             <form action="{{route('admin.roles.destroy', $role->id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">
-                                    <i class="fas fa-trash"></i>
-                                </button>
+                                @if ($role->id !== 1)
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                @endif
                             </form>
                         @endcan
                     </td>

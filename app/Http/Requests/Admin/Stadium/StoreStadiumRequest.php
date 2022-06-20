@@ -24,7 +24,16 @@ class StoreStadiumRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'min:2', 'string', 'unique:stadiums,name'],
+            'name' => 'required|min:2|string|unique:stadiums,name',
+        ];
+    }
+
+    public function messages(){
+        return [
+            'name.required'       => 'Nomi kiritilishi kerak!',
+            'name.min'            => 'Nomi 2 ta belgidan ko`p bo`lishi kerak!',
+            'name.string'         => 'Nomi matn ko`rinishida bo`lishi kerak!',
+            'name.unique'         => 'Bu nom oldin tanlangan!',
         ];
     }
 }
