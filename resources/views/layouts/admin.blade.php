@@ -77,33 +77,46 @@
                 </li>
             @endcan
 
-            <li class="dropdown {{ request()->is('admin/categories*') ? 'active' : ''  }}">
-              <a href="{{ route('admin.categories.index') }}" ><i class="fas fa-align-left"></i><span>Sport Kategoriyasi</span></a>
-            </li>
+            @can('sport_category-list')
+                <li class="dropdown {{ request()->is('admin/categories*') ? 'active' : ''  }}">
+                <a href="{{ route('admin.categories.index') }}" ><i class="fas fa-align-left"></i><span>Sport Kategoriyasi</span></a>
+                </li>
+            @endcan
 
-            <li class="dropdown {{ request()->is('admin/news*') ? 'active' : ''  }}">
-              <a href="{{ route('admin.news.index') }}" ><i class="far fa-newspaper"></i><span> Yangiliklar </span></a>
-            </li>
+            @can('news-list')
+                <li class="dropdown {{ request()->is('admin/news*') ? 'active' : ''  }}">
+                    <a href="{{ route('admin.news.index') }}" ><i class="far fa-newspaper"></i><span> Yangiliklar </span></a>
+                </li>
+            @endcan
 
-            <li class="dropdown {{ request()->is('admin/brands*') ? 'active' : ''  }}">
-              <a href="{{ route('admin.brands.index') }}" ><i class="far fa-newspaper"></i><span> Brendlar </span></a>
-            </li>
+            @can('brand-list')
+                <li class="dropdown {{ request()->is('admin/brands*') ? 'active' : ''  }}">
+                    <a href="{{ route('admin.brands.index') }}" ><i class="far fa-newspaper"></i><span> Brendlar </span></a>
+                </li>
+            @endcan
 
-            <li class="dropdown {{ request()->is('admin/productCategories*') ? 'active' : ''  }}">
-              <a href="{{ route('admin.productCategories.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulot kategoriyasi</span></a>
-            </li>
+            @can('product-list')
+                <li class="dropdown {{ request()->is('admin/productCategories*') ? 'active' : ''  }}">
+                    <a href="{{ route('admin.productCategories.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulot kategoriyasi</span></a>
+                </li>
+            @endcan
 
-            <li class="dropdown {{ request()->is('admin/sizes*') ? 'active' : ''  }}">
-              <a href="{{ route('admin.sizes.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulot O'lchamlari</span></a>
-            </li>
+            @can('size-list')
+                <li class="dropdown {{ request()->is('admin/sizes*') ? 'active' : ''  }}">
+                    <a href="{{ route('admin.sizes.index') }}" ><i class="far fa-newspaper"></i><span>Mahsulot O'lchamlari</span></a>
+                </li>
+            @endcan
 
-            <li class="dropdown {{ request()->is('admin/products*') ? 'active' : ''  }}">
-              <a href="{{ route('admin.products.index') }}" ><i class="far fa-newspaper"></i><span> Mahsulotlar </span></a>
-            </li>
-
-            <li class="dropdown {{ request()->is('admin/team*') ? 'active' : ''  }}">
-              <a href="{{ route('admin.team.index') }}" ><i class="far fa-newspaper"></i><span>Jamoalar</span></a>
-            </li>
+            @can('product-list')
+                <li class="dropdown {{ request()->is('admin/products*') ? 'active' : ''  }}">
+                    <a href="{{ route('admin.products.index') }}" ><i class="far fa-newspaper"></i><span> Mahsulotlar </span></a>
+                </li>
+            @endcan
+            @can('team')
+                <li class="dropdown {{ request()->is('admin/team*') ? 'active' : ''  }}">
+                    <a href="{{ route('admin.team.index') }}" ><i class="far fa-newspaper"></i><span>Jamoalar</span></a>
+                </li>
+            @endcan
 
             {{-- Sport Complexes --}}
             <li class="dropdown {{ request()->is('admin/complexes*') ? 'active' : ''  }}">
