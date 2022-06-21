@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\SportCategory;
 use Illuminate\Support\Str;
 
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
@@ -21,6 +22,7 @@ class Home extends Model implements TranslatableContract
     protected $table = 'homes';
     protected $fillable=[
         'image',
+        'sport_category_id',
         'meta_title',
         'meta_description',
         'meta_keywords',
@@ -38,5 +40,9 @@ class Home extends Model implements TranslatableContract
         }
 
         return true;
+    }
+    public function sport_categories()
+    {
+        return $this->belongsTo(SportCategory::class, 'sport_category_id');
     }
 }

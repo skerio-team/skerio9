@@ -28,6 +28,7 @@ class UpdateHomeRequest extends FormRequest
             '%title%'       => 'required|string',
             '%description%' => 'required|string',
             'image'         => 'file|max:5000|mimes:png,jpg,jpeg,gif',
+            'sport_category_id'  => 'required',
         ]);
     }
 
@@ -50,6 +51,7 @@ class UpdateHomeRequest extends FormRequest
             'ru.description.string'   => 'Ruscha tavsif matn ko`rinishida bo`lishi kerak!',
             'en.description.string'   => 'Inglizcha tavsif matn ko`rinishida bo`lishi kerak!',
 
+            'sport_category_id.required' => 'Sport Kategoriyasi tanlanishi kerak!',
 
             'image.file'              => 'Rasm fayl tipida bo`lishligi kerak!',
             'image.max'               => 'Rasm hajmi 5 mb.dan oshmasligi kerak!',

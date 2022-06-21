@@ -63,7 +63,7 @@
         
                                     <div class="form-group">
                                         <label>Tavsif(UZ)</label>
-                                        <textarea name="uz[description]" cols="30" rows="10" value="{{ old('uz.description') }}">  </textarea>
+                                        <textarea name="uz[description]" cols="30" rows="10"> {!! old('uz.description') !!} </textarea>
                                     </div>
                                     @error('uz.description')
                                         <div class="alert alert-danger">
@@ -85,7 +85,7 @@
          
                                     <div class="form-group">
                                         <label>Tavsif(RU)</label>
-                                        <textarea name="ru[description]" cols="30" rows="10" value="{{ old('ru.description') }}">  </textarea>
+                                        <textarea name="ru[description]" cols="30" rows="10" > {!! old('ru.description') !!} </textarea>
                                     </div>
         
                                     @error('ru.description')
@@ -109,7 +109,7 @@
         
                                     <div class="form-group ">
                                         <label>Tavsif(EN)</label>
-                                        <textarea name="en[description]" cols="30" rows="10" value="{{ old('en.description') }}">  </textarea>
+                                        <textarea name="en[description]" cols="30" rows="10"> {!! old('en.description') !!} </textarea>
                                     </div>
                                     @error('en.description')
                                         <div class="alert alert-danger">
@@ -118,11 +118,6 @@
                                     @enderror
                                 </div>
                             </div>
-                            @error('image')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
                         </div>
                         
                         <div class="row">
@@ -141,8 +136,25 @@
                                     </div>
                                 @enderror
                             </div>
+                            
     
                             <div class="col-sm-12 col-md-8">
+                               
+                                <div class="form-group ">
+                                    <label>Kategoriyaga biriktirish</label>
+                                    <select name="sport_category_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                        @foreach ($categories as $category )
+                                            <option value="{{$category->id}}" {{ old('sport_category_id' ) == $category->id ? 'selected' : '' }}>{{$category->translate('uz')->name}}</option>
+                                        @endforeach
+                                        <option value="0"> </option>
+                                    </select>
+                                    @error('sport_category_id')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                
                                 <div class="form-group ">
                                     <label>Meta sarlovha(title)</label>
                                     <input type="text" class="form-control" placeholder="Meta Sarlovhani kiriting" name="meta_title" value="{{ old('meta_title') }}" >

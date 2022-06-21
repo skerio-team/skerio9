@@ -62,6 +62,21 @@
                             <div class="col-md-5">
 
                                 <div class=" d-flex justify-content-between">
+                                    <div class="box-header"><h5> Birikkan Kategoriya </h5></div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active uz-form">
+                                            <h6> {!! $item->sport_categories->translate('uz')->name !!} </h6>
+                                        </div>
+                                        <div class="tab-pane active en-form d-none">
+                                            <h6> {!! $item->sport_categories->translate('en')->name !!} </h6>
+                                        </div>
+                                        <div class="tab-pane active ru-form d-none">
+                                            <h6> {!! $item->sport_categories->translate('ru')->name !!} </h6>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+
+                                <div class=" d-flex justify-content-between">
                                     <div class="box-header"><h5> Sarlovha</h5></div>
                                     <div class="tab-content">
                                         <div class="tab-pane active uz-form">

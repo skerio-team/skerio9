@@ -30,6 +30,7 @@ class StoreHomeRequest extends FormRequest
             '%title%'       => 'required|string',
             '%description%' => 'required|string',
             'image'         => 'required|file|max:5000|mimes:png,jpg,jpeg,gif',
+            'sport_category_id'  => 'required',
         ]);
 
     }
@@ -51,6 +52,8 @@ class StoreHomeRequest extends FormRequest
             'uz.description.string'   => 'O`zbekcha tavsif matn ko`rinishida bo`lishi kerak!',
             'ru.description.string'   => 'Ruscha tavsif matn ko`rinishida bo`lishi kerak!',
             'en.description.string'   => 'Inglizcha tavsif matn ko`rinishida bo`lishi kerak!',
+
+            'sport_category_id.required' => 'Sport Kategoriyasi tanlanishi kerak!',
 
             'image.required'          => 'Rasm tanlanishi kerak!',
             'image.file'              => 'Rasm fayl tipida bo`lishligi kerak!',

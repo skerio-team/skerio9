@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Home;
+use App\Models\SportCategory;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\Home\StoreHomeRequest;
 use App\Http\Requests\Admin\Home\UpdateHomeRequest;
@@ -36,7 +37,8 @@ class HomeController extends Controller
      */
     public function create()
     {
-        return view('admin.home.create');
+        $categories=SportCategory::all();
+        return view('admin.home.create', compact('categories'));
     }
 
     /**
@@ -82,7 +84,8 @@ class HomeController extends Controller
     public function edit($id)
     {
         $item=Home::whereId($id)->first();
-        return view('admin.home.edit',compact('item'));
+        $categories=SportCategory::all();
+        return view('admin.home.edit',compact('item', 'categories'));
     }
 
     /**

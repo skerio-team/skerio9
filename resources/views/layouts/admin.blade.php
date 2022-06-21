@@ -112,7 +112,7 @@
                     <a href="{{ route('admin.products.index') }}" ><i class="far fa-newspaper"></i><span> Mahsulotlar </span></a>
                 </li>
             @endcan
-            @can('team')
+            @can('team-list')
                 <li class="dropdown {{ request()->is('admin/team*') ? 'active' : ''  }}">
                     <a href="{{ route('admin.team.index') }}" ><i class="far fa-newspaper"></i><span>Jamoalar</span></a>
                 </li>

@@ -28,6 +28,10 @@ class SportCategory extends Model implements TranslatableContract
         return $this->hasMany(News::class); // Model Name
     }
 
+    public function homes(){
+        return $this->hasMany(Home::class); // Model Name
+    }
+
     public function sportComplexes(): HasMany
     {
         return $this->HasMany(SportComplex::class);

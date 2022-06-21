@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('homes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('sport_category_id')->nullable();
             $table->string('image')->nullable();
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
