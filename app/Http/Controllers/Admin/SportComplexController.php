@@ -18,6 +18,13 @@ class SportComplexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    {
+         $this->middleware('permission:sport_complex-list|sport_complex-create|sport_complex-edit|sport_complex-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:sport_complex-create', ['only' => ['create','store']]);
+         $this->middleware('permission:sport_complex-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:sport_complex-delete', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $complexes  =   SportComplex::paginate(10);

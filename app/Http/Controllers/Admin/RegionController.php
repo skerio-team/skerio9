@@ -14,6 +14,14 @@ class RegionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    {
+         $this->middleware('permission:region-list|region-create|region-edit|region-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:region-create', ['only' => ['create','store']]);
+         $this->middleware('permission:region-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:region-delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         //

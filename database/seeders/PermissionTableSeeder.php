@@ -60,10 +60,55 @@ class PermissionTableSeeder extends Seeder
             'sport_category-edit',
             'sport_category-delete',
 
+            // << sport-complexes
+            'sport_complex-list',
+            'sport_complex-create',
+            'sport_complex-edit',
+            'sport_complex-delete',
+
+            'location-list',
+            'location-create',
+            'location-edit',
+            'location-delete',
+
+            'area-list',
+            'area-create',
+            'area-edit',
+            'area-delete',
+
+            'country-list',
+            'country-create',
+            'country-edit',
+            'country-delete',
+
+            'region-list',
+            'region-create',
+            'region-edit',
+            'region-delete',
+            // >>end-sport-complexes
+
             'team-list',
             'team-create',
             'team-edit',
             'team-delete',
+
+            // << ticket
+            'ticket-list',
+            'ticket-create',
+            'ticket-edit',
+            'ticket-delete',
+
+            'stadium-list',
+            'stadium-create',
+            'stadium-edit',
+            'stadium-delete',
+
+            'section-list',
+            'section-create',
+            'section-edit',
+            'section-delete',
+
+            // end-ticket  >>
 
             'user-list',
             'user-create',
