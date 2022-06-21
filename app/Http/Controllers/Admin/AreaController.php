@@ -14,6 +14,14 @@ class AreaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    {
+         $this->middleware('permission:area-list|area-create|area-edit|area-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:area-create', ['only' => ['create','store']]);
+         $this->middleware('permission:area-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:area-delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         //

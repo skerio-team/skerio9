@@ -15,6 +15,14 @@ class StadiumController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    {
+         $this->middleware('permission:stadium-list|stadium-create|stadium-edit|stadium-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:stadium-create', ['only' => ['create','store']]);
+         $this->middleware('permission:stadium-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:stadium-delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $stadiums = Stadium::orderBy('name', 'asc')->paginate(10, ['*'], 'stadiums');

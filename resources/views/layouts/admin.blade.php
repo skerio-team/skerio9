@@ -71,10 +71,11 @@
             <li class="dropdown {{ request()->is('admin/dashboard*') ? 'active' : ''  }}">
               <a href="{{ Route('admin.dashboard') }}" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
             </li>
-
-            <li class="dropdown {{ request()->is('admin/homes*') ? 'active' : ''  }}">
-              <a href="{{ route('admin.homes.index') }}" ><i class="fas fa-home"></i><span>Home</span></a>
-            </li>
+            @can('home-list')
+                <li class="dropdown {{ request()->is('admin/homes*') ? 'active' : ''  }}">
+                    <a href="{{ route('admin.homes.index') }}" ><i class="fas fa-home"></i><span>Home</span></a>
+                </li>
+            @endcan
 
             <li class="dropdown {{ request()->is('admin/categories*') ? 'active' : ''  }}">
               <a href="{{ route('admin.categories.index') }}" ><i class="fas fa-align-left"></i><span>Sport Kategoriyasi</span></a>
@@ -83,7 +84,7 @@
             <li class="dropdown {{ request()->is('admin/news*') ? 'active' : ''  }}">
               <a href="{{ route('admin.news.index') }}" ><i class="far fa-newspaper"></i><span> Yangiliklar </span></a>
             </li>
-            
+
             <li class="dropdown {{ request()->is('admin/brands*') ? 'active' : ''  }}">
               <a href="{{ route('admin.brands.index') }}" ><i class="far fa-newspaper"></i><span> Brendlar </span></a>
             </li>
@@ -116,10 +117,6 @@
                   </li>
                 </ul>
             </li>
-
-            @can('user')
-
-            @endcan
 
             @if (Auth::user()->hasAllPermissions(['role-list', 'user-list']))
                 <li class="menu-header"> Xavfsizlik </li>

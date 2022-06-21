@@ -17,6 +17,14 @@ class TicketController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    {
+         $this->middleware('permission:ticket-list|ticket-create|ticket-edit|ticket-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:ticket-create', ['only' => ['create','store']]);
+         $this->middleware('permission:ticket-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:ticket-delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $tickets = Ticket::paginate(10);

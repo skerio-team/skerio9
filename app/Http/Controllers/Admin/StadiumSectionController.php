@@ -14,6 +14,14 @@ class StadiumSectionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    {
+         $this->middleware('permission:section-list|section-create|section-edit|section-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:section-create', ['only' => ['create','store']]);
+         $this->middleware('permission:section-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:section-delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         //
