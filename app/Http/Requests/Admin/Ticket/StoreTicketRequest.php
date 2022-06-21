@@ -27,7 +27,8 @@ class StoreTicketRequest extends FormRequest
         return RuleFactory::make([
             'image.*'   =>  ['nullable|image|mimes:png,jpg,gif,jpeg'],
             'sport_category_id'  => 'required',
-            'team_id'           =>  'required',
+            'team1_id'           =>  'required',
+            'team2_id'           =>  'required',
             'stadium_section_id'=>  'required',
             'name'              =>  'required|string',
             'date'              =>  'required',
@@ -47,7 +48,8 @@ class StoreTicketRequest extends FormRequest
 
             'sport_category_id.required'    => 'Sport Kategoriyasi tanlanishi kerak!',
 
-            'team_id.required'              => 'Jamoa tanlanishi kerak!',
+            'team1_id.required'              => '1- Jamoa tanlanishi kerak!',
+            'team2_id.required'              => '2- Jamoa tanlanishi kerak!',
 
             'stadium_section_id.required'   => 'Stadion maydoni tanlanishi kerak',
 
