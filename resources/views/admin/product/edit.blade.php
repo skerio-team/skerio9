@@ -138,6 +138,7 @@
                                                 <div class="form-group ">
                                                     <label>Raqamli Mahsulot O'lchamiga biriktirish</label>
                                                     <select name="size_id[]" class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="o'lchamlarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                                        <option value="0">Hech qaysi</option>
                                                         @foreach ($numbers as $n )
                                                             <option
                                                                 @foreach($item->sizes as $item_size)
@@ -154,6 +155,7 @@
                                                 <div class="form-group ">
                                                     <label>Harfli Mahsulot O'lchamiga biriktirish</label>
                                                     <select name="size_id[]" class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="o'lchamlarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                                        <option value="0">Hech qaysi</option>
                                                         @foreach ($letters as $l )
                                                             <option
                                                                 @foreach($item->sizes as $item_size)

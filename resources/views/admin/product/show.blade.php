@@ -115,7 +115,7 @@
                                             <h6>{{ number_format($item->price) }}</h6>
                                         </div>
                                     </div>
-                                </div>
+                                </div> <hr>
         
                                 <div class=" d-flex justify-content-between">
                                     <div class="box-header"><h5> Status </h5></div>
