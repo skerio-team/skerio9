@@ -106,7 +106,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-4 col-md-4 col-lg-4">                
+                                    <div class="col-sm-4 col-md-4 col-lg-4">
                                         <div class="form-group">
                                             <label>Narx</label>
                                             <input type="number" class="form-control" placeholder="Narxni kiriting" name="price" value="{{ $item->price }}">
@@ -129,7 +129,7 @@
                                             <label class="">Rasm</label>
                                             <div id="image-preview" class="image-preview">
                                                 <label for="image-upload" id="image-label">Rasm</label>
-                                                <input type="file" name="image" id="image-upload" />
+                                                <input type="file" name="image[]" id="image-upload" multiple />
                                             </div>
                                         </div>
 
@@ -177,14 +177,14 @@
                                                 <textarea name="uz[description]" id="" cols="30" rows="10"> {{ $item->translate('uz')->description }} </textarea>
                                             </div>
                                         </div>
-                
+
                                         <div id="ru-form" class="d-none">
                                             <div class="form-group ">
                                                 <label>Tavsif(RU)</label>
                                                 <textarea name="ru[description]" id="" cols="30" rows="10"> {{ $item->translate('ru')->description }} </textarea>
                                             </div>
                                         </div>
-                
+
                                         <div id="en-form" class="d-none">
                                             <div class="form-group ">
                                                 <label>Tavsif(EN)</label>

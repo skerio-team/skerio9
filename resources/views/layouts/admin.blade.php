@@ -107,19 +107,20 @@
                 </li>
             @endcan
 
-            @can('product-list')
-                <li class="dropdown {{ request()->is('admin/products*') ? 'active' : ''  }}">
-                    <a href="{{ route('admin.products.index') }}" ><i class="fas fa-boxes"></i><span> Mahsulotlar </span></a>
-                </li>
-            @endcan
             @can('team-list')
                 <li class="dropdown {{ request()->is('admin/team*') ? 'active' : ''  }}">
                     <a href="{{ route('admin.team.index') }}" ><i class="fas fa-users"></i><span>Jamoalar</span></a>
                 </li>
             @endcan
-                
+
+            @can('product-list')
+                <li class="dropdown {{ request()->is('admin/products*') ? 'active' : ''  }}">
+                    <a href="{{ route('admin.products.index') }}" ><i class="fas fa-boxes"></i><span> Mahsulotlar </span></a>
+                </li>
+            @endcan
+
             {{-- Sport Complexes --}}
-            @can('sport_complex-list') 
+            @can('sport_complex-list')
               <li class="dropdown {{ request()->is('admin/complexes*') ? 'active' : ''  }}">
                 <a href="#" class="menu-toggle nav-link has-dropdown"> <i class="fas fa-dumbbell"></i> <span> Sport majmuolari </span></a>
                   <ul class="dropdown-menu">
@@ -133,7 +134,7 @@
               </li>
             @endcan
 
-            @can('ticket-list') 
+            @can('ticket-list')
               {{-- Tickets --}}
               <li class="dropdown {{ request()->is('admin/tickets*') ? 'active' : ''  }}">
                 <a href="#" class="menu-toggle nav-link has-dropdown"><i class="fas fa-ticket-alt"></i><span> Chiptalar bo'limi </span></a>

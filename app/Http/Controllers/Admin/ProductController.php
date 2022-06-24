@@ -12,6 +12,7 @@ use App\Models\Team;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\Product\UpdateProductRequest;
 use App\Http\Requests\Admin\Product\StoreProductRequest;
+use App\Repositories\Interfaces\ProductRepositoryInterface;
 
 class ProductController extends Controller
 {
@@ -20,9 +21,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    function __construct()
+    public $productRepo;
+    function __construct(ProductRepositoryInterface $productRepository)
     {
+         $this->productRepo=$productRepository;
          $this->middleware('permission:product-list|product-create|product-edit|product-delete', ['only' => ['index','show']]);
          $this->middleware('permission:product-create', ['only' => ['create','store']]);
          $this->middleware('permission:product-edit', ['only' => ['edit','update']]);
@@ -31,7 +33,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $items=Product::paginate(10);
+         $items=$this->productRepo->getPaginatedItems();
         return view('admin.product.index', compact('items'));
     }
 
@@ -42,14 +44,14 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $items=Product::all();
-        $brands=Brand::all();
-        $sizes=Size::all();
-        $letters=Size::whereNotNull('letter')->get();
-        $numbers=Size::whereNotNull('number')->get();
-        $teams=Team::all();
-        $sport_categories=SportCategory::all();
-        $product_categories=ProductCategory::all();
+        $items=$this->productRepo->getAllProducts();
+        $brands=$this->productRepo->getAllBrands();
+        $sizes=$this->productRepo->getAllSizes();
+        $letters=$this->productRepo->getNotNullLetters();
+        $numbers=$this->productRepo->getNotNullNumbers();
+        $teams=$this->productRepo->getAllTeams();
+        $sport_categories=$this->productRepo->getAllSportCategories();
+        $product_categories=$this->productRepo->getAllProductCategories();
 
         return view('admin.product.create', compact('items', 'sport_categories', 'product_categories', 'brands', 'sizes', 'letters', 'numbers', 'teams'));
     }
@@ -60,34 +62,9 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        $data=$request->all();
-        $images = array();
-        $destination = public_path('admin/images/products/');
-        if ($files = $request->file('image'))
-        {
-            if (!file_exists($destination))
-            {
-                mkdir($destination, 0777, true);
-            }
-            foreach ($files as $file) {
-                $name = time().'_'.$file->getClientOriginalName();
-                $file->move($destination, $name);
-                $images[]   =   $name;
-            }
-        }
-        $data['image'] = implode("|",$images);
-
-        if($data['discount'] > "0"){
-            $d=$data['discount'];
-            $p=$data['price'];
-            $data['price']=$p-($p*$d/100);
-        }
-
-        $product = Product::create($data);
-        $product->sizes()->attach($request->size_id);
-
+        $this->productRepo->store($request);
         return redirect()->route('admin.products.index')->with('success', 'Ma`lumot yaratildi!');
     }
 
@@ -99,7 +76,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $item=Product::whereId($id)->first();
+        $item=$this->productRepo->findOne($id);
         return view('admin.product.show', compact('item'));
     }
 
@@ -111,16 +88,15 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $item=Product::whereId($id)->first();
-        $items=Product::all();
-        $brands=Brand::all();
-        $letters=Size::whereNotNull('letter')->get();
-        $numbers=Size::whereNotNull('number')->get();
+        $item=$this->productRepo->findOne($id);
+        $items=$this->productRepo->getAllProducts();
+        $brands=$this->productRepo->getAllBrands();
+        $letters=$this->productRepo->getNotNullLetters();
+        $numbers=$this->productRepo->getNotNullNumbers();
+        $teams=$this->productRepo->getAllTeams();
+        $sport_categories=$this->productRepo->getAllSportCategories();
+        $product_categories=$this->productRepo->getAllProductCategories();
 
-        $teams=Team::all();
-
-        $sport_categories=SportCategory::all();
-        $product_categories=ProductCategory::all();
         return view('admin.product.edit',compact('item', 'items','sport_categories', 'product_categories', 'brands', 'numbers', 'letters', 'teams'));
     }
 
@@ -167,6 +143,8 @@ class ProductController extends Controller
         $item->sizes()->sync($request->size_id);
         $item->update($data);
         return redirect()->route('admin.products.index')->with('success', $item->name . ' - ma`lumoti tahrirlandi!');
+        // $this->productRepo->update($request, $id);
+        // return redirect()->route('admin.products.index')->with('success', $request->name . ' - ma`lumoti tahrirlandi!');
     }
 
     /**
@@ -177,17 +155,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $item = Product::find($id);
-        $item->sizes()->detach();
-        if ($item->image == null)
-        {
-            $item->delete();
-        }
-        else {
-            $item->deleteImage();
-            $item->delete();
-        }
-
+        $item=$this->productRepo->findOne($id);
+        $this->productRepo->delete($id);
         return redirect()->route('admin.products.index')->with('warning', $item->name . " - ma`lumoti o'chirildi!");
     }
 }
