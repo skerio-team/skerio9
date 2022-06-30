@@ -31,7 +31,7 @@ class StoreProductRequest extends FormRequest
             'sport_category_id'  => 'required',
             'product_category_id'=> 'required',
             'price'              => 'required',
-            'image'              => 'required|file|max:5000|mimes:png,jpg,jpeg,gif',
+            'image*'              => 'required|image|max:5000|mimes:png,jpg,jpeg,gif',
         ]);
 
     }

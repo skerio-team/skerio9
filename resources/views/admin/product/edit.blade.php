@@ -106,7 +106,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-4 col-md-4 col-lg-4">                
+                                    <div class="col-sm-4 col-md-4 col-lg-4">
                                         <div class="form-group">
                                             <label>Narx</label>
                                             <input type="number" class="form-control" placeholder="Narxni kiriting" name="price" value="{{ $item->price }}">
@@ -129,7 +129,7 @@
                                             <label class="">Rasm</label>
                                             <div id="image-preview" class="image-preview">
                                                 <label for="image-upload" id="image-label">Rasm</label>
-                                                <input type="file" name="image" id="image-upload" />
+                                                <input type="file" name="image[]" id="image-upload" multiple />
                                             </div>
                                         </div>
 
@@ -138,6 +138,7 @@
                                                 <div class="form-group ">
                                                     <label>Raqamli Mahsulot O'lchamiga biriktirish</label>
                                                     <select name="size_id[]" class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="o'lchamlarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                                        <option value="0">Hech qaysi</option>
                                                         @foreach ($numbers as $n )
                                                             <option
                                                                 @foreach($item->sizes as $item_size)
@@ -154,6 +155,7 @@
                                                 <div class="form-group ">
                                                     <label>Harfli Mahsulot O'lchamiga biriktirish</label>
                                                     <select name="size_id[]" class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="o'lchamlarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                                        <option value="0">Hech qaysi</option>
                                                         @foreach ($letters as $l )
                                                             <option
                                                                 @foreach($item->sizes as $item_size)
@@ -175,14 +177,14 @@
                                                 <textarea name="uz[description]" id="" cols="30" rows="10"> {{ $item->translate('uz')->description }} </textarea>
                                             </div>
                                         </div>
-                
+
                                         <div id="ru-form" class="d-none">
                                             <div class="form-group ">
                                                 <label>Tavsif(RU)</label>
                                                 <textarea name="ru[description]" id="" cols="30" rows="10"> {{ $item->translate('ru')->description }} </textarea>
                                             </div>
                                         </div>
-                
+
                                         <div id="en-form" class="d-none">
                                             <div class="form-group ">
                                                 <label>Tavsif(EN)</label>

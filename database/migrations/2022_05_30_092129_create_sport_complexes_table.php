@@ -20,6 +20,14 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('image');
             $table->string('phone');
+            $table->string('address');
+            $table->string('location');
+            $table->string('price');
+            $table->string('working_status');
+            $table->string('dress_room');
+            $table->string('food');
+            $table->string('bath_room');
+            $table->string('sit_place');
             $table->string('meta_tag');
             $table->string('meta_title');
             $table->string('meta_description');

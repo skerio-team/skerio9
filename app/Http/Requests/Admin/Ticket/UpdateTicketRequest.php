@@ -25,7 +25,7 @@ class UpdateTicketRequest extends FormRequest
     public function rules()
     {
         return RuleFactory::make([
-            'image'              => 'file|max:5000|mimes:png,jpg,jpeg,gif',
+            'image*'              => 'image|max:5000|mimes:png,jpg,jpeg,gif',
             'sport_category_id'  => 'required',
             'team1_id'           =>  'required',
             'team2_id'           =>  'required',
@@ -41,7 +41,7 @@ class UpdateTicketRequest extends FormRequest
     {
         return [
 
-            'image.file'                    => 'Rasm fayl tipida bo`lishligi kerak!',
+            'image.image'                    => ' Rasm tipida bo`lishligi kerak!',
             'image.max'                     => 'Rasm hajmi 5 mb.dan oshmasligi kerak!',
             'image.mimes'                   => 'Rasm: png, jpg, jpeg, gif tipida bo`lishi kerak!',
 

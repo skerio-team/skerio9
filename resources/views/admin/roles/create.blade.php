@@ -41,12 +41,16 @@
 
                         <div class="form-group">
                             <label class="d-block">Huquq tanlang</label>
+                                <div class="form-check"> 
+                                    <input type="checkbox" class="form-check-input" onclick="toggle(this)" id="defaultCheck9999" />
+                                    <label class="form-check-label" for="defaultCheck9999">Barchasini belgilash  </label> 
+                                 </div>
                             @foreach ($permissions as $per )
                                 <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="permission[]" value="{{ $per->id }}" id="defaultCheck{{ $loop->iteration }}">
-                                <label class="form-check-label" for="defaultCheck{{ $loop->iteration }}">
-                                    {{$per->name}}
-                                </label>
+                                    <input class="form-check-input getAll" type="checkbox" name="permission[]" value="{{ $per->id }}" id="defaultCheck{{ $loop->iteration }}">
+                                    <label class="form-check-label" for="defaultCheck{{ $loop->iteration }}">
+                                        {{$per->name}}
+                                    </label>
                                 </div>
                             @endforeach
 
@@ -92,5 +96,11 @@
         }
         password.onchange = validatePassword;
         confirm_password.onkeyup = validatePassword;
+
+        function toggle(source){
+            checkboxes = document.getElementsByClassName('getAll');
+            for (var i=0, n=checkboxes.length; i<n; i++)
+                checkboxes[i].checked = source.checked;
+        }
     </script>
 @endsection
