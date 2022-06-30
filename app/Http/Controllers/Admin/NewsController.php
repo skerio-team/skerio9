@@ -27,7 +27,8 @@ class NewsController extends Controller
 
     public function index()
     {
-        $items=News::paginate(10);
+        $items = News::paginate(10);
+
         return view('admin.news.index', compact('items'));
     }
 
@@ -38,7 +39,8 @@ class NewsController extends Controller
      */
     public function create()
     {
-        $categories=SportCategory::all();
+        $categories = SportCategory::all();
+        
         return view('admin.news.create',compact('categories'));
     }
 
@@ -50,7 +52,6 @@ class NewsController extends Controller
      */
     public function store(StoreNewsRequest $request)
     {
-
         $data=$request->all();
         if ($request->hasFile('image')) {
             $file=$request->image;
@@ -58,7 +59,9 @@ class NewsController extends Controller
             $file->move('admin/images/news/', $image_name);
             $data['image']=$image_name;
         }
-        $news=News::create($data);
+        $data['slug'] = \Str::slug($request->uz['title']);
+        $news = News::create($data);
+
         return redirect()->route('admin.news.index')->with('success', 'Ma`lumot yaratildi!');
     }
 
@@ -70,7 +73,8 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        $item=News::whereId($id)->first();
+        $item = News::whereId($id)->first();
+
         return view('admin.news.show', compact('item'));
     }
 
@@ -82,9 +86,10 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $item=News::whereId($id)->first();
-        $categories=SportCategory::all();
-        return view('admin.news.edit',compact('item', 'categories'));
+        $item = News::whereId($id)->first();
+        $categories = SportCategory::all();
+
+        return view('admin.news.edit', compact('item', 'categories'));
     }
 
     /**
@@ -96,7 +101,7 @@ class NewsController extends Controller
      */
     public function update(UpdateNewsRequest $request, $id)
     {
-        $item=News::find($id);
+        $item = News::find($id);
         $data=$request->all();
         if ($request->hasFile('image')) {
             $file=$request->image;
@@ -104,7 +109,9 @@ class NewsController extends Controller
             $file->move('admin/images/news/', $image_name);
             $data['image']=$image_name;
         }
+        $data['slug'] = \Str::slug($request->uz['title']);
         $item->update($data);
+        
         return redirect()->route('admin.news.index')->with('success', 'Ma`lumot tahrirlandi!');
     }
 
