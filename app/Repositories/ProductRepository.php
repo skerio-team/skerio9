@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductRepository implements ProductRepositoryInterface
 {
+    const IMAGE_PATH = 'admin/images/products/';
     public function getPaginatedItems()
     {
         return Product::paginate(10);
@@ -97,7 +98,7 @@ class ProductRepository implements ProductRepositoryInterface
             {
                 if (file_exists($destination . $img))
                 {
-                    unlink($destination . $img);
+                    unlink(self::IMAGE_PATH . $img);
                 }
             }
             $files = $request->file('image');
@@ -118,7 +119,6 @@ class ProductRepository implements ProductRepositoryInterface
         $item->sizes()->sync($request->size_id);
         $item->update($data);
     }
-    const IMAGE_PATH = 'admin/images/products/';
 
     public function delete($id)
     {

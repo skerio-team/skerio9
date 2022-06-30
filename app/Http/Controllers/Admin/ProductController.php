@@ -109,42 +109,8 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, $id)
     {
-        $item=Product::find($id);
-        $data=$request->all();
-
-        if ($request->file('image') !== null)
-        {
-            $images = array();
-            $destination = public_path('admin/images/products/');
-
-            $images_db = explode("|", $item->image);
-            foreach ($images_db as $img)
-            {
-                if (file_exists($destination . $img))
-                {
-                    unlink($destination . $img);
-                }
-            }
-            $files = $request->file('image');
-
-            foreach ($files as $file) {
-                $name = time().'_'.$file->getClientOriginalName();
-                $file->move($destination, $name);
-                $images[]   =   $name;
-            }
-            $data['image'] = implode("|",$images);
-        }
-        if($data['discount'] > "0"){
-            $d=$data['discount'];
-            $p=$data['price'];
-            $data['price']=$p-($p*$d/100);
-        }
-
-        $item->sizes()->sync($request->size_id);
-        $item->update($data);
-        return redirect()->route('admin.products.index')->with('success', $item->name . ' - ma`lumoti tahrirlandi!');
-        // $this->productRepo->update($request, $id);
-        // return redirect()->route('admin.products.index')->with('success', $request->name . ' - ma`lumoti tahrirlandi!');
+        $this->productRepo->update($request, $id);
+        return redirect()->route('admin.products.index')->with('success', $request->name . ' - ma`lumoti tahrirlandi!');
     }
 
     /**
