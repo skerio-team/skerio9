@@ -19,6 +19,9 @@ use App\Http\Controllers\Api\ComplexController;
 use App\Http\Controllers\Api\RegionController;
 use App\Http\Controllers\Api\AreaController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\Api\StadiumController;
+use App\Http\Controllers\Api\StadiumSectionController;
+use App\Http\Controllers\Api\TicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +54,8 @@ Route::resource('statusnews', StatusNewsController::class);
 
 Route::post('/like', [LikeController::class, 'store'])->middleware('auth:api');
 
+Route::post('/shoplike', [LikeController::class, 'store'])->middleware('auth:api');
+
 Route::get('/like', [LikeController::class, 'index'])->middleware('auth:api');
 
 Route::resource('brand', BrandController::class);
@@ -70,6 +75,12 @@ Route::resource('complex', ComplexController::class);
 Route::resource('region', RegionController::class);
 
 Route::resource('area', AreaController::class);
+
+Route::resource('stadium', StadiumController::class);
+
+Route::resource('stadiumsection', StadiumSectionController::class);
+
+Route::resource('tickets', TicketController::class);
 
 
 
