@@ -26,9 +26,9 @@
                 <div class="row mb-2">
                     <div class="card-header col-sm-12 d-flex justify-content-between">
                         <a href="{{ route('admin.products.store') }}"><button class="btn btn-warning"><i class="fa fa-arrow-left" aria-hidden="true"></i> {{ __("Ortga") }} </button></a>
-                        
+
                         <h4> Mahsulot qo'shish </h4>
-                        
+
                         <ul class="nav nav-tabs float-sm-right " >
                             <li class="nav-item">
                                <a class="nav-link " href="#" id="ru-link">Ru</a>
@@ -55,6 +55,11 @@
                                             <option value="{{$category->id}}">{{$category->translate('uz')->name}}</option>
                                         @endforeach
                                     </select>
+                                    @error('sport_category_id')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -67,6 +72,11 @@
                                             <option value="{{$category->id}}">{{$category->translate('uz')->name}}</option>
                                         @endforeach
                                     </select>
+                                    @error('product_category_id')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -79,6 +89,11 @@
                                             <option value="{{$brand->id}}">{{$brand->name}}</option>
                                         @endforeach
                                     </select>
+                                    @error('brand_id')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -91,6 +106,11 @@
                                             <option value="{{$team->id}}">{{$team->name}}</option>
                                         @endforeach
                                     </select>
+                                    @error('team_id')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -102,20 +122,35 @@
                                         <div class="form-group ">
                                             <label>Nom</label>
                                             <input type="text" class="form-control" placeholder="Nomni kiriting" name="name" >
+                                            @error('name')
+                                                <div class="alert alert-danger">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
-    
+
                                     <div class="col-sm-4 col-md-4 col-lg-4">
                                         <div class="form-group">
                                             <label>Narx</label>
                                             <input type="number" class="form-control" placeholder="Narxni kiriting" name="price" >
+                                            @error('price')
+                                                <div class="alert alert-danger">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
-    
+
                                     <div class="col-sm-4 col-md-4 col-lg-4">
                                         <div class="form-group">
                                             <label>Chegirma(Majburiy emas)</label>
                                             <input type="number" class="form-control" placeholder="Chegirma bo'lsa kiriting" name="discount" >
+                                            @error('discount')
+                                                <div class="alert alert-danger">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -130,6 +165,11 @@
                                                 <label for="image-upload" id="image-label">Rasm</label>
                                                 <input type="file" name="image[]" id="image-upload" multiple />
                                             </div>
+                                            @error('image')
+                                                <div class="alert alert-danger">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
 
                                         <div class="row">
@@ -141,9 +181,14 @@
                                                             <option value="{{ $size->id }}"> {{ $size->number }} </option>
                                                         @endforeach
                                                     </select>
+                                                    @error('size_id')
+                                                        <div class="alert alert-danger">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                             </div>
-                
+
                                             <div class="col-sm-6 col-md-6 col-lg-6">
                                                 <div class="form-group ">
                                                     <label>Harfli O'lchamlarga biriktirish</label>
@@ -164,14 +209,14 @@
                                                 <textarea name="uz[description]" id="" cols="30" rows="10">  </textarea>
                                             </div>
                                         </div>
-                
+
                                         <div id="ru-form" class="d-none">
                                             <div class="form-group ">
                                                 <label>Tavsif(RU)</label>
                                                 <textarea name="ru[description]" id="" cols="30" rows="10">  </textarea>
                                             </div>
                                         </div>
-                
+
                                         <div id="en-form" class="d-none">
                                             <div class="form-group ">
                                                 <label>Tavsif(EN)</label>

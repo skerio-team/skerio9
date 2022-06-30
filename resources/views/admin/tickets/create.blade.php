@@ -84,9 +84,9 @@
                                     </div>
                                 </div>
 
-                                <div class="row">                                    
+                                <div class="row">
                                     <div class="col-md-6 col-lg-6">
-        
+
 
                                         <div class="form-group ">
                                             <label >Nomi</label>
@@ -100,7 +100,7 @@
                                                 <option value=" ">Jamoaga tanlang</option>
 
                                                 @foreach ($teams as $team )
-                                                    <option {{ old('team_id') == $team->id ? 'selected' : '' }} value="{{$team->id}}"> {{$team->name}} </option>
+                                                    <option {{ old('team1_id') == $team->id ? 'selected' : '' }} value="{{$team->id}}"> {{$team->name}} </option>
                                                 @endforeach
                                             </select>
                                             @error('team1_id')
@@ -143,7 +143,7 @@
                                             <select name="team2_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
                                                 <option value=" ">2- Jamoani tanlang</option>
                                                 @foreach ($teams as $team )
-                                                    <option {{ old('team_id') == $team->id ? 'selected' : '' }} value="{{$team->id}}"> {{$team->name}} </option>
+                                                    <option {{ old('team2_id') == $team->id ? 'selected' : '' }} value="{{$team->id}}"> {{$team->name}} </option>
                                                 @endforeach
                                             </select>
                                             @error('team2_id')

@@ -66,10 +66,10 @@
                                     <label >Nomi</label>
                                     <input type="text" class="form-control " name="name" value="{{ $tickets->name }}">
                                 </div>
-                                
+
                                 <div class="form-group ">
                                     <label>1 - Jamoaga biriktirish</label>
-                                    <select name="team_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                    <select name="team1_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
 
                                         <option value="{{ $tickets->team1_id }}"> {{ $tickets->teams1->name }}  </option>
 
@@ -77,7 +77,7 @@
                                             <option value="{{$team->id}}"> {{$team->name}} </option>
                                         @endforeach
                                     </select>
-                                    @error('team_id')
+                                    @error('team1_id')
                                         <div class="alert alert-danger">
                                             {{ $message }}
                                         </div>
@@ -113,7 +113,7 @@
                                 </div>
 
 
-                            <div class="col-sm-12 col-md-6 col-lg-6">                                
+                            <div class="col-sm-12 col-md-6 col-lg-6">
 
                                 <div class="form-group">
                                     <label>Sana</label>
@@ -127,7 +127,7 @@
 
                                 <div class="form-group ">
                                     <label>2 - Jamoaga biriktirish</label>
-                                    <select name="team_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                    <select name="team2_id" class="form-control select2 select2-hidden-accessible"  data-placeholder="Kategoriyalarni tanlang" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
                                         <option value="{{ $tickets->team2_id }}"> {{ $tickets->teams2->name }}  </option>
                                         @foreach ($teams as $team )
                                             <option value="{{$team->id}}"> {{$team->name}} </option>
