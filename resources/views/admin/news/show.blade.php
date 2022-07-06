@@ -183,6 +183,29 @@
                             </div>
                         </div>
 
+                        <div class="row d-flex justify-content-center mt-5">
+                            <div class="col-6 offset-1">
+                                <h2>Display Comments</h2>
+
+                                <hr />
+            
+                                @include('admin.news.commentsDisplay', ['comments' => $item->comments, 'news_id' => $item->id])
+            
+                                <p>Add comment</p>
+                                
+                                <form method="post" action="{{ route('admin.comments.store') }}">
+                                    @csrf
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="comment"></textarea>
+                                        <input type="hidden" name="news_id" value="{{ $item->id }}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" class="btn btn-outline-primary" value="Add Comment" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

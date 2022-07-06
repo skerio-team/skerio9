@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class News extends Model implements TranslatableContract
 {
@@ -29,6 +30,7 @@ class News extends Model implements TranslatableContract
         'status',
         'special',
         'popularity',
+        'slug',
         'meta_title',
         'meta_description',
         'meta_keywords',
@@ -37,6 +39,11 @@ class News extends Model implements TranslatableContract
     public function sport_categories()
     {
         return $this->belongsTo(SportCategory::class, 'sport_category_id');
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class)->whereNull('parent_id');
     }
 
     const IMAGE_PATH = 'admin/images/news/';

@@ -7,10 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
-
-
-
-//>>>>>>> 3c8d284c6ab4980a5615521481bd30648dea2022
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -30,9 +26,14 @@ class User extends Authenticatable
         return $this->hasMany(Like::class, 'user_id');
      }
 
-     public function products()
+     public function shoplikes()
      {
-         return $this->belongsToMany(Product::class, 'product_size');
+        return $this->hasMany(ShopLike::class, 'user_id');
+     }
+
+     public function cards()
+     {
+        return $this->hasMany(Card::class, 'user_id');
      }
 
     protected $fillable = [

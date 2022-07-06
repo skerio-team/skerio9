@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->string('special')->nullable();
             $table->integer('popularity')->default(0);
+            $table->string('slug');
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
             $table->string('meta_keywords')->nullable();
