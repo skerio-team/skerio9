@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Http\Resources\ProductResource;
+use App\Http\Resources\UfcResource;
 
-class ProductController extends Controller
+class UfcProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return ProductResource::collection(Product::all());
+        $ufc = Product::where('sport_category_id', 5)->get();
+
+        return UfcResource::collection($ufc);
     }
 
     /**

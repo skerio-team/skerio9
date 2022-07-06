@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProductResource extends JsonResource
+class ValeybolResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -13,8 +13,8 @@ class ProductResource extends JsonResource
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
-    {      
-    return         
+    {
+        return         
         [
             'id'=>$this->id,
             'status'=>$this->status,

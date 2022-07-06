@@ -19,9 +19,15 @@ use App\Http\Controllers\Api\ComplexController;
 use App\Http\Controllers\Api\RegionController;
 use App\Http\Controllers\Api\AreaController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\CardController;
 use App\Http\Controllers\Api\StadiumController;
 use App\Http\Controllers\Api\StadiumSectionController;
 use App\Http\Controllers\Api\TicketController;
+use App\Http\Controllers\Api\FootballProductController;
+use App\Http\Controllers\Api\ValeybolProductController;
+use App\Http\Controllers\Api\BasketbolProductController;
+use App\Http\Controllers\Api\BoksProductController;
+use App\Http\Controllers\Api\UfcProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,9 +60,13 @@ Route::resource('statusnews', StatusNewsController::class);
 
 Route::post('/like', [LikeController::class, 'store'])->middleware('auth:api');
 
-Route::post('/shoplike', [LikeController::class, 'store'])->middleware('auth:api');
+Route::post('/shoplike', [LikeController::class, 'shopstore']);
 
-Route::get('/like', [LikeController::class, 'index'])->middleware('auth:api');
+Route::post('/card', [CardController::class, 'store']);
+
+Route::get('/card/{id}', [CardController::class, 'index']);
+
+Route::get('/like', [LikeController::class, 'index']);
 
 Route::resource('brand', BrandController::class);
 
@@ -82,8 +92,20 @@ Route::resource('stadiumsection', StadiumSectionController::class);
 
 Route::resource('tickets', TicketController::class);
 
+Route::resource('fproduct', FootballProductController::class);
+
+Route::resource('vproduct', ValeybolProductController::class);
+
+Route::resource('bproduct', BasketbolProductController::class);
+
+Route::resource('boksproduct', BoksProductController::class);
+
+Route::resource('uproduct', UfcProductController::class);
+
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
