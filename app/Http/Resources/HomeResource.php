@@ -17,12 +17,13 @@ class HomeResource extends JsonResource
         return [
 
             'id'=>$this->id,
+            'sport_category'=>$this->sport_categories->name,
             'title_uz'=>$this->translate('uz')->title,
             'title_ru'=>$this->translate('ru')->title,
             'title_en'=>$this->translate('en')->title,
             'description_uz'=>strip_tags($this->translate('uz')->description),
-            'description_ru'=>$this->translate('ru')->description,
-            'description_en'=>$this->translate('en')->description,
+            'description_ru'=>strip_tags($this->translate('ru')->description),
+            'description_en'=>strip_tags($this->translate('en')->description),
             'image'=>$this->image,
         ];
     }

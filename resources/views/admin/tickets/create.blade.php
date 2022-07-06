@@ -87,7 +87,6 @@
                                 <div class="row">
                                     <div class="col-md-6 col-lg-6">
 
-
                                         <div class="form-group ">
                                             <label >Nomi</label>
                                             <input type="text" class="form-control" placeholder="Chipta nomini kiriting" name="name" >

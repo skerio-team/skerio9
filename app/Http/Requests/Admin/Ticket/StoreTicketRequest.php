@@ -71,3 +71,4 @@ class StoreTicketRequest extends FormRequest
         ];
     }
 }
+
