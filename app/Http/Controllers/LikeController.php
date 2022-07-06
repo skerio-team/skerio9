@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Like;
 use App\Models\News;
+use App\Models\ShopLike;
+use App\Models\Product;
 
 class LikeController extends Controller
 {
@@ -32,24 +34,27 @@ class LikeController extends Controller
             Like::create($request->all());
             return "created";
     }
+
+    public function shopstore(Request $request)
+    {
+        
+        $user_id = $request->user_id;
+
+        $save = ShopLike::where('user_id',$user_id)->get();
+
+        if ($save) {
+            foreach($save as $post){
+                if($post->product_id == $request->product_id){
+                    $post->delete();
+                    return "deleted";
+                }
+            }
+            
+        }
+
+            ShopLike::create($request->all());
+            return "created";
+    }
+    
 }
 
-// public function like($id){
-//     $user_id = auth()->guard('api')->user()->id;
-//     $save = Like::where('user_id',$user_id)->get();
-    
-//     if ($save) {
-        
-//         foreach($save as $post){
-//             if($post->post_id == $id){
-//                 $post->delete();
-//                 return true;
-//             }
-//         }
-//     }
-
-//     $data['user_id'] = $user_id;
-//     $data['post_id'] = $id;
-//     Like::create($data);
-//     return true;
-// }

@@ -30,6 +30,16 @@ class User extends Authenticatable
         return $this->hasMany(Like::class, 'user_id');
      }
 
+     public function shoplikes()
+     {
+        return $this->hasMany(ShopLike::class, 'user_id');
+     }
+
+     public function cards()
+     {
+        return $this->hasMany(Card::class, 'user_id');
+     }
+
     protected $fillable = [
         'name',
         'email',

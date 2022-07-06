@@ -26,7 +26,7 @@ class NewsResource extends JsonResource
             'sport_category'=>$this->sport_category_id,
             'status'=>$this->status,
             'special'=>$this->special,
-            'likes' => $likes,
+            'likes' => [$likes],
             'image'=>$this->image,
             'title_uz'=>$this->translate('uz')->title,
             'title_ru'=>$this->translate('ru')->title,

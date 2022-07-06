@@ -33,6 +33,17 @@ class Product extends Model  implements TranslatableContract
     ];
 
 
+    
+    public function shoplikes()
+    {
+       return $this->hasMany(ShopLike::class, 'product_id');
+    }
+
+    public function cards()
+    {
+       return $this->hasMany(Card::class, 'product_id');
+    }
+
     public function sport_categories()
     {
         return $this->belongsTo(SportCategory::class, 'sport_category_id');
