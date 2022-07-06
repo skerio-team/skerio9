@@ -63,10 +63,15 @@ class Product extends Model  implements TranslatableContract
         return $this->belongsToMany(Size::class, 'product_size');
     }
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'product_user');
+    }
+
     public function teams()
     {
         return $this->belongsTo(Team::class, 'team_id');
     }
 
-    
+
 }
