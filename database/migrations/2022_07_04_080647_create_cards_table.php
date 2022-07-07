@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('product_id');
+            $table->string('quantity')->default(0)->nullable();
+            $table->string('size')->nullable();
             $table->timestamps();
         });
     }
