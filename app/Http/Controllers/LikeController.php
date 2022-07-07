@@ -28,7 +28,7 @@ class LikeController extends Controller
                     return "deleted";
                 }
             }
-            
+
         }
 
             Like::create($request->all());
@@ -37,7 +37,7 @@ class LikeController extends Controller
 
     public function shopstore(Request $request)
     {
-        
+
         $user_id = $request->user_id;
 
         $save = ShopLike::where('user_id',$user_id)->get();
@@ -49,12 +49,12 @@ class LikeController extends Controller
                     return "deleted";
                 }
             }
-            
+
         }
 
             ShopLike::create($request->all());
             return "created";
     }
-    
+
 }
 
