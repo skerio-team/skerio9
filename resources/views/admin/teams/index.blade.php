@@ -63,7 +63,7 @@
                  <td>
                     @if (!empty($item->image))
                             <img src="/admin/images/teams/{{$item->image}}" width="200px">
-                        @else 
+                        @else
                             <h5 class="text-danger"> {{ __("Rasm mavjud emas!") }} </h5>
                         @endif
                  </td>
