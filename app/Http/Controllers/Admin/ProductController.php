@@ -12,7 +12,7 @@ use App\Models\Team;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\Product\UpdateProductRequest;
 use App\Http\Requests\Admin\Product\StoreProductRequest;
-use App\Repositories\Interfaces\ProductRepositoryInterface;
+use App\Repositories\Interfaces\ProductRepositoryInterface; 
 
 class ProductController extends Controller
 {
