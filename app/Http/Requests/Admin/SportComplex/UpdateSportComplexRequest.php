@@ -29,7 +29,7 @@ class UpdateSportComplexRequest extends FormRequest
             'sport_category_id' =>  'required',
             'area_id'           =>  'required',
             'name'              =>  'required|string|min:3',
-            'image'             =>  'file|max:5000|mimes:png,jpg,gif,jpeg',
+            'image*'             => 'image|max:5000|mimes:png,jpg,gif,jpeg',
             'price'             =>  'required|numeric',
             'phone'             =>  'required',
             'address'           =>  'required',
@@ -61,7 +61,7 @@ class UpdateSportComplexRequest extends FormRequest
             'name.string'               => 'Majmua nomi matn ko`rinishida bo`lishi kerak!',
             'name.min'                  => 'Majmua nomi 3 ta belgidan ko`p bo`lishi kerak!',
 
-            'image.file'                => 'Rasm fayl tipida bo`lishligi kerak!',
+            'image.file'                => 'Rasm bo`lishligi kerak!',
             'image.max'                 => 'Rasm hajmi 5 mb.dan oshmasligi kerak!',
             'image.mimes'               => 'Rasm: png, jpg, jpeg, gif tipida bo`lishi kerak!',
 

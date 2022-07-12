@@ -29,7 +29,7 @@ class StoreNewsRequest extends FormRequest
             '%title%'            => 'required|string',
             '%description%'      => 'required|string',
             'sport_category_id'  => 'required',
-            'image'              => 'required|file|max:5000|mimes:png,jpg,jpeg,gif',
+            'image*'              => 'required|image|max:5000|mimes:png,jpg,jpeg,gif',
         ]);
 
     }
@@ -55,7 +55,7 @@ class StoreNewsRequest extends FormRequest
             'sport_category_id.required' => 'Sport Kategoriyasi tanlanishi kerak!',
 
             'image.required'          => 'Rasm tanlanishi kerak!',
-            'image.file'              => 'Rasm fayl tipida bo`lishligi kerak!',
+            'image.image'              => 'Rasm bo`lishligi kerak!',
             'image.max'               => 'Rasm hajmi 5 mb.dan oshmasligi kerak!',
             'image.mimes'             => 'Rasm: png, jpg, jpeg, gif tipida bo`lishi kerak!',
         ];
