@@ -29,7 +29,6 @@ class StoreStadiumSectionRequest extends FormRequest
             'name'      =>  'required',
             'price'     =>  'required',
             'capacity'  =>  'nullable',
-            // 'image'     =>  'nullable|file|max:5000|mimes:png,jpg,gif,jpeg',
             'image.*'   =>  ['nullable|image|mimes:png,jpg,gif,jpeg'],
         ];
     }

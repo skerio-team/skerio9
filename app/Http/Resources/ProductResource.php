@@ -21,7 +21,7 @@ class ProductResource extends JsonResource
             'discount'=>$this->discount,
             'price'=>$this->price,
             'name'=>$this->name,
-            'brand_id'=>$this->brands->name,
+            'brand_id'=>$this->brands->name ?? null,
             'sport_category_id'=>$this->sport_categories->name,
             'product_category_id'=>$this->product_categories->name,
             'image'=>$this->image,

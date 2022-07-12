@@ -28,7 +28,7 @@ class UpdateStadiumSectionRequest extends FormRequest
             'name'      =>  'required',
             'price'     =>  'required',
             'capacity'  =>  'nullable',
-            'image'     =>  'max:5000|image|mimes:png,jpg,gif,jpeg',
+            'image.*'   =>  ['nullable|max:5000|image|mimes:png,jpg,gif,jpeg'],
         ];
     }
 
@@ -39,6 +39,7 @@ class UpdateStadiumSectionRequest extends FormRequest
             'price.required'        => 'Stadion kiritlishi kerak!',
             'capacity.required'     => 'Hajmi kiritlishi kerak!',
 
+            'image.required'        => 'Rasm tanlanishi kerak!',
             'image.file'            => 'Rasm fayl tipida bo`lishligi kerak!',
             'image.max'             => 'Rasm hajmi 5 mb.dan oshmasligi kerak!',
             'image.mimes'           => 'Rasm: png, jpg, jpeg, gif tipida bo`lishi kerak!',

@@ -18,17 +18,11 @@ use App\Http\Controllers\Api\CountController;
 use App\Http\Controllers\Api\ComplexController;
 use App\Http\Controllers\Api\RegionController;
 use App\Http\Controllers\Api\AreaController;
-use App\Http\Controllers\Api\ProductUserController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\Api\StadiumController;
 use App\Http\Controllers\Api\StadiumSectionController;
 use App\Http\Controllers\Api\TicketController;
-use App\Http\Controllers\Api\FootballProductController;
-use App\Http\Controllers\Api\ValeybolProductController;
-use App\Http\Controllers\Api\BasketbolProductController;
-use App\Http\Controllers\Api\BoksProductController;
-use App\Http\Controllers\Api\UfcProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,8 +38,6 @@ use App\Http\Controllers\Api\UfcProductController;
 Route::post('register', [UserController::class, 'register']);
 
 Route::post('login', [UserController::class, 'login']);
-
-
 
 Route::resource('home', HomeController::class);
 
@@ -75,13 +67,13 @@ Route::resource('productcategory', ProductCategoryController::class);
 
 Route::resource('size', SizeController::class);
 
-Route::resource('product', ProductController::class);
+Route::get('product/{id}', [ProductController::class, 'index']);
 
 Route::resource('team', TeamController::class);
 
 Route::resource('count', CountController::class);
 
-Route::resource('complex', ComplexController::class);
+Route::get('complex/{id}', [ComplexController::class, 'index']);
 
 Route::resource('region', RegionController::class);
 
@@ -92,18 +84,6 @@ Route::resource('stadium', StadiumController::class);
 Route::resource('stadiumsection', StadiumSectionController::class);
 
 Route::resource('tickets', TicketController::class);
-
-Route::resource('fproduct', FootballProductController::class);
-
-Route::resource('vproduct', ValeybolProductController::class);
-
-Route::resource('bproduct', BasketbolProductController::class);
-
-Route::resource('boksproduct', BoksProductController::class);
-
-Route::resource('uproduct', UfcProductController::class);
-
-
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

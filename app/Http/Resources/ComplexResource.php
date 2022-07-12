@@ -33,7 +33,6 @@ class ComplexResource extends JsonResource
             'description_uz'=>strip_tags($this->translate('uz')->description),
             'description_ru'=>strip_tags($this->translate('ru')->description),
             'description_en'=>strip_tags($this->translate('en')->description),
-
         ];
     }
 }

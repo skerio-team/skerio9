@@ -89,7 +89,7 @@
 
                     <div class="form-group ">
                         <div class="">
-                            <button type="submit" class="btn btn-primary m-t-15 waves-effect">{{ __("Qo'shish") }}</button>
+                            <button type="submit" class="btn btn-primary m-t-15 waves-effect">{{ __("Saqlash") }}</button>
                         </div>
                     </div>
                 </div>

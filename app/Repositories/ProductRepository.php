@@ -88,17 +88,17 @@ class ProductRepository implements ProductRepositoryInterface
         $item=$this->findOne($id);
         $data=$request->all();
 
+        $images = array();
+        $destination = public_path('admin/images/products/');
+
         if ($request->file('image') !== null)
         {
-            $images = array();
-            $destination = public_path('admin/images/products/');
-
             $images_db = explode("|", $item->image);
             foreach ($images_db as $img)
             {
                 if (file_exists($destination . $img))
                 {
-                    unlink(self::IMAGE_PATH . $img);
+                    unlink($destination . $img);
                 }
             }
             $files = $request->file('image');
@@ -110,6 +110,7 @@ class ProductRepository implements ProductRepositoryInterface
             }
             $data['image'] = implode("|",$images);
         }
+
         if($data['discount'] > "0"){
             $d=$data['discount'];
             $p=$data['price'];
@@ -130,6 +131,7 @@ class ProductRepository implements ProductRepositoryInterface
         }
         else {
             $images = explode("|", $item->image);
+            
             foreach ($images as $img)
             {
                 unlink(self::IMAGE_PATH . $img);
@@ -139,6 +141,4 @@ class ProductRepository implements ProductRepositoryInterface
         }
         return Product::destroy($id);
     }
-
-
 }

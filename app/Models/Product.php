@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model  implements TranslatableContract
 {
@@ -54,7 +55,8 @@ class Product extends Model  implements TranslatableContract
         return $this->belongsTo(ProductCategory::class, 'product_category_id');
     }
 
-    public function brands(){
+    public function brands(): BelongsTo
+    {
         return $this->belongsTo(Brand::class, 'brand_id'); // Model Name
     }
 

@@ -101,11 +101,11 @@ class StadiumSectionController extends Controller
         $item = StadiumSection::find($id);
         $data = $request->all();
 
+        $images = array();
+        $destination = public_path('admin/images/tickets/stadium_sections/');
+
         if ($request->file('image') !== null)
         {
-            $images = array();
-            $destination = public_path('admin/images/tickets/stadium_sections/');
-
             $images_db = explode("|", $item->image);
             foreach ($images_db as $img)
             {
@@ -121,8 +121,8 @@ class StadiumSectionController extends Controller
                 $file->move($destination, $name);
                 $images[]   =   $name;
             }
-            $data['image'] = implode("|", $images);
         }
+        $data['image'] = implode("|", $images);
 
         $item->update($data);
 
