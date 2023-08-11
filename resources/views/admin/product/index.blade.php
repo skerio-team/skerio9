@@ -54,7 +54,7 @@
               <tbody>
                 @foreach ($items as $item)
                 <tr class="odd">
-                    <td> {{$loop->iteration}} </td>
+                    <td>{{ ((($items->currentPage()-1) * $items->perPage() + ($loop->index+1))) }}</td>
                     <td> {{ $item->name }} </td>
                     <td> {{ $item->translate('uz')->description }} </td>
                     <td> {{ $item->like }} </td>

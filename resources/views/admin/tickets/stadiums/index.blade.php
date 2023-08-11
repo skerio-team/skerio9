@@ -47,7 +47,7 @@
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
-                <table class="table table-striped table-md" id="table-3">
+                <table class="table table-striped table-md">
                   <thead>
                     <tr>
                       <th class="text-center">#</th>
@@ -93,6 +93,19 @@
         <div class="col-12 col-sm-12 col-md-8 col-lg-8">
           <div class="card">
             <div class="card-header d-flex justify-content-between">
+
+              {{-- Dropdown --}}
+              <div style="width: 40%">
+                <select class="form-control bg-primary text-light">
+                  <option value="">Stadionni tanlang</option>
+                  @foreach ($stadiums as $stadium)
+                      <option value="{{ $stadium->id }}">
+                          {{ $stadium->name }}
+                      </option>
+                  @endforeach
+                </select>
+              </div>
+
               <h4 align="center">Sektorlar</h4>
               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addSection">Qo'shish</button>
             </div>

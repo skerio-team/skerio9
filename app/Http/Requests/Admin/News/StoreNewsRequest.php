@@ -55,7 +55,7 @@ class StoreNewsRequest extends FormRequest
             'sport_category_id.required' => 'Sport Kategoriyasi tanlanishi kerak!',
 
             'image.required'          => 'Rasm tanlanishi kerak!',
-            'image.image'              => 'Rasm bo`lishligi kerak!',
+            'image.image'             => 'Rasm bo`lishligi kerak!',
             'image.max'               => 'Rasm hajmi 5 mb.dan oshmasligi kerak!',
             'image.mimes'             => 'Rasm: png, jpg, jpeg, gif tipida bo`lishi kerak!',
         ];

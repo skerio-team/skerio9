@@ -34,7 +34,7 @@
                                 <div class="card-content">
                                     <h5 class="font-15"> Sport Kategoriyalari soni </h5>
                                     <h2 class="mb-3 font-18"> {{ $categories->count() }} </h2>
-                                    <p class="mb-0">Bugun @if($countSC==0) sport kategoriya qo'shilmadi </p> @else <span class="col-green">{{ ' '.$countSC }}</span>&nbsp;ta qo'shildi @endif  </p>
+                                    <p class="mb-0">Bugun @if($countSC==0) qo'shilmadi </p> @else <span class="col-green">{{ ' '.$countSC }}</span>&nbsp;ta qo'shildi @endif  </p>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">

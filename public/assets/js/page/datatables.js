@@ -31,7 +31,7 @@ $("[data-checkboxes]").each(function () {
 $("#table-1").dataTable({
   "columnDefs": [
     { "sortable": false, "targets": [2, 3] }
-  ]
+  ],
 });
 $("#table-2").dataTable({
   "columnDefs": [
@@ -39,11 +39,6 @@ $("#table-2").dataTable({
   ],
   order: [[1, "asc"]] //column indexes is zero based
 
-});
-$("#table-3").dataTable({
-  "columnDefs": [
-    { "sortable": false, "targets": [2, 3] }
-  ]
 });
 $('#save-stage').DataTable({
   "scrollX": true,

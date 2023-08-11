@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\SportCategoryController;
-use App\Http\Controllers\Api\newsController;
+use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\Api\LastNewsController;
 use App\Http\Controllers\Api\LikeNewsController;
 use App\Http\Controllers\Api\StatusNewsController;
@@ -23,6 +23,8 @@ use App\Http\Controllers\CardController;
 use App\Http\Controllers\Api\StadiumController;
 use App\Http\Controllers\Api\StadiumSectionController;
 use App\Http\Controllers\Api\TicketController;
+use App\Http\Controllers\Api\LimitTicketController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +45,7 @@ Route::resource('home', HomeController::class);
 
 Route::resource('sportcategory', SportCategoryController::class);
 
-Route::resource('news', newsController::class);
+Route::resource('news', NewsController::class);
 
 Route::resource('lastnews', LastNewsController::class);
 
@@ -53,7 +55,7 @@ Route::resource('statusnews', StatusNewsController::class);
 
 Route::post('/like', [LikeController::class, 'store'])->middleware('auth:api');
 
-Route::post('/shoplike', [LikeController::class, 'shopstore']);
+Route::post('/shoplike', [LikeController::class, 'shopstore'])->middleware('auth:api');
 
 Route::post('/card', [CardController::class, 'store']);
 
@@ -84,6 +86,8 @@ Route::resource('stadium', StadiumController::class);
 Route::resource('stadiumsection', StadiumSectionController::class);
 
 Route::resource('tickets', TicketController::class);
+
+Route::resource('ltickets', TicketController::class);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

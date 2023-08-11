@@ -61,7 +61,7 @@ class UpdateSportComplexRequest extends FormRequest
             'name.string'               => 'Majmua nomi matn ko`rinishida bo`lishi kerak!',
             'name.min'                  => 'Majmua nomi 3 ta belgidan ko`p bo`lishi kerak!',
 
-            'image.file'                => 'Rasm bo`lishligi kerak!',
+            'image.file'                => 'Rasm fayl tipida bo`lishligi kerak!',
             'image.max'                 => 'Rasm hajmi 5 mb.dan oshmasligi kerak!',
             'image.mimes'               => 'Rasm: png, jpg, jpeg, gif tipida bo`lishi kerak!',
 

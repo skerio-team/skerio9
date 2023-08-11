@@ -23,7 +23,7 @@ class FootballResource extends JsonResource
             'name'=>$this->name,
             'brand_id'=>$this->brands->name,
             'sport_category_id'=>$this->sport_categories->name,
-            'product_category_id'=>$this->product_categories->name,
+            'product_category'=>$this->product_categories->name,
             'image'=>$this->image,
             'team_id'=>$this->teams->image,
             'descrition'=>$this->description,

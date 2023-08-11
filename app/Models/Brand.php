@@ -16,7 +16,7 @@ class Brand extends Model
        'image',
     ];
     
-    public function products(): HasMany
+    public function products(): Hasmany
     {
         return $this->hasMany(Product::class); // Model Name
     }

@@ -65,6 +65,11 @@
                                 <div class="form-group ">
                                     <label >Nomi</label>
                                     <input type="text" class="form-control " name="name" value="{{ $tickets->name }}">
+                                    @error('name')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group ">
@@ -102,19 +107,6 @@
 
 
                             <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group ">
-                                    <label >Nomi</label>
-                                    <input type="text" class="form-control " name="name" value="{{ $tickets->name }}">
-                                    @error('name')
-                                        <div class="alert alert-danger">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-
-
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-
                                 <div class="form-group">
                                     <label>Sana</label>
                                     <input type="datetime-local" class="form-control" name="date" value="{{ $tickets->date }}">
@@ -249,7 +241,7 @@
 
                         <div class="form-group ">
                             <div class="">
-                                <button type="submit" class="btn btn-primary">Tasdiqlash</button>
+                                <button type="submit" class="btn btn-primary">{{__("Saqlash")}}</button>
                             </div>
                         </div>
                       </div>

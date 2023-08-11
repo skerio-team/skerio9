@@ -63,7 +63,7 @@
                             <tbody>
                                 @foreach ($tickets as $ticket)
                                 <tr class="odd">
-                                    <td> {{ $loop->iteration }} </td>
+                                    <td>{{ ((($tickets->currentPage()-1) * $tickets->perPage() + ($loop->index+1))) }}</td>
                                     <td> {{ $ticket->name }} </td>
                                     <td> {{ $ticket->date }} </td>
                                     <td> {{ number_format($ticket->price) }} </td>
@@ -106,7 +106,15 @@
                                 </tr>
                                 @endforeach
                             </tbody>
+                            <!--{!! $tickets->links() !!}-->
                         </table>
+                    </div>
+                    <div class="card-footer text-right">
+                        <nav class="d-inline-block">
+                          <ul class="pagination mb-0">
+                            {!! $tickets->links() !!}
+                          </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

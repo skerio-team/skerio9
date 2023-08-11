@@ -27,7 +27,7 @@ class TicketController extends Controller
 
     public function index()
     {
-        $tickets = Ticket::paginate(10);
+        $tickets = Ticket::paginate(5);
 
         return view('admin.tickets.index', compact('tickets'));
     }

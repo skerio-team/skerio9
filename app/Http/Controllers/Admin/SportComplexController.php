@@ -50,7 +50,7 @@ class SportComplexController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSportComplexRequest $request)
+    public function store(Request $request)
     {
         $data = $request->all();
         $images = array();
@@ -113,12 +113,12 @@ class SportComplexController extends Controller
     {
         $item = SportComplex::find($id);
         $data = $request->all();
+        
+        $images = array();
+        $destination = public_path('admin/images/complexes/');
 
         if ($request->file('image') !== null)
         {
-            $images = array();
-            $destination = public_path('admin/images/complexes/');
-
             $images_db = explode("|", $item->image);
             foreach ($images_db as $img)
             {
@@ -151,8 +151,15 @@ class SportComplexController extends Controller
     public function destroy($id)
     {
         $model = SportComplex::find($id);
-        $model->delete();
-        $model->deleteImage();
+        
+        if ($model->image == null)
+        {
+            $model->delete();
+        }
+        else {
+            $model->deleteImage();
+            $model->delete();
+        }
 
         return redirect()->route('admin.complexes.table.index')->with('success', 'Complex successfully deleted!');
     }

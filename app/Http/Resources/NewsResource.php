@@ -20,6 +20,7 @@ class NewsResource extends JsonResource
         $likes = count($id);
         
         return [
+
             'id'=>$this->id,
             'created_at'=>$this->created_at->format('d/m/Y'), 
             'sport_category'=>$this->sport_category_id,

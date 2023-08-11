@@ -14,6 +14,7 @@ class SportComplex extends Model implements TranslatableContract
     use Translatable;
 
     protected $table = 'sport_complexes';
+    
     protected $fillable = [
         'sport_category_id',
         'area_id',

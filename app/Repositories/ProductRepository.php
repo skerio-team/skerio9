@@ -110,7 +110,7 @@ class ProductRepository implements ProductRepositoryInterface
             }
             $data['image'] = implode("|",$images);
         }
-
+        
         if($data['discount'] > "0"){
             $d=$data['discount'];
             $p=$data['price'];
@@ -125,13 +125,14 @@ class ProductRepository implements ProductRepositoryInterface
     {
         $item=$this->findOne($id);
         $item->sizes()->detach();
+        
         if ($item->image == null)
         {
             $item->delete();
         }
+        
         else {
             $images = explode("|", $item->image);
-            
             foreach ($images as $img)
             {
                 unlink(self::IMAGE_PATH . $img);
@@ -139,6 +140,9 @@ class ProductRepository implements ProductRepositoryInterface
 
             $item->delete();
         }
+        
         return Product::destroy($id);
     }
+
+
 }

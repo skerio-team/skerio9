@@ -1,0 +1,16 @@
+[12-Jul-2022 10:28:32 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/skeriouz/public_html/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[12-Jul-2022 10:29:15 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/skeriouz/public_html/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[12-Jul-2022 10:30:34 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/skeriouz/public_html/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[12-Jul-2022 10:30:55 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/skeriouz/public_html/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[12-Jul-2022 10:31:32 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/skeriouz/public_html/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[12-Jul-2022 10:32:29 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/skeriouz/public_html/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[12-Jul-2022 10:32:35 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/skeriouz/public_html/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[12-Jul-2022 10:33:48 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/skeriouz/public_html/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[12-Jul-2022 10:33:53 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/skeriouz/public_html/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[12-Jul-2022 10:34:01 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/skeriouz/public_html/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[12-Jul-2022 10:34:21 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/skeriouz/public_html/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[12-Jul-2022 10:34:29 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/skeriouz/public_html/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[12-Jul-2022 10:35:35 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/skeriouz/public_html/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[12-Jul-2022 10:36:28 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/skeriouz/public_html/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635
+[12-Jul-2022 10:37:38 UTC] PHP Fatal error:  Namespace declaration statement has to be the very first statement or after any declare call in the script in /home/skeriouz/public_html/app/Http/Controllers/Admin/AdminController.php on line 3
+[13-Jul-2022 04:22:59 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/skeriouz/public_html/vendor/symfony/polyfill-mbstring/Mbstring.php on line 635

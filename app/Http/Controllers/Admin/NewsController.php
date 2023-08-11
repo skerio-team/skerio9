@@ -27,7 +27,7 @@ class NewsController extends Controller
 
     public function index()
     {
-        $items = News::paginate(10);
+        $items = News::paginate(5);
 
         return view('admin.news.index', compact('items'));
     }

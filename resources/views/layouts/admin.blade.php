@@ -50,6 +50,7 @@
                 class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
             <div class="dropdown-menu dropdown-menu-right pullDown">
               <div class="dropdown-title"> {{ Auth::user()->name }} </div>
+               
               <div class="dropdown-divider"></div>
               <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i> Logout </a>
             </div>

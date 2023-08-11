@@ -103,7 +103,7 @@ class StadiumSectionController extends Controller
 
         $images = array();
         $destination = public_path('admin/images/tickets/stadium_sections/');
-
+            
         if ($request->file('image') !== null)
         {
             $images_db = explode("|", $item->image);
